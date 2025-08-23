@@ -94,8 +94,8 @@ export default {
           '50%': { transform: 'translateY(-10px)' }
         },
         pulseGlow: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.5)' },
-          '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.8)' }
+          '0%, 100%': { boxShadow: '0 0 20px rgb(212 175 55 / 0.5)' },
+          '50%': { boxShadow: '0 0 40px rgb(212 175 55 / 0.8)' }
         },
         rotateSlow: {
           '0%': { transform: 'rotate(0deg)' },
@@ -107,8 +107,8 @@ export default {
         }
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(212, 175, 55, 0.3)',
-        'glow-lg': '0 0 40px rgba(212, 175, 55, 0.4)',
+        'glow': '0 0 20px rgb(212 175 55 / 0.3)',
+        'glow-lg': '0 0 40px rgb(212 175 55 / 0.4)',
         'mystical': '0 10px 50px rgba(124, 58, 237, 0.3)',
         'divine': '0 0 30px rgba(88, 28, 135, 0.5)'
       },

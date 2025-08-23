@@ -13,7 +13,7 @@ export const whatsappPosts = [
     content: "Los obstáculos no son castigos: son mensajes del alma. Descubre cómo la Constelación Familiar Cabalística puede darte la claridad que buscas.",
     cta: "¿Listo para sanar de raíz? Respóndenos.",
     type: "education",
-    tool: "constelacion-familiar",
+    tool: "constelacionFamiliar",
     emoji: "🌱"
   },
   {
@@ -22,7 +22,7 @@ export const whatsappPosts = [
     content: "¿Notas cansancio o confusión últimamente? Una Limpieza Áurica puede ser la respuesta. Cábala Activa renueva tu energía y magnetismo natural.",
     cta: "'Quiero limpiar mi aura' para más info.",
     type: "education",
-    tool: "limpieza-aurica",
+    tool: "limpiezaAurica",
     emoji: "🌟"
   },
   {
@@ -31,7 +31,7 @@ export const whatsappPosts = [
     content: "Nada es casualidad: cada experiencia tiene un propósito. La Carta Astral Cabalística revela tu misión y las fuerzas que te impulsan.",
     cta: "Pregunta GRATIS por tu diagnóstico personalizado.",
     type: "education",
-    tool: "carta-astral",
+    tool: "cartaAstral",
     emoji: "💫"
   },
   {

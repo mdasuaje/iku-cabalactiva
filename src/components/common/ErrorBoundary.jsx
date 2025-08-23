@@ -17,7 +17,12 @@ class ErrorBoundary extends React.Component {
     })
 
     if (process.env.NODE_ENV === 'development') {
-      console.error('ErrorBoundary caught an error:', error, errorInfo)
+      // Sanitize error output to prevent log injection
+      const sanitizedError = {
+        message: error?.message || 'Unknown error',
+        stack: error?.stack?.substring(0, 500) || 'No stack trace'
+      }
+      console.error('ErrorBoundary caught an error:', sanitizedError)
     }
   }
 

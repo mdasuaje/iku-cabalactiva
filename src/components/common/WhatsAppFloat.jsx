@@ -7,8 +7,20 @@ const WhatsAppFloat = () => {
   const [showTooltip, setShowTooltip] = useState(false)
 
   const handleClick = () => {
-    const message = encodeURIComponent('Hola, quiero información sobre Cábala Activa. ¿Podrías guiarme?')
-    window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}?text=${message}`, '_blank')
+    try {
+      const message = encodeURIComponent('Hola, quiero información sobre Cábala Activa. ¿Podrías guiarme?')
+      const phoneNumber = SOCIAL_LINKS.whatsapp.number?.replace('+', '') || '12988336069'
+      const whatsappWindow = window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
+      
+      if (!whatsappWindow) {
+        // Fallback if popup is blocked
+        window.location.href = `https://wa.me/${phoneNumber}?text=${message}`
+      }
+    } catch (error) {
+      console.error('Error opening WhatsApp:', error)
+      // Fallback to direct link
+      window.location.href = 'https://wa.me/12988336069'
+    }
   }
 
   if (!isVisible) return null
