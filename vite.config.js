@@ -20,9 +20,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          animations: ['framer-motion'],
-          utils: ['axios']
+          vendor: ['react', 'react-dom', 'axios'],
+          animations: ['framer-motion']
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',

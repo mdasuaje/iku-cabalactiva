@@ -11,13 +11,25 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Aquí iría la lógica de envío del formulario
-    console.log('Form submitted:', formData)
     
-    // Redirigir a WhatsApp con el mensaje
-    const message = `Hola, soy ${formData.name}. ${formData.message}`
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`
-    window.open(whatsappUrl, '_blank')
+    // Additional validation
+    if (!formData.name?.trim() || !formData.message?.trim()) {
+      alert('Por favor completa todos los campos requeridos')
+      return
+    }
+    
+    const message = `Hola, soy ${formData.name.trim()}. ${formData.message.trim()}. Email: ${formData.email}`
+    
+    try {
+      const whatsappWindow = window.open(`https://wa.me/12988336069?text=${encodeURIComponent(message)}`, '_blank')
+      if (!whatsappWindow) {
+        window.location.href = `https://wa.me/12988336069?text=${encodeURIComponent(message)}`
+      }
+      // Reset form on success
+      setFormData({ name: '', email: '', phone: '', message: '' })
+    } catch (error) {
+      alert('Error al abrir WhatsApp. Inténtalo de nuevo.')
+    }
   }
 
   const handleChange = (e) => {

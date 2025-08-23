@@ -24,44 +24,26 @@ const Home = () => {
       <Hero />
       <Herramientas />
       
-      {/* Secciones con lazy loading */}
-      <Suspense fallback={<LoadingSpinner message="Cargando filosofía..." />}>
+      {/* Secciones con lazy loading optimizado */}
+      <Suspense fallback={<LoadingSpinner message="Cargando contenido..." />}>
         <Philosophy />
-      </Suspense>
-      
-      <Suspense fallback={<LoadingSpinner message="Cargando propuesta..." />}>
         <ValueProposition />
       </Suspense>
       
-      <Suspense fallback={<LoadingSpinner message="Cargando contenido..." />}>
+      <Suspense fallback={<LoadingSpinner message="Cargando servicios..." />}>
         <AboutMaestro />
-      </Suspense>
-      
-      <Suspense fallback={<LoadingSpinner message="Cargando precios..." />}>
         <Pricing />
-      </Suspense>
-      
-      <Suspense fallback={<LoadingSpinner message="Cargando testimonios..." />}>
         <Testimonios />
       </Suspense>
       
-      <Suspense fallback={<LoadingSpinner message="Cargando contenido..." />}>
-        <SocialContent />
-      </Suspense>
-      
       <Suspense fallback={<LoadingSpinner message="Cargando comunidad..." />}>
+        <SocialContent />
         <SocialProof />
       </Suspense>
       
-      <Suspense fallback={<LoadingSpinner message="Cargando llamada..." />}>
-        <CTA />
-      </Suspense>
-      
-      <Suspense fallback={<LoadingSpinner message="Cargando preguntas..." />}>
-        <FAQ />
-      </Suspense>
-      
       <Suspense fallback={<LoadingSpinner message="Cargando contacto..." />}>
+        <CTA />
+        <FAQ />
         <Contact />
       </Suspense>
     </>

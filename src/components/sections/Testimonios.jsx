@@ -56,7 +56,7 @@ const Testimonios = () => {
               className="bg-slate-700/50 backdrop-blur-sm rounded-xl p-6 border border-yellow-500/20"
             >
               <div className="flex items-center mb-4">
-                {[...Array(testimonio.rating)].map((_, i) => (
+                {Array.from({length: testimonio.rating}, (_, i) => (
                   <span key={i} className="text-yellow-500 text-xl">★</span>
                 ))}
               </div>
@@ -86,7 +86,11 @@ const Testimonios = () => {
           <p className="text-gray-300 mb-6">
             ¿Listo para tu propia transformación espiritual?
           </p>
-          <button className="bg-yellow-500 text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+          <button 
+            onClick={() => document.getElementById('herramientas')?.scrollIntoView({ behavior: 'smooth' })}
+            aria-label="Comenzar mi camino espiritual - Ver herramientas disponibles"
+            className="bg-yellow-500 text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
+          >
             Comenzar mi Camino
           </button>
         </motion.div>
