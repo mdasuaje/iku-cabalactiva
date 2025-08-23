@@ -17,7 +17,7 @@ const AboutMaestro = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 -z-10"></div>
               <div className="relative aspect-square bg-gradient-to-br from-yellow-500/20 to-purple-500/20 rounded-2xl overflow-hidden">
                 <img 
-                  src="/images/maestro/isaac-benzaquen-con-firma.jpg" 
+                  src="/images/maestro/isaac-benzaquen-con-firma.jpg.png" 
                   alt="Rabino y Maestro Isaac Benzaquén con firma"
                   className="w-full h-full object-cover"
                   onError={(e) => {
