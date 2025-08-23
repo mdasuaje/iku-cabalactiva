@@ -53,7 +53,7 @@ const Contact = () => {
             Inicia tu <span className="text-yellow-500">Transformación</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Contáctanos para comenzar tu camino hacia la sabiduría ancestral de la Cábala
+            Desate el potencial de su vida; la transformación comienza hoy!
           </p>
         </motion.div>
 
@@ -107,16 +107,19 @@ const Contact = () => {
               <h4 className="text-white font-semibold mb-3">Horarios de Atención</h4>
               <div className="space-y-2 text-gray-300 text-sm">
                 <div className="flex justify-between">
-                  <span>Lunes - Viernes:</span>
-                  <span>9:00 AM - 6:00 PM</span>
+                  <span>Domingo - Jueves:</span>
+                  <span>9:00 AM - 5:00 PM</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Sábados:</span>
-                  <span>10:00 AM - 4:00 PM</span>
+                  <span>Viernes:</span>
+                  <span>9:00 AM - 1:00 PM</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Domingos:</span>
-                  <span>Cerrado</span>
+                  <span>Sábado:</span>
+                  <span>Cerrado (Shabat)</span>
+                </div>
+                <div className="text-yellow-500 text-xs mt-3 italic">
+                  * Cerrado en festividades judías
                 </div>
               </div>
             </div>
