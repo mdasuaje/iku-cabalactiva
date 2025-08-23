@@ -22,11 +22,17 @@ check_deps() {
 check_deps
 
 # Setup en paralelo donde sea posible
-{
-  npm install &
-  [ ! -f ".env.local" ] && cp .env.example .env.local && echo "📝 Creado .env.local - edita con tus credenciales" &
-  wait
-}
+npm install &
+INSTALL_PID=$!
+
+# Crear .env.local si no existe
+if [ ! -f ".env.local" ] && [ -f ".env.example" ]; then
+  cp .env.example .env.local
+  echo "📝 Creado .env.local - edita con tus credenciales"
+fi
+
+# Esperar a que termine la instalación
+wait $INSTALL_PID
 
 # Corregir vulnerabilidades si existen
 if npm audit --audit-level=moderate | grep -q "vulnerabilities"; then

@@ -74,4 +74,4 @@ jobs:
 EOF
 fi
 
-# Mensaje final sólo si hubo errores, en stderr, no en stdout.
+echo "✅ Estructura del proyecto creada exitosamente"

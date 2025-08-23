@@ -40,7 +40,10 @@ const Hero = () => {
               💬 Quiero mi Sesión
             </button>
             
-            <button className="border-2 border-yellow-500 text-yellow-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-500/10 transition-colors">
+            <button 
+              onClick={() => document.getElementById('herramientas')?.scrollIntoView({ behavior: 'smooth' })}
+              className="border-2 border-yellow-500 text-yellow-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-500/10 transition-colors"
+            >
               Conocer Herramientas
             </button>
           </motion.div>

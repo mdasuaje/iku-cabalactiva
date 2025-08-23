@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import StarRating from '@components/common/StarRating'
 
 const Testimonios = () => {
   const testimonios = [
@@ -55,11 +56,7 @@ const Testimonios = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-slate-700/50 backdrop-blur-sm rounded-xl p-6 border border-yellow-500/20"
             >
-              <div className="flex items-center mb-4">
-                {Array.from({length: testimonio.rating}, (_, i) => (
-                  <span key={i} className="text-yellow-500 text-xl">★</span>
-                ))}
-              </div>
+              <StarRating rating={testimonio.rating} />
               
               <p className="text-gray-300 mb-6 italic">
                 "{testimonio.comentario}"
