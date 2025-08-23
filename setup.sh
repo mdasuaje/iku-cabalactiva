@@ -4,25 +4,38 @@ set -e
 
 echo "🌟 IKU Cábala Activa – Setup Inicial 🌟"
 
-# Verificar dependencias
-if ! command -v node &> /dev/null; then echo "Node.js no está instalado"; exit 1; fi
-if ! command -v npm &> /dev/null; then echo "npm no está instalado"; exit 1; fi
-if ! command -v git &> /dev/null; then echo "git no está instalado"; exit 1; fi
+# Verificar dependencias en una sola función
+check_deps() {
+  local missing=()
+  for cmd in node npm git; do
+    command -v "$cmd" &>/dev/null || missing+=("$cmd")
+  done
+  
+  if [ ${#missing[@]} -gt 0 ]; then
+    echo "❌ Dependencias faltantes: ${missing[*]}"
+    exit 1
+  fi
+  
+  echo "✅ Node.js: $(node -v) | npm: $(npm -v) | git: $(git --version | cut -d' ' -f3)"
+}
 
-echo "Node.js: $(node -v)"
-echo "npm: $(npm -v)"
-echo "git: $(git --version)"
+check_deps
 
-# Instalar dependencias
-npm install
+# Setup en paralelo donde sea posible
+{
+  npm install &
+  [ ! -f ".env.local" ] && cp .env.example .env.local && echo "📝 Creado .env.local - edita con tus credenciales" &
+  wait
+}
 
-# Crear variables de entorno
-if [ ! -f ".env.local" ]; then
-  cp .env.example .env.local
-  echo "Edita .env.local con tus credenciales reales"
+# Corregir vulnerabilidades si existen
+if npm audit --audit-level=moderate | grep -q "vulnerabilities"; then
+  echo "🔧 Corrigiendo vulnerabilidades..."
+  npm audit fix --force --silent
 fi
 
 # Build de prueba
-npm run build
+echo "🔨 Probando build..."
+npm run build > /dev/null && echo "✅ Build exitoso" || { echo "❌ Error en build"; exit 1; }
 
-echo "✅ Setup completado. Ejecuta 'npm run dev' para iniciar el servidor local."
+echo "✅ Setup completado. Ejecuta 'npm run dev' para iniciar."
