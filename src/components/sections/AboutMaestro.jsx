@@ -14,7 +14,8 @@ const AboutMaestro = () => {
             className="relative"
           >
             <div className="relative w-full max-w-md mx-auto">
-              <div className="aspect-square bg-gradient-to-br from-yellow-500/20 to-purple-500/20 rounded-2xl overflow-hidden">
+              <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 -z-10"></div>
+              <div className="relative aspect-square bg-gradient-to-br from-yellow-500/20 to-purple-500/20 rounded-2xl overflow-hidden">
                 <img 
                   src="/images/maestro/isaac-benzaquen-con-firma.jpg" 
                   alt="Rabino y Maestro Isaac Benzaquén con firma"
@@ -28,8 +29,6 @@ const AboutMaestro = () => {
                   <span className="text-6xl">👨‍🏫</span>
                 </div>
               </div>
-              <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50"></div>
-
             </div>
           </motion.div>
 
