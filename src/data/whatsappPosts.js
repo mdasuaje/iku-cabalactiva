@@ -64,6 +64,7 @@ export const whatsappPosts = [
     id: 8,
     title: "¿Qué te Detiene Hoy?",
     content: "Te leemos: ¿Cuál es el mayor reto que repites en tu vida? Responde con un emoji o frase, y recibirás un tip personalizado de Cábala Activa.",
+    cta: "Comparte tu desafío y recibe tu tip personalizado",
     type: "engagement",
     interactive: true,
     emoji: "🤔"

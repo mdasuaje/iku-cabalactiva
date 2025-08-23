@@ -17,8 +17,16 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - name: Build project
+        run: npm run build
+      - name: Verify build
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "Build failed - dist directory not found"
+            exit 1
+          fi
       - uses: actions/upload-pages-artifact@v3
+        if: success()
         with:
           path: dist
       - uses: actions/deploy-pages@v4
