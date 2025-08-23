@@ -1,0 +1,24 @@
+{
+  "name": "github-pages-app",
+  "version": "1.0.0",
+  "description": "A React application deployed on GitHub Pages",
+  "main": "src/main.jsx",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "homepage": "https://<USERNAME>.github.io/github-pages-app",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "gh-pages": "^4.0.0"
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
