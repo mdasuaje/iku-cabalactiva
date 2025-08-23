@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iku-cabalactiva.com/sitemap.xml
