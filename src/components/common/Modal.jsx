@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const Modal = ({ isOpen, onClose, title, children, size = 'default' }) => {
+const Modal = ({ isOpen, onClose = () => {}, title, children, size = 'default' }) => {
   const sizes = {
     small: 'max-w-md',
     default: 'max-w-lg',

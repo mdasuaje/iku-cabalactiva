@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import toast from 'react-hot-toast'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ const Contact = () => {
     
     // Additional validation
     if (!formData.name?.trim() || !formData.message?.trim()) {
-      alert('Por favor completa todos los campos requeridos')
+      toast.error('Por favor completa todos los campos requeridos')
       return
     }
     
@@ -28,7 +29,7 @@ const Contact = () => {
       // Reset form on success
       setFormData({ name: '', email: '', phone: '', message: '' })
     } catch (error) {
-      alert('Error al abrir WhatsApp. Inténtalo de nuevo.')
+      toast.error('Error al abrir WhatsApp. Inténtalo de nuevo.')
     }
   }
 

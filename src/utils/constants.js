@@ -66,7 +66,7 @@ export const SEO_CONFIG = {
 
 export const FORM_CONFIG = {
   validation: {
-    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     phone: /^\+?[\d\s\-\(\)]+$/,
     name: /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/
   },
