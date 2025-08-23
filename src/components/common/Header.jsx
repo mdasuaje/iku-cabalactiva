@@ -108,7 +108,7 @@ const Header = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-slate-800/95 backdrop-blur-lg rounded-lg mt-2 overflow-hidden"
+              className="lg:hidden bg-slate-800/95 backdrop-blur-lg rounded-lg mt-2 overflow-hidden relative z-50"
             >
               <div className="px-4 py-6 space-y-4">
                 {navigationItems.map((item) => (
@@ -118,14 +118,26 @@ const Header = () => {
                       scrollToSection(item.id)
                       setIsMenuOpen(false)
                     }}
-                    className="block w-full text-left text-gray-300 hover:text-yellow-500 transition-colors duration-200 py-2"
+                    className="block w-full text-left text-gray-300 hover:text-yellow-500 transition-colors duration-200 py-2 cursor-pointer"
+                    style={{ pointerEvents: 'auto' }}
                   >
                     {item.label}
                   </button>
                 ))}
                 <button
-                  onClick={() => window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}`, '_blank')}
-                  className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 w-full justify-center"
+                  onClick={() => {
+                    try {
+                      const whatsappWindow = window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}`, '_blank')
+                      if (!whatsappWindow) {
+                        window.location.href = `https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}`
+                      }
+                    } catch (error) {
+                      window.location.href = `https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}`
+                    }
+                    setIsMenuOpen(false)
+                  }}
+                  className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 w-full justify-center cursor-pointer"
+                  style={{ pointerEvents: 'auto' }}
                 >
                   <span>💬</span>
                   <span>Contactar por WhatsApp</span>
