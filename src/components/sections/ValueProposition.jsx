@@ -72,7 +72,7 @@ const ValueProposition = () => {
           className="bg-gradient-to-r from-yellow-500/10 to-purple-500/10 rounded-2xl p-8 border border-yellow-500/20 text-center"
         >
           <h3 className="text-2xl font-bold text-white mb-4">
-            Propuesta de Valor Central
+            Tu Vida Puede Cambiar Hoy Mismo
           </h3>
           <p className="text-lg text-yellow-400 font-semibold italic">
             "Cábala Activa no es teoría: son herramientas prácticas que transforman tu vida 
