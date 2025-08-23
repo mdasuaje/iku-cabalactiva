@@ -13,17 +13,13 @@ const AboutMaestro = () => {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative w-full max-w-md mx-auto">
+            <div className="relative max-h-96 mx-auto">
               <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 -z-10"></div>
-              <div className="relative aspect-square bg-gradient-to-br from-yellow-500/20 to-purple-500/20 rounded-2xl overflow-hidden">
+              <div className="relative bg-gradient-to-br from-yellow-500/20 to-purple-500/20 rounded-2xl overflow-hidden">
                 <img 
-                  src="/images/maestro/isaac-benzaquen-con-firma.jpg.png" 
+                  src="/images/maestro/isaac-benzaquen-con-firma.jpg" 
                   alt="Rabino y Maestro Isaac Benzaquén con firma"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none'
-                    e.target.nextSibling.style.display = 'flex'
-                  }}
+                  className="max-h-96 w-auto object-contain mx-auto"
                 />
                 <div className="w-full h-full bg-yellow-500/30 rounded-2xl flex items-center justify-center" style={{display: 'none'}}>
                   <span className="text-6xl">👨‍🏫</span>
