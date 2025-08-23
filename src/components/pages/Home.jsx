@@ -6,9 +6,14 @@ import Hero from '@components/sections/Hero'
 import Herramientas from '@components/sections/Herramientas'
 
 // Componentes con lazy loading para mejor performance
+const Philosophy = lazy(() => import('@components/sections/Philosophy'))
+const ValueProposition = lazy(() => import('@components/sections/ValueProposition'))
 const AboutMaestro = lazy(() => import('@components/sections/AboutMaestro'))
 const Pricing = lazy(() => import('@components/sections/Pricing'))
 const Testimonios = lazy(() => import('@components/sections/Testimonios'))
+const SocialContent = lazy(() => import('@components/sections/SocialContent'))
+const SocialProof = lazy(() => import('@components/sections/SocialProof'))
+const CTA = lazy(() => import('@components/sections/CTA'))
 const FAQ = lazy(() => import('@components/sections/FAQ'))
 const Contact = lazy(() => import('@components/sections/Contact'))
 
@@ -20,6 +25,14 @@ const Home = () => {
       <Herramientas />
       
       {/* Secciones con lazy loading */}
+      <Suspense fallback={<LoadingSpinner message="Cargando filosofía..." />}>
+        <Philosophy />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner message="Cargando propuesta..." />}>
+        <ValueProposition />
+      </Suspense>
+      
       <Suspense fallback={<LoadingSpinner message="Cargando contenido..." />}>
         <AboutMaestro />
       </Suspense>
@@ -30,6 +43,18 @@ const Home = () => {
       
       <Suspense fallback={<LoadingSpinner message="Cargando testimonios..." />}>
         <Testimonios />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner message="Cargando contenido..." />}>
+        <SocialContent />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner message="Cargando comunidad..." />}>
+        <SocialProof />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingSpinner message="Cargando llamada..." />}>
+        <CTA />
       </Suspense>
       
       <Suspense fallback={<LoadingSpinner message="Cargando preguntas..." />}>

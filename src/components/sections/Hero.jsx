@@ -20,8 +20,8 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Conecta con la sabiduría ancestral de la Cábala y las herramientas espirituales del 
-            <span className="text-yellow-500 font-semibold"> Maestro Isaac Benzaquén</span>
+            ¿Sientes que repites patrones una y otra vez? La Cábala Activa te muestra el 'por qué' y el 'para qué'. 
+            <span className="text-yellow-500 font-semibold">Da el primer paso hacia una vida plena</span>
           </p>
           
           <motion.div
@@ -30,12 +30,18 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <button className="bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors transform hover:scale-105">
-              Explorar Herramientas
+            <button 
+              onClick={() => {
+                const message = encodeURIComponent('Hola, quiero mi sesión de Cábala Activa. ¿Podrías guiarme?')
+                window.open(`https://wa.me/12988336069?text=${message}`, '_blank')
+              }}
+              className="bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors transform hover:scale-105"
+            >
+              💬 Quiero mi Sesión
             </button>
             
             <button className="border-2 border-yellow-500 text-yellow-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-500/10 transition-colors">
-              Conocer al Maestro
+              Conocer Herramientas
             </button>
           </motion.div>
         </motion.div>

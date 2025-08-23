@@ -51,9 +51,17 @@ const Herramientas = () => {
                   </span>
                 </div>
                 
-                <button className="w-full bg-yellow-500 text-slate-900 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
-                  Más información
-                </button>
+                <div className="space-y-2">
+                  <button 
+                    onClick={() => window.open(herramienta.paypalLink, '_blank')}
+                    className="w-full bg-yellow-500 text-slate-900 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
+                  >
+                    Adquirir Ahora
+                  </button>
+                  <button className="w-full border border-yellow-500 text-yellow-500 py-2 rounded-lg font-semibold hover:bg-yellow-500/10 transition-colors text-sm">
+                    Más información
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}

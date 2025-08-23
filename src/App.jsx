@@ -4,6 +4,7 @@ import Header from './components/common/Header'
 import Footer from './components/common/Footer'
 import ScrollToTop from './components/common/ScrollToTop'
 import SEOHead from './components/common/SEOHead'
+import WhatsAppFloat from './components/common/WhatsAppFloat'
 import LoadingSpinner from './components/common/LoadingSpinner'
 
 // Lazy load the Home component
@@ -22,6 +23,7 @@ function App() {
           </Suspense>
         </main>
         <Footer />
+        <WhatsAppFloat />
       </div>
     </ErrorBoundary>
   )
