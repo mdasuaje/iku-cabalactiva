@@ -28,9 +28,6 @@ const Home = () => {
       <Suspense fallback={<LoadingSpinner message="Cargando contenido..." />}>
         <Philosophy />
         <ValueProposition />
-      </Suspense>
-      
-      <Suspense fallback={<LoadingSpinner message="Cargando servicios..." />}>
         <AboutMaestro />
         <Pricing />
         <Testimonios />
@@ -39,9 +36,6 @@ const Home = () => {
       <Suspense fallback={<LoadingSpinner message="Cargando comunidad..." />}>
         <SocialContent />
         <SocialProof />
-      </Suspense>
-      
-      <Suspense fallback={<LoadingSpinner message="Cargando contacto..." />}>
         <CTA />
         <FAQ />
         <Contact />

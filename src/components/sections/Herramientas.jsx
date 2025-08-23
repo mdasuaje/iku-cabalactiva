@@ -53,12 +53,27 @@ const Herramientas = () => {
                 
                 <div className="space-y-2">
                   <button 
-                    onClick={() => window.open(herramienta.paypalLink, '_blank')}
+                    onClick={() => {
+                      try {
+                        const paypalWindow = window.open(herramienta.paypalLink, '_blank')
+                        if (!paypalWindow) {
+                          window.location.href = herramienta.paypalLink
+                        }
+                      } catch (error) {
+                        window.location.href = herramienta.paypalLink
+                      }
+                    }}
                     className="w-full bg-yellow-500 text-slate-900 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
                   >
                     Adquirir Ahora
                   </button>
-                  <button className="w-full border border-yellow-500 text-yellow-500 py-2 rounded-lg font-semibold hover:bg-yellow-500/10 transition-colors text-sm">
+                  <button 
+                    onClick={() => {
+                      const message = encodeURIComponent(`Hola, quiero más información sobre ${herramienta.nombre}. ¿Podrías ayudarme?`)
+                      window.open(`https://wa.me/12988336069?text=${message}`, '_blank')
+                    }}
+                    className="w-full border border-yellow-500 text-yellow-500 py-2 rounded-lg font-semibold hover:bg-yellow-500/10 transition-colors text-sm"
+                  >
                     Más información
                   </button>
                 </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { SEO_CONFIG } from '@utils/constants'
 
 const SEOHead = ({ 
@@ -32,7 +32,7 @@ const SEOHead = ({
       
       {/* Structured Data */}
       <script type="application/ld+json">
-        {JSON.stringify({
+        {useMemo(() => JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "IKU Cábala Activa",
@@ -47,7 +47,7 @@ const SEOHead = ({
           "serviceType": ["Carta Astral Cabalística", "Constelación Familiar", "Limpieza Áurica", "Meditación Cabalística"],
           "areaServed": "Worldwide",
           "availableLanguage": ["Spanish", "English", "Hebrew"]
-        })}
+        }), [])}
       </script>
     </>
   )
