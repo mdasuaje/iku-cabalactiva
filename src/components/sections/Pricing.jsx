@@ -73,13 +73,14 @@ const Pricing = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => window.open(paquete.paypalLink, '_blank')}
                   className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                     paquete.id === 'paquete-completo'
                       ? 'bg-yellow-500 text-slate-900 hover:bg-yellow-400'
                       : 'bg-slate-600 text-white hover:bg-slate-500'
                   }`}
                 >
-                  Seleccionar Plan
+                  Adquirir con PayPal
                 </motion.button>
               </div>
             </motion.div>

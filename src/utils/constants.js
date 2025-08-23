@@ -9,17 +9,24 @@ export const APP_CONFIG = {
 
 export const SOCIAL_LINKS = {
   whatsapp: {
-    number: '+1234567890',
+    number: '+12988336069',
+    channel: 'https://tr.ee/WhatsAppChannel-iku-cabalactiva',
     messages: {
       es: 'Hola, me interesa conocer más sobre las herramientas cabalísticas de IKU Cábala Activa',
       en: 'Hello, I\'m interested in learning more about the Kabbalistic tools of IKU Kabbalah Active',
       he: 'שלום, אני מעוניין לדעת יותר על הכלים הקבליים של IKU קבלה אקטיבית'
     }
   },
-  email: 'contacto@iku-cabalactiva.com',
-  instagram: 'https://instagram.com/ikucabalaactiva',
-  facebook: 'https://facebook.com/ikucabalaactiva',
-  youtube: 'https://youtube.com/@ikucabalaactiva'
+  email: 'kabbalahuniversal@gmail.com',
+  instagram: 'https://instagram.com/ikuuniversal',
+  facebook: {
+    institute: 'https://facebook.com/institutokabbalahuniversal',
+    personal: 'https://facebook.com/isaac.benzaquenbenzaquen'
+  },
+  youtube: 'https://youtube.com/@kabbalahu',
+  tiktok: 'https://tiktok.com/@ikuuniversal',
+  telegram: 'https://t.me/IKUUNIVERSAL',
+  twitter: 'https://twitter.com/iku_kabbalah'
 }
 
 export const PAYMENT_CONFIG = {
