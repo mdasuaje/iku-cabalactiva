@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
+import { t } from '@utils/i18n'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -53,7 +54,7 @@ const Contact = () => {
             Inicia tu <span className="text-yellow-500">Transformación</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Desate el potencial de su vida; la transformación comienza hoy!
+            {t('contact.subtitle', 'Desbloquea el potencial de su vida; la transformación comienza hoy!')}
           </p>
         </motion.div>
 

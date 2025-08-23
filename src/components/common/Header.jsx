@@ -114,12 +114,19 @@ const Header = () => {
                 {navigationItems.map((item) => (
                   <button
                     key={item.id}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      console.log('Mobile menu click:', item.id)
                       scrollToSection(item.id)
                       setIsMenuOpen(false)
                     }}
                     className="block w-full text-left text-gray-300 hover:text-yellow-500 transition-colors duration-200 py-2 cursor-pointer"
-                    style={{ pointerEvents: 'auto' }}
+                    style={{ 
+                      pointerEvents: 'auto',
+                      touchAction: 'manipulation',
+                      userSelect: 'none'
+                    }}
                   >
                     {item.label}
                   </button>
@@ -137,7 +144,11 @@ const Header = () => {
                     setIsMenuOpen(false)
                   }}
                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 w-full justify-center cursor-pointer"
-                  style={{ pointerEvents: 'auto' }}
+                  style={{ 
+                    pointerEvents: 'auto',
+                    touchAction: 'manipulation',
+                    userSelect: 'none'
+                  }}
                 >
                   <span>💬</span>
                   <span>Contactar por WhatsApp</span>
