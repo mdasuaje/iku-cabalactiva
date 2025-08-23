@@ -72,7 +72,8 @@ const Herramientas = () => {
                       const message = encodeURIComponent(`Hola, quiero más información sobre ${herramienta.nombre}. ¿Podrías ayudarme?`)
                       window.open(`https://wa.me/12988336069?text=${message}`, '_blank')
                     }}
-                    className="w-full border border-yellow-500 text-yellow-500 py-2 rounded-lg font-semibold hover:bg-yellow-500/10 transition-colors text-sm"
+                    className="w-full border border-yellow-500 text-yellow-500 py-2 rounded-lg font-semibold hover:bg-yellow-500/10 transition-colors text-sm cursor-pointer"
+                    style={{ pointerEvents: 'auto' }}
                   >
                     Más información
                   </button>
