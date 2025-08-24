@@ -1,0 +1,11 @@
+Clientes:
+ID,Nombre,Email,Teléfono,Fecha_Registro,Estado,Prioridad
+
+Compras:
+ID_Cliente,Producto,Monto,Proveedor,Fecha_Compra,Estado_Pago,Sesiones_Restantes
+
+Sesiones:
+ID_Cliente,Fecha_Sesión,Tipo_Sesión,Estado,Notas,Próxima_Sesión
+
+Reportes:
+Fecha,Ventas_Día,Nuevos_Clientes,Sesiones_Completadas
