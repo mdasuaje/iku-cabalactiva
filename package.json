@@ -11,7 +11,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "deploy": "npm run build && gh-pages -d dist",
-    "setup-crm": "node scripts/setup-crm.js"
+    "setup-crm": "node scripts/setup-crm.js",
+    "verify-phone": "node scripts/simple-phone-check.js"
   },
   "dependencies": {
     "react": "^18.2.0",

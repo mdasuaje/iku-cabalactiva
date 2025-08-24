@@ -118,7 +118,7 @@ const Pricing = () => {
           <button
             onClick={() => {
               const message = 'Hola, necesito más información sobre los planes y precios de Cábala Activa.'
-              const phoneNumber = '19298336069'
+              const phoneNumber = '19298336069' // +1 (929) 833-6069
               const link = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
               window.open(link, '_blank')
             }}
