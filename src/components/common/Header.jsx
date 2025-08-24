@@ -118,8 +118,14 @@ const Header = () => {
                       e.preventDefault()
                       e.stopPropagation()
                       console.log('Mobile menu click:', item.id)
-                      scrollToSection(item.id)
+                      
+                      // Cerrar menú inmediatamente
                       setIsMenuOpen(false)
+                      
+                      // Pequeño delay para permitir que el menú se cierre
+                      setTimeout(() => {
+                        scrollToSection(item.id)
+                      }, 100)
                     }}
                     className="block w-full text-left text-gray-300 hover:text-yellow-500 transition-colors duration-200 py-2 cursor-pointer"
                     style={{ 

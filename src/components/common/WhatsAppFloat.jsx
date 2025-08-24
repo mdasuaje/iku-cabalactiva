@@ -9,7 +9,7 @@ const WhatsAppFloat = () => {
   const handleClick = () => {
     try {
       const message = encodeURIComponent('Hola, quiero información sobre Cábala Activa. ¿Podrías guiarme?')
-      const phoneNumber = SOCIAL_LINKS.whatsapp.number?.replace('+', '') || '12988336069'
+      const phoneNumber = SOCIAL_LINKS.whatsapp.number?.replace('+', '') || '19298336069'
       const whatsappWindow = window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
       
       if (!whatsappWindow) {
@@ -19,7 +19,7 @@ const WhatsAppFloat = () => {
     } catch (error) {
       console.error('Error opening WhatsApp:', error)
       // Fallback to direct link
-      window.location.href = 'https://wa.me/12988336069'
+      window.location.href = 'https://wa.me/19298336069'
     }
   }
 
