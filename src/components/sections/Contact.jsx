@@ -80,7 +80,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-semibold mb-1">WhatsApp</h4>
-                  <p className="text-gray-300">+1 (234) 567-8900</p>
+                  <p className="text-gray-300">+1 929-833-6069</p>
                   <p className="text-gray-400 text-sm">Respuesta inmediata</p>
                 </div>
               </div>
@@ -177,7 +177,7 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors"
-                  placeholder="+1 (234) 567-8900"
+                  placeholder="+1 929-833-6069"
                 />
               </div>
 

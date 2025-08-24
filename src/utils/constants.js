@@ -9,7 +9,7 @@ export const APP_CONFIG = {
 
 export const SOCIAL_LINKS = {
   whatsapp: {
-    number: '+12988336069',
+    number: '+19298336069',
     channel: 'https://tr.ee/WhatsAppChannel-iku-cabalactiva',
     messages: {
       es: 'Hola, me interesa conocer más sobre las herramientas cabalísticas de IKU Cábala Activa',
