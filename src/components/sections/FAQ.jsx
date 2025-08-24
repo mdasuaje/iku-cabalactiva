@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { SOCIAL_LINKS } from '@utils/constants'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null)
@@ -110,7 +111,10 @@ const FAQ = () => {
             ¿Tienes más preguntas? Contáctanos directamente
           </p>
           <button
-            onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+            onClick={() => {
+              const message = encodeURIComponent('Hola, tengo una pregunta sobre las herramientas cabalísticas')
+              window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}?text=${message}`, '_blank')
+            }}
             className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
           >
             💬 Preguntar por WhatsApp

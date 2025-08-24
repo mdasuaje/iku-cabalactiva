@@ -6,6 +6,7 @@ import ScrollToTop from './components/common/ScrollToTop'
 import SEOHead from './components/common/SEOHead'
 import WhatsAppFloat from './components/common/WhatsAppFloat'
 import LoadingSpinner from './components/common/LoadingSpinner'
+import ExitIntentPopup from './components/common/ExitIntentPopup'
 
 // Lazy load the Home component
 const Home = React.lazy(() => import('./components/pages/Home'))
@@ -24,6 +25,7 @@ function App() {
         </main>
         <Footer />
         <WhatsAppFloat />
+        <ExitIntentPopup />
       </div>
     </ErrorBoundary>
   )

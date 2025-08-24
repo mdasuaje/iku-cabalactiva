@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { SOCIAL_LINKS } from '@utils/constants'
 
 const Hero = () => {
   return (
@@ -33,7 +34,7 @@ const Hero = () => {
             <button 
               onClick={() => {
                 const message = encodeURIComponent('Hola, quiero mi sesión de Cábala Activa. ¿Podrías guiarme?')
-                window.open(`https://wa.me/12988336069?text=${message}`, '_blank')
+                window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}?text=${message}`, '_blank')
               }}
               className="bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors transform hover:scale-105"
             >
