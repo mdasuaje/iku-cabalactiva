@@ -20,6 +20,7 @@ const ExitIntentPopup = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const message = encodeURIComponent(`Hola, quiero el PDF "7 Secretos de la Cábala" y mi descuento del 20%. Mi email: ${email}`)
+    // Número correcto: +1 (929) 833-6069
     window.open(`https://wa.me/19298336069?text=${message}`, '_blank')
     setShowPopup(false)
   }

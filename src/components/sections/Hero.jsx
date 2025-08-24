@@ -21,8 +21,8 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            ¿Sientes que repites patrones una y otra vez? La Cábala Activa te muestra el 'por qué' y el 'para qué'. 
-            <span className="text-yellow-500 font-semibold">Da el primer paso hacia una vida plena</span>
+            ¿Repites patrones una y otra vez? Quieres encontrar el 'por qué' y el 'para qué', pero no sabes cómo?. <br /> 
+            <span className="text-yellow-500 font-semibold"> Da el primer paso hacia una vida plena</span>
           </p>
           
           <motion.div

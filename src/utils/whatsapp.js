@@ -1,8 +1,15 @@
 import { SOCIAL_LINKS } from './constants'
+import { formatPhoneNumber, checkPhoneNumber } from './phoneValidator'
 
 // Función centralizada para generar enlaces de WhatsApp
 export const createWhatsAppLink = (message = '') => {
-  const phoneNumber = SOCIAL_LINKS.whatsapp.number.replace(/[^0-9]/g, '')
+  // Verificar que el número en constants sea correcto
+  if (!checkPhoneNumber(SOCIAL_LINKS.whatsapp.number)) {
+    console.warn('⚠️ Número en constants.js incorrecto, usando número validado')
+  }
+  
+  // Usar siempre el número correcto validado
+  const phoneNumber = formatPhoneNumber('whatsapp')
   const encodedMessage = encodeURIComponent(message)
   return `https://wa.me/${phoneNumber}${message ? `?text=${encodedMessage}` : ''}`
 }
@@ -18,8 +25,9 @@ export const openWhatsApp = (message = '') => {
     }
   } catch (error) {
     console.error('Error opening WhatsApp:', error)
-    // Fallback directo
-    window.location.href = `https://wa.me/19298336069${message ? `?text=${encodeURIComponent(message)}` : ''}`
+    // Fallback directo con número validado
+    const phoneNumber = formatPhoneNumber('whatsapp')
+    window.location.href = `https://wa.me/${phoneNumber}${message ? `?text=${encodeURIComponent(message)}` : ''}`
   }
 }
 

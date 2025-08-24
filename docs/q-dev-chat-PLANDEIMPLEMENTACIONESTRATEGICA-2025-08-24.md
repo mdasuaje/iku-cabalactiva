@@ -501,7 +501,7 @@ Hola ${data.customerName},
 Recibirás el enlace de Zoom 24 horas antes de tu sesión.
 
 🛡️ Garantía de 30 días incluida
-📞 WhatsApp: +1 (298) 833-6069
+📞 WhatsApp: +1 (929) 833-6069
 
 Bendiciones,
 Equipo IKU Cábala Activa
