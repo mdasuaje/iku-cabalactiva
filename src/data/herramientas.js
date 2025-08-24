@@ -113,7 +113,8 @@ export const paquetes = [
       pagoUnico: { precio: 1000, descripcion: 'Pago único de $1,000 USD' },
       financiado: { precio: 1200, descripcion: 'Plan fraccionado de $1,200 USD' }
     },
-    paypalLink: 'https://www.paypal.com/ncp/payment/QHUXGLD7VZ8RA'
+    paypalLink: 'https://www.paypal.com/ncp/payment/QHUXGLD7VZ8RA',
+    stripeLink: 'https://buy.stripe.com/your-stripe-link'
   }
 ];
 

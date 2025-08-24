@@ -70,18 +70,37 @@ const Pricing = () => {
                   ))}
                 </ul>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => window.open(paquete.paypalLink, '_blank')}
-                  className={`w-full py-3 rounded-lg font-semibold transition-colors ${
-                    paquete.id === 'paquete-completo'
-                      ? 'bg-yellow-500 text-slate-900 hover:bg-yellow-400'
-                      : 'bg-slate-600 text-white hover:bg-slate-500'
-                  }`}
-                >
-                  Adquirir con PayPal
-                </motion.button>
+                {paquete.id === 'paquete-completo' ? (
+                  <div className="space-y-3">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => window.open(paquete.paypalLink, '_blank')}
+                      className="w-full py-3 rounded-lg font-semibold transition-colors bg-blue-600 text-white hover:bg-blue-700 flex items-center justify-center space-x-2"
+                    >
+                      <span>💳</span>
+                      <span>Pagar con PayPal</span>
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => window.open(paquete.stripeLink, '_blank')}
+                      className="w-full py-3 rounded-lg font-semibold transition-colors bg-purple-600 text-white hover:bg-purple-700 flex items-center justify-center space-x-2"
+                    >
+                      <span>💎</span>
+                      <span>Pagar con Stripe</span>
+                    </motion.button>
+                  </div>
+                ) : (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => window.open(paquete.paypalLink, '_blank')}
+                    className="w-full py-3 rounded-lg font-semibold transition-colors bg-slate-600 text-white hover:bg-slate-500"
+                  >
+                    Adquirir con PayPal
+                  </motion.button>
+                )}
               </div>
             </motion.div>
           ))}
