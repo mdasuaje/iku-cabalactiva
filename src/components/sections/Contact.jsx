@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { t } from '@utils/i18n'
+import { createCalendarEvent } from '@utils/calendarApi'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,26 +12,29 @@ const Contact = () => {
     message: ''
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
-    // Additional validation
-    if (!formData.name?.trim() || !formData.message?.trim()) {
+    if (!formData.name?.trim() || !formData.email?.trim() || !formData.message?.trim()) {
       toast.error('Por favor completa todos los campos requeridos')
       return
     }
     
-    const message = `Hola, soy ${formData.name.trim()}. ${formData.message.trim()}. Email: ${formData.email}`
-    
     try {
-      const whatsappWindow = window.open(`https://wa.me/12988336069?text=${encodeURIComponent(message)}`, '_blank')
-      if (!whatsappWindow) {
-        window.location.href = `https://wa.me/12988336069?text=${encodeURIComponent(message)}`
-      }
-      // Reset form on success
+      toast.loading('Procesando tu solicitud...')
+      
+      // Create calendar event and send notification
+      await createCalendarEvent(formData)
+      
+      toast.dismiss()
+      toast.success('¡Solicitud enviada! Isaac te contactará pronto para confirmar tu cita.')
+      
+      // Reset form
       setFormData({ name: '', email: '', phone: '', message: '' })
+      
     } catch (error) {
-      toast.error('Error al abrir WhatsApp. Inténtalo de nuevo.')
+      toast.dismiss()
+      toast.error('Error al procesar la solicitud. Inténtalo de nuevo.')
     }
   }
 

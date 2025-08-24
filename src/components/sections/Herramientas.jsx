@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { herramientasCabalisticas } from '@data/herramientas'
+import { SOCIAL_LINKS } from '@utils/constants'
 
 const Herramientas = () => {
   return (
@@ -52,6 +53,11 @@ const Herramientas = () => {
                 </div>
                 
                 <div className="space-y-2">
+                  <div className="bg-green-500/10 border border-green-500/30 rounded p-2 mb-2">
+                    <p className="text-green-400 text-xs font-semibold text-center">
+                      🎁 DESCUENTO 20% - Solo esta semana
+                    </p>
+                  </div>
                   <button 
                     onClick={() => {
                       try {
@@ -63,19 +69,18 @@ const Herramientas = () => {
                         window.location.href = herramienta.paypalLink
                       }
                     }}
-                    className="w-full bg-yellow-500 text-slate-900 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
+                    className="w-full bg-yellow-500 text-slate-900 py-3 rounded-lg font-bold hover:bg-yellow-400 transition-colors transform hover:scale-105"
                   >
-                    Adquirir Ahora
+                    💳 ADQUIRIR AHORA
                   </button>
                   <button 
                     onClick={() => {
-                      const message = encodeURIComponent(`Hola, quiero más información sobre ${herramienta.nombre}. ¿Podrías ayudarme?`)
-                      window.open(`https://wa.me/12988336069?text=${message}`, '_blank')
+                      const message = encodeURIComponent(`Hola, quiero consultar sobre ${herramienta.nombre}. ¿Incluye garantía de 30 días?`)
+                      window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}?text=${message}`, '_blank')
                     }}
-                    className="w-full border border-yellow-500 text-yellow-500 py-2 rounded-lg font-semibold hover:bg-yellow-500/10 transition-colors text-sm cursor-pointer"
-                    style={{ pointerEvents: 'auto' }}
+                    className="w-full border border-green-500 text-green-500 py-2 rounded-lg font-semibold hover:bg-green-500/10 transition-colors text-sm"
                   >
-                    Más información
+                    💬 Consultar Garantía
                   </button>
                 </div>
               </div>

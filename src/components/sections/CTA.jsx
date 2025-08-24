@@ -1,6 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { SOCIAL_LINKS } from '@utils/constants'
+import UrgencyTimer from '@components/common/UrgencyTimer'
+import Guarantee from '@components/common/Guarantee'
 
 const CTA = () => {
   const handleWhatsAppClick = () => {
@@ -29,7 +31,8 @@ const CTA = () => {
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-slate-800/20"
+              className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-slate-800/20 cursor-pointer"
+              onClick={() => window.open('https://www.paypal.com/ncp/payment/FJGC4GE6SBS98', '_blank')}
             >
               <h3 className="text-2xl font-bold text-slate-900 mb-3">
                 Sesión Única
@@ -40,6 +43,9 @@ const CTA = () => {
               <p className="text-slate-800 text-sm">
                 Combinación personalizada de herramientas cabalísticas
               </p>
+              <div className="mt-4 bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg text-center font-semibold">
+                💳 Pagar Ahora
+              </div>
             </motion.div>
 
             <motion.div
@@ -55,18 +61,29 @@ const CTA = () => {
               <div className="text-3xl font-bold text-slate-900 mb-2">
                 $1,000 USD
               </div>
-              <p className="text-slate-800 text-sm">
+              <p className="text-slate-800 text-sm mb-4">
                 10 sesiones / 6 meses (se puede financiar en 3 partes)
               </p>
+              <div className="space-y-2">
+                <button
+                  onClick={() => window.open('https://buy.stripe.com/3cIcN6fhNdAS1S34SCdnW00', '_blank')}
+                  className="w-full bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg font-semibold hover:bg-slate-800 transition-colors"
+                >
+                  💳 Pagar con Tarjeta
+                </button>
+                <button
+                  onClick={() => window.open('https://www.paypal.com/ncp/payment/QHUXGLD7VZ8RA', '_blank')}
+                  className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  🌐 Pagar con PayPal
+                </button>
+              </div>
             </motion.div>
           </div>
 
           <div className="space-y-4">
-            <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-3 mb-4">
-              <p className="text-red-400 font-semibold text-sm">
-                ⏰ Cupos limitados - Solo hasta el viernes
-              </p>
-            </div>
+            <UrgencyTimer />
+            <Guarantee />
             
             <motion.button
               whileHover={{ scale: 1.05 }}
