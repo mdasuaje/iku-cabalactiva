@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SOCIAL_LINKS } from '@utils/constants'
+import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -76,7 +76,7 @@ const Header = () => {
           <div className="flex items-center space-x-4">
             {/* WhatsApp */}
             <button
-              onClick={() => window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}`, '_blank')}
+              onClick={() => openWhatsApp(WHATSAPP_MESSAGES.general)}
               className="hidden sm:flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
             >
               <span>💬</span>
@@ -139,14 +139,7 @@ const Header = () => {
                 ))}
                 <button
                   onClick={() => {
-                    try {
-                      const whatsappWindow = window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}`, '_blank')
-                      if (!whatsappWindow) {
-                        window.location.href = `https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}`
-                      }
-                    } catch (error) {
-                      window.location.href = `https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}`
-                    }
+                    openWhatsApp(WHATSAPP_MESSAGES.general)
                     setIsMenuOpen(false)
                   }}
                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 w-full justify-center cursor-pointer"

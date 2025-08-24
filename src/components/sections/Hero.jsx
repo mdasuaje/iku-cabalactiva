@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { SOCIAL_LINKS } from '@utils/constants'
+import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
 
 const Hero = () => {
   return (
@@ -32,10 +32,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <button 
-              onClick={() => {
-                const message = encodeURIComponent('Hola, quiero mi sesión de Cábala Activa. ¿Podrías guiarme?')
-                window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}?text=${message}`, '_blank')
-              }}
+              onClick={() => openWhatsApp(WHATSAPP_MESSAGES.sesion)}
               className="bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors transform hover:scale-105"
             >
               💬 Quiero mi Sesión

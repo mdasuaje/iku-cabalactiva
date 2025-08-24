@@ -116,7 +116,12 @@ const Pricing = () => {
             ¿Necesitas más información? Contáctanos directamente
           </p>
           <button
-            onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+            onClick={() => {
+              const message = 'Hola, necesito más información sobre los planes y precios de Cábala Activa.'
+              const phoneNumber = '19298336069'
+              const link = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+              window.open(link, '_blank')
+            }}
             className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
           >
             💬 Consultar por WhatsApp

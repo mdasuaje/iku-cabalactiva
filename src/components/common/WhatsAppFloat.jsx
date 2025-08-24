@@ -1,26 +1,13 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SOCIAL_LINKS } from '@utils/constants'
+import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
 
 const WhatsAppFloat = () => {
   const [isVisible, setIsVisible] = useState(true)
   const [showTooltip, setShowTooltip] = useState(false)
 
   const handleClick = () => {
-    try {
-      const message = encodeURIComponent('Hola, quiero información sobre Cábala Activa. ¿Podrías guiarme?')
-      const phoneNumber = SOCIAL_LINKS.whatsapp.number?.replace('+', '') || '19298336069'
-      const whatsappWindow = window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
-      
-      if (!whatsappWindow) {
-        // Fallback if popup is blocked
-        window.location.href = `https://wa.me/${phoneNumber}?text=${message}`
-      }
-    } catch (error) {
-      console.error('Error opening WhatsApp:', error)
-      // Fallback to direct link
-      window.location.href = 'https://wa.me/19298336069'
-    }
+    openWhatsApp(WHATSAPP_MESSAGES.general)
   }
 
   if (!isVisible) return null

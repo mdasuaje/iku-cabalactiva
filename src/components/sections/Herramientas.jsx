@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { herramientasCabalisticas } from '@data/herramientas'
-import { SOCIAL_LINKS } from '@utils/constants'
+import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
 
 const Herramientas = () => {
   return (
@@ -75,8 +75,8 @@ const Herramientas = () => {
                   </button>
                   <button 
                     onClick={() => {
-                      const message = encodeURIComponent(`Hola, quiero consultar sobre ${herramienta.nombre}. ¿Incluye garantía de 30 días?`)
-                      window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}?text=${message}`, '_blank')
+                      const message = `Hola, quiero consultar sobre ${herramienta.nombre}. ¿Incluye garantía de 30 días?`
+                      openWhatsApp(message)
                     }}
                     className="w-full border border-green-500 text-green-500 py-2 rounded-lg font-semibold hover:bg-green-500/10 transition-colors text-sm"
                   >

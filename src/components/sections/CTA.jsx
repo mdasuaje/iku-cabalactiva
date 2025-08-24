@@ -1,13 +1,12 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { SOCIAL_LINKS } from '@utils/constants'
+import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
 import UrgencyTimer from '@components/common/UrgencyTimer'
 import Guarantee from '@components/common/Guarantee'
 
 const CTA = () => {
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent('Hola, quiero mi sesión de Cábala Activa. ¿Podrías guiarme?')
-    window.open(`https://wa.me/${SOCIAL_LINKS.whatsapp.number.replace('+', '')}?text=${message}`, '_blank')
+    openWhatsApp(WHATSAPP_MESSAGES.sesion)
   }
 
   return (
