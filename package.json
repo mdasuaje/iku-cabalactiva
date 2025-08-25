@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "deploy": "npm run build && gh-pages -d dist",
     "setup-crm": "node scripts/setup-crm.js",
-    "verify-phone": "node scripts/simple-phone-check.js"
+    "verify-phone": "node scripts/simple-phone-check.js",
+    "backup": "node scripts/secure-backup.js"
   },
   "dependencies": {
     "framer-motion": "^10.0.1",
