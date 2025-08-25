@@ -16,28 +16,28 @@
     "verify-phone": "node scripts/simple-phone-check.js"
   },
   "dependencies": {
+    "framer-motion": "^10.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.1",
     "react-hook-form": "^7.43.5",
     "react-hot-toast": "^2.4.0",
-    "framer-motion": "^10.0.1",
+    "react-router-dom": "^6.8.1",
     "stripe": "^12.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^3.1.0",
-    "vite": "^4.2.0",
+    "@vitejs/plugin-react": "^5.0.1",
+    "autoprefixer": "^10.4.14",
     "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "gh-pages": "^5.0.0",
+    "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "tailwindcss": "^3.2.7",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.21",
-    "gh-pages": "^5.0.0",
-    "vitest": "^0.29.8"
+    "vite": "^7.1.3",
+    "vitest": "^3.2.4"
   }
 }
