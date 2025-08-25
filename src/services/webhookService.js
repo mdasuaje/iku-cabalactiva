@@ -1,7 +1,7 @@
 // Webhook Service - Manejo de webhooks de Stripe y PayPal
 import crmService from './crmService.js';
 import emailService from './emailService.js';
-import calendarService from './calendarService.js';
+// import calendarService from './calendarService.js';
 
 class WebhookService {
   // Procesar webhook de Stripe

@@ -15,6 +15,9 @@
     "setup-crm": "node scripts/setup-crm.js",
     "deploy-crm": "node scripts/deploy-complete-system.js",
     "test-crm": "node scripts/test-crm-complete.js",
+    "test-paypal": "node scripts/test-paypal-integration.js",
+    "test-stripe": "node scripts/test-stripe-integration.js",
+    "test-payments": "node scripts/test-complete-payment-flow.js",
     "diagnostico": "node scripts/diagnostico-sistema.js",
     "verify-phone": "node scripts/simple-phone-check.js",
     "backup": "node scripts/secure-backup.js"
