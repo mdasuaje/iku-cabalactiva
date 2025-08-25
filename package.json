@@ -13,6 +13,9 @@
     "format": "prettier --write .",
     "deploy": "npm run build && gh-pages -d dist",
     "setup-crm": "node scripts/setup-crm.js",
+    "deploy-crm": "node scripts/deploy-complete-system.js",
+    "test-crm": "node scripts/test-crm-complete.js",
+    "diagnostico": "node scripts/diagnostico-sistema.js",
     "verify-phone": "node scripts/simple-phone-check.js",
     "backup": "node scripts/secure-backup.js"
   },

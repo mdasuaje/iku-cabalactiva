@@ -1,11 +1,9 @@
-// CRM Service - Integración con Google Sheets
+// CRM Service - Integración con Google Sheets (PRODUCCIÓN)
 class CRMService {
   constructor() {
-    this.spreadsheetId = process.env.VITE_GOOGLE_SHEETS_ID;
-    this.apiKey = process.env.VITE_GOOGLE_API_KEY;
+    this.webhookUrl = 'https://script.google.com/macros/s/AKfycby47dq2ghkTTBdjoSw7ALCou0YpwznBvkLX69pt8FPKsVPijZ0YqBFR9HiPcKqp61JgTg/exec';
   }
 
-  // Registrar nuevo cliente
   async registrarCliente(clienteData) {
     const cliente = {
       id: Date.now().toString(),
@@ -17,11 +15,14 @@ class CRMService {
       prioridad: 'Normal'
     };
 
-    await this.appendToSheet('Clientes', Object.values(cliente));
+    await this.sendToWebhook('update-crm', {
+      sheetName: 'Clientes',
+      values: Object.values(cliente)
+    });
+
     return cliente;
   }
 
-  // Registrar compra
   async registrarCompra(compraData) {
     const compra = {
       id_cliente: compraData.clienteId,
@@ -33,11 +34,14 @@ class CRMService {
       sesiones_restantes: compraData.sesionesRestantes || 1
     };
 
-    await this.appendToSheet('Compras', Object.values(compra));
+    await this.sendToWebhook('update-crm', {
+      sheetName: 'Compras',
+      values: Object.values(compra)
+    });
+
     return compra;
   }
 
-  // Programar sesión
   async programarSesion(sesionData) {
     const sesion = {
       id_cliente: sesionData.clienteId,
@@ -48,26 +52,23 @@ class CRMService {
       proxima_sesion: sesionData.proximaSesion || ''
     };
 
-    await this.appendToSheet('Sesiones', Object.values(sesion));
+    await this.sendToWebhook('update-crm', {
+      sheetName: 'Sesiones',
+      values: Object.values(sesion)
+    });
+
     return sesion;
   }
 
-  // Método genérico para agregar datos a una hoja
-  async appendToSheet(sheetName, values) {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/${sheetName}:append?valueInputOption=RAW&key=${this.apiKey}`;
-    
-    const response = await fetch(url, {
+  async sendToWebhook(action, data) {
+    const response = await fetch(this.webhookUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        values: [values]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action, ...data })
     });
 
     if (!response.ok) {
-      throw new Error(`Error al actualizar ${sheetName}: ${response.statusText}`);
+      throw new Error(`Error en webhook: ${response.statusText}`);
     }
 
     return response.json();
