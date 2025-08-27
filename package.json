@@ -18,6 +18,7 @@
     "test-paypal": "node scripts/test-paypal-integration.js",
     "test-stripe": "node scripts/test-stripe-integration.js",
     "test-payments": "node scripts/test-complete-payment-flow.js",
+    "test-contacts": "node scripts/test-contact-optimization.js",
     "diagnostico": "node scripts/diagnostico-sistema.js",
     "verify-phone": "node scripts/simple-phone-check.js",
     "backup": "node scripts/secure-backup.js"
