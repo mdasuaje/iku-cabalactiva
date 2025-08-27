@@ -7,7 +7,7 @@ const WhatsAppFloat = () => {
   const [showTooltip, setShowTooltip] = useState(false)
 
   const handleClick = () => {
-    openWhatsApp(WHATSAPP_MESSAGES.general)
+    openWhatsApp(WHATSAPP_MESSAGES.sesion)
   }
 
   if (!isVisible) return null

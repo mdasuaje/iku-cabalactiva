@@ -102,7 +102,9 @@ function getHeaders(sheetName) {
     'Clientes': ['ID', 'Nombre', 'Email', 'Teléfono', 'Fecha_Registro', 'Estado', 'Prioridad'],
     'Compras': ['ID_Cliente', 'Producto', 'Monto', 'Proveedor', 'Fecha_Compra', 'Estado_Pago', 'Sesiones_Restantes'],
     'Sesiones': ['ID_Cliente', 'Fecha_Sesión', 'Tipo_Sesión', 'Estado', 'Notas', 'Próxima_Sesión'],
-    'Reportes': ['Fecha', 'Ventas_Día', 'Nuevos_Clientes', 'Sesiones_Completadas']
+    'Leads': ['ID', 'Email', 'Fuente', 'Fecha_Registro', 'Estado', 'Tipo'],
+    'Consultas': ['ID', 'Nombre', 'Email', 'Teléfono', 'Mensaje', 'Fecha', 'Estado'],
+    'Reportes': ['Fecha', 'Ventas_Día', 'Nuevos_Clientes', 'Sesiones_Completadas', 'Leads_Generados']
   };
   
   return headers[sheetName] || [];

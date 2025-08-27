@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { t } from '@utils/i18n'
-import { createCalendarEvent } from '@utils/calendarApi'
+import contactService from '@services/contactService'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,11 +23,16 @@ const Contact = () => {
     try {
       toast.loading('Procesando tu solicitud...')
       
-      // Create calendar event and send notification
-      await createCalendarEvent(formData)
+      // Enviar consulta al equipo de contacto
+      await contactService.enviarConsulta({
+        nombre: formData.name,
+        email: formData.email,
+        telefono: formData.phone,
+        mensaje: formData.message
+      })
       
       toast.dismiss()
-      toast.success('¡Solicitud enviada! Isaac te contactará pronto para confirmar tu cita.')
+      toast.success('¡Consulta enviada! Nuestro equipo te contactará en 24 horas.')
       
       // Reset form
       setFormData({ name: '', email: '', phone: '', message: '' })

@@ -31,11 +31,10 @@ export const openWhatsApp = (message = '') => {
   }
 }
 
-// Mensajes predefinidos
+// Mensajes predefinidos - Solo para consultas específicas de sesiones
 export const WHATSAPP_MESSAGES = {
-  general: 'Hola, quiero información sobre Cábala Activa. ¿Podrías guiarme?',
-  herramienta: (nombre) => `Hola, me interesa la herramienta: ${nombre}. ¿Podrías darme más información?`,
-  consulta: 'Hola, tengo algunas preguntas sobre las herramientas cabalísticas.',
-  sesion: 'Hola, me gustaría agendar una sesión. ¿Cuál es la disponibilidad?',
-  paquete: (nombre) => `Hola, me interesa el ${nombre}. ¿Podrías darme más detalles?`
+  sesion: 'Hola Isaac, quiero agendar una sesión cabalística. ¿Cuál es tu disponibilidad?',
+  herramienta: (nombre) => `Hola Isaac, me interesa comprar: ${nombre}. ¿Podrías confirmar disponibilidad para la sesión?`,
+  urgente: 'Hola Isaac, tengo una consulta urgente sobre mi sesión programada.',
+  paquete: (nombre) => `Hola Isaac, quiero adquirir ${nombre}. ¿Cuándo podríamos hacer la sesión?`
 }

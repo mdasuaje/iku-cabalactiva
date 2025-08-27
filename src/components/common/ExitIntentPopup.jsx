@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import toast from 'react-hot-toast'
+import contactService from '@services/contactService'
 
 const ExitIntentPopup = () => {
   const [showPopup, setShowPopup] = useState(false)
@@ -17,12 +19,25 @@ const ExitIntentPopup = () => {
     return () => document.removeEventListener('mouseleave', handleMouseLeave)
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const message = encodeURIComponent(`Hola, quiero el PDF "7 Secretos de la Cábala" y mi descuento del 20%. Mi email: ${email}`)
-    // Número correcto: +1 (929) 833-6069
-    window.open(`https://wa.me/19298336069?text=${message}`, '_blank')
-    setShowPopup(false)
+    
+    try {
+      toast.loading('Enviando solicitud...')
+      
+      await contactService.enviarLeadMagnet({
+        email,
+        source: 'exit-intent-popup'
+      })
+      
+      toast.dismiss()
+      toast.success('¡Perfecto! Recibirás el PDF y tu descuento por email en breve.')
+      setShowPopup(false)
+      
+    } catch (error) {
+      toast.dismiss()
+      toast.error('Error al procesar. Inténtalo de nuevo.')
+    }
   }
 
   return (
