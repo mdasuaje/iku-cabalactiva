@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "update-articles": "node scripts/update-lead-magnets.js",
+    "watch-articles": "node scripts/watch-articles.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
