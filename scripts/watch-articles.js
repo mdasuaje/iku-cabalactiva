@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
 const { execSync } = require('child_process');
 
-const DOWNLOADS_DIR = path.join(__dirname, '../public/downloads');
+
 
 console.log('👀 Monitoreando nuevos artículos...');
 
