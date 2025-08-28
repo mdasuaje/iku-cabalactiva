@@ -1,18 +1,10 @@
 export const leadMagnets = [
   {
-    id: 'secretos-cabala',
-    title: 'Los 7 Secretos de la Cábala',
-    description: 'Descubre los fundamentos ancestrales de la sabiduría cabalística',
-    file: '/downloads/los-7-secretos-cabala.pdf',
-    buttonText: 'Descargar Gratis',
-    icon: '📜'
-  },
-  {
-    id: 'meditacion-pareja',
-    title: 'Guía de Meditación para Sanar Pareja',
-    description: 'Técnicas cabalísticas para armonizar relaciones',
-    file: '/downloads/guia-meditacion-sanar-pareja.pdf',
-    buttonText: 'Obtener Guía',
-    icon: '💕'
+    "id": "guia_reflexion_sanar_pareja",
+    "title": "Guia_reflexion_sanar_pareja",
+    "description": "Contenido exclusivo: Guia_reflexion_sanar_pareja",
+    "file": "/downloads/guia_reflexion_sanar_pareja.pdf",
+    "buttonText": "Descargar Gratis",
+    "icon": "📜"
   }
 ];
