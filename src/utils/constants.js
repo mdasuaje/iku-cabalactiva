@@ -4,7 +4,7 @@ export const APP_CONFIG = {
   url: 'https://iku-cabalactiva.com',
   version: '1.0.0',
   author: 'Mauro Asuaje',
-  email: 'dvdasuaje1475963@gmail.com'
+  email: 'mdasuaje@proton.me'
 }
 
 export const SOCIAL_LINKS = {
