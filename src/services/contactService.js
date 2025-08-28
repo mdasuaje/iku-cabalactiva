@@ -12,12 +12,13 @@ class ContactService {
       action: 'send-email',
       to: this.emailContacto, // contacto@iku-cabalactiva.com
       cc: this.emailAdmin,    // maor@iku-cabalactiva.com
-      subject: '📥 Nuevo Lead: Descarga PDF "7 Secretos de la Cábala"',
+      subject: `📥 Nuevo Lead: ${emailData.leadMagnet || 'Descarga PDF'}`,
       template: 'lead-magnet',
       data: {
         email: emailData.email,
+        leadMagnet: emailData.leadMagnet,
         timestamp: new Date().toISOString(),
-        source: emailData.source || 'exit-intent-popup'
+        source: emailData.source || 'website'
       }
     };
 
@@ -71,9 +72,9 @@ class ContactService {
           Date.now().toString(),
           leadData.email,
           leadData.source || 'website',
+          leadData.leadMagnet || 'PDF Descarga',
           new Date().toISOString(),
-          'Nuevo',
-          'Lead Magnet'
+          'Nuevo'
         ]
       })
     });
