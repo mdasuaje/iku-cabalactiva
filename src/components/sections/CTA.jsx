@@ -65,7 +65,7 @@ const CTA = () => {
               </p>
               <div className="space-y-2">
                 <button
-                  onClick={() => window.open('https://buy.stripe.com/3cIcN6fhNdAS1S34SCdnW00', '_blank')}
+                  onClick={() => window.open(import.meta.env.VITE_STRIPE_CHECKOUT, '_blank')}
                   className="w-full bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg font-semibold hover:bg-slate-800 transition-colors"
                 >
                   💳 Pagar con Tarjeta
