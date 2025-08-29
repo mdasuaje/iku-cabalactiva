@@ -18,6 +18,7 @@ export const SOCIAL_LINKS = {
     }
   },
   email: 'kabbalahuniversal@gmail.com',
+  ikuEmail: 'contacto@iku-cabalactiva.com',
   instagram: 'https://instagram.com/ikuuniversal',
   facebook: {
     institute: 'https://facebook.com/institutokabbalahuniversal',

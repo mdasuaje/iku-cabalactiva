@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
+import { openEmail, EMAIL_MESSAGES } from '@utils/email'
 
 const Hero = () => {
   return (
@@ -32,10 +32,10 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <button 
-              onClick={() => openWhatsApp(WHATSAPP_MESSAGES.sesion)}
+              onClick={() => openEmail(EMAIL_MESSAGES.sesion.subject, EMAIL_MESSAGES.sesion.body)}
               className="bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors transform hover:scale-105"
             >
-              💬 Quiero mi Sesión
+              ✉️ Quiero mi Sesión
             </button>
             
             <button 
