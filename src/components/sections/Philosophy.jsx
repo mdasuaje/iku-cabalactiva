@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { filosofiaCabalaActiva } from '../../data/herramientas'
+// import eliminado: filosofiaCabalaActiva no se usa
 
 const Philosophy = () => {
   return (

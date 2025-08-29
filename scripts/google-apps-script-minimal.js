@@ -110,30 +110,4 @@ function getHeaders(sheetName) {
   return headers[sheetName] || [];
 }
 
-// Test básico solo con Sheets
-function testSheetsOnly() {
-  try {
-    console.log('Test básico - solo Sheets...');
-    
-    const SPREADSHEET_ID = '16I11Nkg2g_XZIEj6_1RDFQ-vbsCFTHPAad0iHog-oXY';
-    const sheet = SpreadsheetApp.openById(SPREADSHEET_ID);
-    
-    console.log('Spreadsheet encontrado:', sheet.getName());
-    
-    // Crear hoja de prueba
-    let testSheet = sheet.getSheetByName('Test');
-    if (!testSheet) {
-      testSheet = sheet.insertSheet('Test');
-    }
-    
-    // Agregar datos de prueba
-    testSheet.appendRow(['Test', new Date().toISOString(), 'Funcionando']);
-    
-    console.log('Test completado exitosamente');
-    return 'Test exitoso - Sheets funcionando';
-    
-  } catch (error) {
-    console.error('Error en test:', error);
-    throw error;
-  }
-}
+// función testSheetsOnly eliminada: no usada en este script
