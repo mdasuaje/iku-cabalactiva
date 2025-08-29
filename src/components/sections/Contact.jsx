@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
-import { t } from '@utils/i18n'
-import contactService from '@services/contactService'
+import { t } from '../../utils/i18n'
+import contactService from '../../services/contactService'
 
 const Contact = () => {
   const [formData, setFormData] = useState({

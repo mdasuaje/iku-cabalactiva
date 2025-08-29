@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { openEmail, EMAIL_MESSAGES } from '@utils/email'
+import { openEmail, EMAIL_MESSAGES } from '../../utils/email'
 
 const Hero = () => {
   return (

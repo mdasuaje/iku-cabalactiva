@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { whatsappPosts } from '@data/whatsappPosts'
-import { SOCIAL_LINKS } from '@utils/constants'
+import { whatsappPosts } from '../../data/whatsappPosts'
+import { SOCIAL_LINKS } from '../../utils/constants'
 
 const SocialContent = () => {
   const [selectedPost, setSelectedPost] = useState(null)

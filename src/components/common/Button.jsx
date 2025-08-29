@@ -1,3 +1,12 @@
+import PropTypes from 'prop-types'
+Button.propTypes = {
+  children: PropTypes.node,
+  variant: PropTypes.string,
+  size: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  className: PropTypes.string
+}
 import React from 'react'
 import { motion } from 'framer-motion'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
+import { openWhatsApp, WHATSAPP_MESSAGES } from '../../utils/whatsapp'
 import UrgencyTimer from '@components/common/UrgencyTimer'
 import Guarantee from '@components/common/Guarantee'
 

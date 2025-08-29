@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
+import { openMail } from '../../utils/mail'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -76,11 +76,11 @@ const Header = () => {
           <div className="flex items-center space-x-4">
             {/* WhatsApp */}
             <button
-              onClick={() => openWhatsApp(WHATSAPP_MESSAGES.general)}
-              className="hidden sm:flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+              onClick={() => openMail('Consulta IKU', 'Hola, quiero más información sobre los servicios.')}
+              className="hidden sm:flex items-center space-x-2 bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-4 py-2 rounded-lg transition-colors duration-200"
             >
-              <span>💬</span>
-              <span className="hidden md:inline">WhatsApp</span>
+              <span>�</span>
+              <span className="hidden md:inline">Correo</span>
             </button>
 
             {/* Menú móvil */}
@@ -139,18 +139,18 @@ const Header = () => {
                 ))}
                 <button
                   onClick={() => {
-                    openWhatsApp(WHATSAPP_MESSAGES.general)
+                    openMail('Consulta IKU', 'Hola, quiero más información sobre los servicios.')
                     setIsMenuOpen(false)
                   }}
-                  className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 w-full justify-center cursor-pointer"
+                  className="flex items-center space-x-2 bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-4 py-2 rounded-lg transition-colors duration-200 w-full justify-center cursor-pointer"
                   style={{ 
                     pointerEvents: 'auto',
                     touchAction: 'manipulation',
                     userSelect: 'none'
                   }}
                 >
-                  <span>💬</span>
-                  <span>Contactar por WhatsApp</span>
+                  <span>�</span>
+                  <span>Contactar por Correo</span>
                 </button>
               </div>
             </motion.div>

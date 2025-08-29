@@ -17,7 +17,7 @@ module.exports = {
     react: { version: '18.2' }
   },
   rules: {
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+  'react-refresh/only-export-components': 'warn',
     'react/react-in-jsx-scope': 'off'
   },
 }

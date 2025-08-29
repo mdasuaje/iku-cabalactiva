@@ -1,6 +1,6 @@
 import React from 'react'
 import SocialLinks from './SocialLinks'
-import { SOCIAL_LINKS } from '@utils/constants'
+import { SOCIAL_LINKS } from '../../utils/constants'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
