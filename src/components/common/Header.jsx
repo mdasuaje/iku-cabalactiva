@@ -149,7 +149,7 @@ const Header = () => {
                     userSelect: 'none'
                   }}
                 >
-                  <span>�</span>
+                  <span>✉️</span>
                   <span>Contactar por Correo</span>
                 </button>
               </div>
