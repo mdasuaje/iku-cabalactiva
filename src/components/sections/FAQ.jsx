@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
+import { openWhatsApp, WHATSAPP_MESSAGES } from '../../utils/whatsapp'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null)

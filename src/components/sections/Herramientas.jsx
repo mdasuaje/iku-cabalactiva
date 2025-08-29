@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { herramientasCabalisticas } from '@data/herramientas'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '@utils/whatsapp'
+import { herramientasCabalisticas } from '../../data/herramientas'
+import { openWhatsApp, WHATSAPP_MESSAGES } from '../../utils/whatsapp'
 
 const Herramientas = () => {
   return (

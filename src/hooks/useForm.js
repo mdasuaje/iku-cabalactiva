@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FORM_CONFIG } from '@utils/constants'
+import { FORM_CONFIG } from '../utils/constants'
 
 export const useForm = (initialValues = {}) => {
   const [values, setValues] = useState(initialValues)

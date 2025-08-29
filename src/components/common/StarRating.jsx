@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import PropTypes from 'prop-types'
 
 const StarRating = memo(({ rating }) => {
   return (
@@ -9,6 +10,10 @@ const StarRating = memo(({ rating }) => {
     </div>
   )
 })
+ 
+StarRating.propTypes = {
+  rating: PropTypes.number.isRequired
+}
 
 StarRating.displayName = 'StarRating'
 

@@ -1,7 +1,12 @@
+import PropTypes from 'prop-types'
 import React from 'react'
-import { SOCIAL_LINKS } from '@utils/constants'
+import { SOCIAL_LINKS } from '../../utils/constants'
 
 const SocialLinks = ({ variant = 'default', className = '' }) => {
+SocialLinks.propTypes = {
+  variant: PropTypes.string,
+  className: PropTypes.string
+}
   const socialPlatforms = [
     {
       name: 'WhatsApp',

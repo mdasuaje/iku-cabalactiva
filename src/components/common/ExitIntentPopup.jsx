@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
-import contactService from '@services/contactService'
+import contactService from '../../services/contactService'
 
 const ExitIntentPopup = () => {
   const [showPopup, setShowPopup] = useState(false)

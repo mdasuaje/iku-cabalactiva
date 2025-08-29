@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { paquetes } from '@data/herramientas'
+import { paquetes } from '../../data/herramientas'
 
 const Pricing = () => {
   return (

@@ -1,7 +1,15 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const Modal = ({ isOpen, onClose = () => {}, title, children, size = 'default' }) => {
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  title: PropTypes.string,
+  children: PropTypes.node,
+  size: PropTypes.string
+}
   const sizes = {
     small: 'max-w-md',
     default: 'max-w-lg',

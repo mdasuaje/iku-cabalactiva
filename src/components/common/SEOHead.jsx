@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
-import { SEO_CONFIG } from '@utils/constants'
+import { SEO_CONFIG } from '../../utils/constants'
 
 const SEOHead = ({ 
   title = SEO_CONFIG.defaultTitle,
@@ -8,6 +9,13 @@ const SEOHead = ({
   image = SEO_CONFIG.ogImage,
   url = 'https://iku-cabalactiva.com/'
 }) => {
+SEOHead.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  keywords: PropTypes.string,
+  image: PropTypes.string,
+  url: PropTypes.string
+}
   return (
     <>
       <title>{title}</title>
