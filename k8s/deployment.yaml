@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: iku-cabalactiva
-        image: ghcr.io/mdasuaje/iku-cabalactiva:latest
+        image: iku-cabalactiva:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 80
         resources:
