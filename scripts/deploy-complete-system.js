@@ -2,7 +2,7 @@
 
 // Script maestro para desplegar sistema CRM completo
 import fs from 'fs';
-import path from 'path';
+// import path from 'path'; // eliminado: no usado
 
 const CONFIG = {
   SPREADSHEET_ID: '16I11Nkg2g_XZIEj6_1RDFQ-vbsCFTHPAad0iHog-oXY',

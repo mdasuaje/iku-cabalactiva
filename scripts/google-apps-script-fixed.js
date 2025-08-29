@@ -1,3 +1,26 @@
+// Mocks para ejecución fuera de Google Apps Script
+if (typeof ContentService === 'undefined') {
+  global.ContentService = {
+    createTextOutput: () => ({
+      setMimeType: () => {},
+      setContent: (c) => c
+    }),
+    MimeType: { JSON: 'application/json' }
+  };
+}
+if (typeof GmailApp === 'undefined') {
+  global.GmailApp = {
+    sendEmail: () => {}
+  };
+}
+if (typeof SpreadsheetApp === 'undefined') {
+  global.SpreadsheetApp = {
+    openById: () => ({
+      getSheetByName: () => ({ appendRow: () => {} }),
+      insertSheet: () => ({ getRange: () => ({ setValues: () => {}, setFontWeight: () => {}, setBackground: () => {}, setFontColor: () => {} }) })
+    })
+  };
+}
 // Google Apps Script - VERSIÓN CORREGIDA PARA PRODUCCIÓN
 // Copiar este código completo en Google Apps Script
 
@@ -36,7 +59,7 @@ function doPost(e) {
   }
 }
 
-function doGet(e) {
+function doGet() {
   return ContentService.createTextOutput(JSON.stringify({
     status: 'active',
     message: 'IKU CRM Webhook funcionando correctamente',
@@ -129,33 +152,4 @@ function obtenerPlantillaEmail(template, data) {
   return plantillas[template] || '<p>Plantilla no encontrada</p>';
 }
 
-function inicializarCRM() {
-  try {
-    const sheet = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
-    
-    const hojas = ['Clientes', 'Compras', 'Sesiones', 'Reportes'];
-    const headers = {
-      'Clientes': ['ID', 'Nombre', 'Email', 'Teléfono', 'Fecha_Registro', 'Estado', 'Prioridad'],
-      'Compras': ['ID_Cliente', 'Producto', 'Monto', 'Proveedor', 'Fecha_Compra', 'Estado_Pago', 'Sesiones_Restantes'],
-      'Sesiones': ['ID_Cliente', 'Fecha_Sesión', 'Tipo_Sesión', 'Estado', 'Notas', 'Próxima_Sesión'],
-      'Reportes': ['Fecha', 'Ventas_Día', 'Nuevos_Clientes', 'Sesiones_Completadas']
-    };
-    
-    hojas.forEach(nombreHoja => {
-      let hoja = sheet.getSheetByName(nombreHoja);
-      if (!hoja) {
-        hoja = sheet.insertSheet(nombreHoja);
-        hoja.getRange(1, 1, 1, headers[nombreHoja].length).setValues([headers[nombreHoja]]);
-        hoja.getRange(1, 1, 1, headers[nombreHoja].length).setFontWeight('bold');
-        hoja.getRange(1, 1, 1, headers[nombreHoja].length).setBackground('#7C3AED');
-        hoja.getRange(1, 1, 1, headers[nombreHoja].length).setFontColor('#FFFFFF');
-      }
-    });
-    
-    console.log('CRM inicializado correctamente');
-    return 'CRM inicializado correctamente';
-  } catch (error) {
-    console.error('Error inicializando CRM:', error);
-    throw error;
-  }
-}
+// función inicializarCRM eliminada: no usada en este script
