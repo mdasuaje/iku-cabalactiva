@@ -114,7 +114,7 @@ export const paquetes = [
       financiado: { precio: 1200, descripcion: 'Plan fraccionado de $1,200 USD' }
     },
     paypalLink: 'https://www.paypal.com/ncp/payment/QHUXGLD7VZ8RA',
-    stripeLink: 'https://buy.stripe.com/your-stripe-link'
+  stripeLink: 'https://buy.stripe.com/3cIcN6fhNdAS1S34SCdnW00'
   }
 ];
 
