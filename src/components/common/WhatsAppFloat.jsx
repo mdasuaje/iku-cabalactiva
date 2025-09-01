@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '../../utils/whatsapp'
+import ContactModal from './ContactModal'
 
 const WhatsAppFloat = () => {
   const [isVisible, setIsVisible] = useState(true)
   const [showTooltip, setShowTooltip] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const handleClick = () => {
-    openWhatsApp(WHATSAPP_MESSAGES.sesion)
+    setShowModal(true)
   }
 
   if (!isVisible) return null
@@ -50,6 +51,12 @@ const WhatsAppFloat = () => {
       >
         ×
       </button>
+
+      <ContactModal 
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        herramienta="Consulta General"
+      />
     </div>
   )
 }
