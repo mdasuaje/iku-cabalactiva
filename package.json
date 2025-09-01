@@ -31,7 +31,8 @@
     "test-contacts": "node scripts/test-contact-optimization.js",
     "diagnostico": "node scripts/diagnostico-sistema.js",
     "verify-phone": "node scripts/simple-phone-check.js",
-    "backup": "node scripts/secure-backup.js"
+    "backup": "node scripts/secure-backup.js",
+    "test-zero-trust": "node scripts/test-zero-trust.js"
   },
   "dependencies": {
     "framer-motion": "^10.0.1",
