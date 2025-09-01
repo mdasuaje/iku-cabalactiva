@@ -85,3 +85,6 @@ jspm_packages/
 ehthumbs.db
 Thumbs.db
 
+# Backups
+backup-iku-cabala*
+
