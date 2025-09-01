@@ -3,31 +3,31 @@
     <url>
         <loc>https://iku-cabalactiva.com/</loc>
         <lastmod>2025-09-01</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://iku-cabalactiva.com/#carta-astral</loc>
         <lastmod>2025-09-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <changefreq>yearly</changefreq>
+        <priority>0.95</priority>
     </url>
     <url>
         <loc>https://iku-cabalactiva.com/#constelacion-familiar</loc>
         <lastmod>2025-09-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <changefreq>yearly</changefreq>
+        <priority>0.95</priority>
     </url>
     <url>
         <loc>https://iku-cabalactiva.com/#limpieza-aurica</loc>
         <lastmod>2025-09-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <changefreq>yearly</changefreq>
+        <priority>0.95</priority>
     </url>
     <url>
         <loc>https://iku-cabalactiva.com/#meditacion-cabalistica</loc>
         <lastmod>2025-09-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <changefreq>yearly</changefreq>
+        <priority>0.95</priority>
     </url>
 </urlset>
