@@ -141,21 +141,7 @@ const Header = () => {
                     {item.label}
                   </button>
                 ))}
-                <button
-                  onClick={() => {
-                    openMail('Consulta IKU', 'Hola, quiero más información sobre los servicios.')
-                    setIsMenuOpen(false)
-                  }}
-                  className="flex items-center space-x-2 bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-4 py-2 rounded-lg transition-colors duration-200 w-full justify-center cursor-pointer"
-                  style={{ 
-                    pointerEvents: 'auto',
-                    touchAction: 'manipulation',
-                    userSelect: 'none'
-                  }}
-                >
-                  <span>✉️</span>
-                  <span>Contactar por Correo</span>
-                </button>
+
               </div>
             </motion.div>
           )}

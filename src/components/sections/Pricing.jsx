@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { paquetes } from '../../data/herramientas'
 import ContactModal from '../common/ContactModal'
+import PricingCard from '../common/PricingCard'
 
 const Pricing = () => {
   const [showModal, setShowModal] = useState(false)
@@ -23,91 +24,14 @@ const Pricing = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {paquetes.map((paquete, index) => (
-            <motion.div
-              key={paquete.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className={`relative bg-slate-700/50 backdrop-blur-sm rounded-2xl p-8 border-2 ${
-                paquete.id === 'paquete-completo' 
-                  ? 'border-yellow-500 shadow-lg shadow-yellow-500/20' 
-                  : 'border-slate-600'
-              }`}
-            >
-              {paquete.id === 'paquete-completo' && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-yellow-500 text-slate-900 px-4 py-1 rounded-full text-sm font-semibold">
-                    Más Popular
-                  </span>
-                </div>
-              )}
-
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  {paquete.nombre}
-                </h3>
-                
-                <div className="mb-6">
-                  <div className="text-4xl font-bold text-yellow-500 mb-2">
-                    ${paquete.precio}
-                  </div>
-                  {paquete.precioFinanciado && (
-                    <div className="text-gray-300 text-sm">
-                      o 3 pagos de ${paquete.precioFinanciado[0]}
-                    </div>
-                  )}
-                </div>
-
-                <p className="text-gray-300 mb-6">
-                  {paquete.descripcion}
-                </p>
-
-                <ul className="space-y-3 mb-8">
-                  {paquete.incluye.map((item, idx) => (
-                    <li key={idx} className="flex items-start space-x-3">
-                      <span className="text-yellow-500 mt-1">✓</span>
-                      <span className="text-gray-300 text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {paquete.id === 'paquete-completo' ? (
-                  <div className="space-y-3">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => window.open(paquete.paypalLink, '_blank')}
-                      className="w-full py-3 rounded-lg font-semibold transition-colors bg-blue-600 text-white hover:bg-blue-700 flex items-center justify-center space-x-2"
-                    >
-                      <span>💳</span>
-                      <span>Pagar con PayPal</span>
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => window.open(paquete.stripeLink, '_blank')}
-                      className="w-full py-3 rounded-lg font-semibold transition-colors bg-purple-600 text-white hover:bg-purple-700 flex items-center justify-center space-x-2"
-                    >
-                      <span>💎</span>
-                      <span>Pagar con Stripe</span>
-                    </motion.button>
-                  </div>
-                ) : (
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => window.open(paquete.paypalLink, '_blank')}
-                    className="w-full py-3 rounded-lg font-semibold transition-colors bg-slate-600 text-white hover:bg-slate-500"
-                  >
-                    Adquirir con PayPal
-                  </motion.button>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-4xl mx-auto"
+        >
+          <PricingCard />
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
