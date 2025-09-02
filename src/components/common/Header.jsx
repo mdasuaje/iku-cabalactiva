@@ -45,7 +45,7 @@ const Header = () => {
           >
             <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-yellow-500 to-yellow-400 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 flex-shrink-0">
               <span className="text-slate-900 font-bold text-sm lg:text-base select-none">
-                ✨
+                IKU
               </span>
             </div>
             <div className="hidden sm:block min-w-0">
@@ -78,14 +78,6 @@ const Header = () => {
             <div className="hidden lg:block">
               <SocialMediaBar />
             </div>
-            {/* WhatsApp */}
-            <button
-              onClick={() => openMail('Consulta IKU', 'Hola, quiero más información sobre los servicios.')}
-              className="hidden sm:flex items-center space-x-2 bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-4 py-2 rounded-lg transition-colors duration-200"
-            >
-              <span>�</span>
-              <span className="hidden md:inline">Correo</span>
-            </button>
 
             {/* Menú móvil */}
             <button

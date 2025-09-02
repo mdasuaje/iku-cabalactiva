@@ -74,12 +74,12 @@ const AboutMaestro = () => {
             </div>
 
             <motion.button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => window.open('https://youtu.be/xHOmoj-4MQo', '_blank')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-8 bg-yellow-500 text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
             >
-              Conocer más sobre el Maestro
+              Conecta con la Sabiduría
             </motion.button>
           </motion.div>
         </div>

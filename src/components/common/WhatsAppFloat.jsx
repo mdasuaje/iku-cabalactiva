@@ -23,8 +23,7 @@ const WhatsAppFloat = () => {
             exit={{ opacity: 0, x: 20 }}
             className="absolute bottom-16 right-0 bg-slate-800 text-white px-4 py-2 rounded-lg shadow-lg whitespace-nowrap"
           >
-            <div className="text-sm font-semibold">¿Necesitas ayuda?</div>
-            <div className="text-xs text-gray-300">Contáctanos</div>
+            <div className="text-sm font-semibold">¿Necesitas ayuda? Contáctanos</div>
             <div className="absolute -bottom-1 right-4 w-2 h-2 bg-slate-800 transform rotate-45"></div>
           </motion.div>
         )}
@@ -41,7 +40,7 @@ const WhatsAppFloat = () => {
         className="w-14 h-14 bg-yellow-500 hover:bg-yellow-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200"
       >
         <svg className="w-8 h-8 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       </motion.button>
 

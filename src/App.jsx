@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import ErrorBoundary from './components/common/ErrorBoundary'
 import Header from './components/common/Header'
-import Footer from './components/common/Footer'
+
 import ScrollToTop from './components/common/ScrollToTop'
 import SEOHead from './components/common/SEOHead'
 import WhatsAppFloat from './components/common/WhatsAppFloat'
@@ -23,7 +23,7 @@ function App() {
             <Home />
           </Suspense>
         </main>
-        <Footer />
+
         <WhatsAppFloat />
         <ExitIntentPopup />
       </div>

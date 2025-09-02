@@ -9,6 +9,7 @@ import FAQ from '@components/sections/FAQ'
 import CTA from '@components/sections/CTA'
 import Contact from '@components/sections/Contact'
 import Pricing from '@components/sections/Pricing'
+import Footer from '@components/common/Footer'
 
 // Componentes con lazy loading para mejor performance
 const AboutMaestro = lazy(() => import('@components/sections/AboutMaestro'))
@@ -26,6 +27,7 @@ const Home = () => {
       <FAQ />
       <Contact />
       <CTA />
+      <Footer />
     </>
   )
 }
