@@ -73,14 +73,29 @@ const AboutMaestro = () => {
               </div>
             </div>
 
-            <motion.button
-              onClick={() => window.open('https://youtu.be/xHOmoj-4MQo', '_blank')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="mt-8 bg-yellow-500 text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
-            >
-              Conecta con la Sabiduría
-            </motion.button>
+            {/* Previsualización del Video */}
+            <div className="mt-8 space-y-4">
+              <div className="relative bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer group" onClick={() => window.open('https://youtu.be/xHOmoj-4MQo', '_blank')}>
+                <div className="aspect-video bg-gradient-to-br from-yellow-500/20 to-purple-500/20 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-2 mx-auto group-hover:scale-110 transition-transform">
+                      <span className="text-white text-2xl ml-1">▶</span>
+                    </div>
+                    <p className="text-white font-medium">Ver Video del Maestro</p>
+                    <p className="text-gray-300 text-sm">Conoce la sabiduría cabalística</p>
+                  </div>
+                </div>
+              </div>
+              
+              <motion.button
+                onClick={() => window.open('https://youtu.be/xHOmoj-4MQo', '_blank')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full bg-yellow-500 text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
+              >
+                ✨ Siente la Conexión
+              </motion.button>
+            </div>
           </motion.div>
         </div>
       </div>

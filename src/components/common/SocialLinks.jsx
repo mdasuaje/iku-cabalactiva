@@ -9,7 +9,7 @@ SocialLinks.propTypes = {
 }
   const socialPlatforms = [
     {
-      name: 'WhatsApp',
+      name: 'WhatsApp Canal',
       url: SOCIAL_LINKS.whatsapp.channel,
       icon: '💬',
       color: 'hover:text-green-500'
