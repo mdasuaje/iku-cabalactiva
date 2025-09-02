@@ -16,7 +16,7 @@ class EmailService {
 
   async notificarNuevaSesion(sesionData) {
     console.log('📧 NUEVA SESIÓN - Email que se enviaría:');
-    console.log('Para:', 'kabbalahuniversal@gmail.com');
+    console.log('Para:', 'contacto@iku-cabalactiva.com');
     console.log('CC:', 'maor@iku-cabalactiva.com');
     console.log('Asunto:', `📅 Nueva Sesión: ${sesionData.tipoSesion}`);
     console.log('Datos:', sesionData);
@@ -26,7 +26,7 @@ class EmailService {
 
   async recordatorioProximaSesion(sesionData) {
     console.log('📧 RECORDATORIO - Email que se enviaría:');
-    console.log('Para:', 'kabbalahuniversal@gmail.com');
+    console.log('Para:', 'contacto@iku-cabalactiva.com');
     console.log('Datos:', sesionData);
     
     return { success: true, method: 'console_log' };

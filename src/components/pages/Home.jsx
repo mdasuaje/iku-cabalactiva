@@ -6,7 +6,7 @@ import Hero from '@components/sections/Hero'
 import Herramientas from '@components/sections/Herramientas'
 import Testimonios from '@components/sections/Testimonios'
 import FAQ from '@components/sections/FAQ'
-import CTA from '@components/sections/CTA'
+
 import Contact from '@components/sections/Contact'
 import Pricing from '@components/sections/Pricing'
 
@@ -25,7 +25,6 @@ const Home = () => {
       <Testimonios />
       <FAQ />
       <Contact />
-      <CTA />
     </>
   )
 }

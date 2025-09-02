@@ -21,7 +21,7 @@ Fecha sugerida: ${new Date(eventData.eventDate).toLocaleDateString('es-ES')} a l
 Por favor, confirma la cita respondiendo a este email.
   `
 
-  const mailtoLink = `mailto:kabbalahuniversal@gmail.com?subject=Nueva Consulta - ${formData.name}&body=${encodeURIComponent(emailBody)}`
+  const mailtoLink = `mailto:contacto@iku-cabalactiva.com?subject=Nueva Consulta - ${formData.name}&body=${encodeURIComponent(emailBody)}`
   
   // Open email client
   window.open(mailtoLink)
