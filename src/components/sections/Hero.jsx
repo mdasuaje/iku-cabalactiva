@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { openEmail, EMAIL_MESSAGES } from '../../utils/email'
+import ContactModal from '../common/ContactModal'
 
 const Hero = () => {
+  const [showModal, setShowModal] = useState(false)
+  
   return (
     <section id="hero" className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center relative overflow-hidden">
       {/* Background decoration */}
@@ -32,7 +34,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <button 
-              onClick={() => openEmail(EMAIL_MESSAGES.sesion.subject, EMAIL_MESSAGES.sesion.body)}
+              onClick={() => setShowModal(true)}
               className="bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors transform hover:scale-105"
             >
               ✉️ Quiero mi Sesión
@@ -48,6 +50,12 @@ const Hero = () => {
           </motion.div>
         </motion.div>
       </div>
+      
+      <ContactModal 
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        herramienta="Sesión Cabalística"
+      />
     </section>
   )
 }
