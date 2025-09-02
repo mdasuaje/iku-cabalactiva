@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { herramientasCabalisticas } from '../../data/herramientas'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '../../utils/whatsapp'
+import ContactModal from '../common/ContactModal'
 
 const Herramientas = () => {
+  const [showModal, setShowModal] = useState(false)
+  const [selectedHerramienta, setSelectedHerramienta] = useState('')
+
+  const handleIniciarCamino = (herramienta) => {
+    setSelectedHerramienta(herramienta.nombre)
+    setShowModal(true)
+  }
+
   return (
     <section id="herramientas" className="py-20 bg-slate-800">
       <div className="container mx-auto px-6">
@@ -74,13 +82,10 @@ const Herramientas = () => {
                     💳 ADQUIRIR AHORA
                   </button>
                   <button 
-                    onClick={() => {
-                      const message = `Hola, quiero consultar sobre ${herramienta.nombre}. ¿Incluye garantía de 30 días?`
-                      openWhatsApp(message)
-                    }}
-                    className="w-full border border-green-500 text-green-500 py-2 rounded-lg font-semibold hover:bg-green-500/10 transition-colors text-sm"
+                    onClick={() => handleIniciarCamino(herramienta)}
+                    className="w-full border border-yellow-500 text-yellow-500 py-2 rounded-lg font-semibold hover:bg-yellow-500/10 transition-colors text-sm"
                   >
-                    💬 Consultar Garantía
+                    🌟 Iniciar mi Camino
                   </button>
                 </div>
               </div>
@@ -88,6 +93,12 @@ const Herramientas = () => {
           ))}
         </div>
       </div>
+      
+      <ContactModal 
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        herramienta={selectedHerramienta}
+      />
     </section>
   )
 }

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { paquetes } from '../../data/herramientas'
+import ContactModal from '../common/ContactModal'
 
 const Pricing = () => {
+  const [showModal, setShowModal] = useState(false)
+  
   return (
     <section id="pricing" className="py-20 bg-slate-800">
       <div className="container mx-auto px-6">
@@ -116,17 +119,18 @@ const Pricing = () => {
             ¿Necesitas más información? Contáctanos directamente
           </p>
           <button
-            onClick={() => {
-              const message = 'Hola, necesito más información sobre los planes y precios de Cábala Activa.'
-              const phoneNumber = '19298336069' // +1 (929) 833-6069
-              const link = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-              window.open(link, '_blank')
-            }}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            onClick={() => setShowModal(true)}
+            className="bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-6 py-3 rounded-lg font-semibold transition-colors"
           >
-            💬 Consultar por WhatsApp
+            💬 Consultar Ahora
           </button>
         </motion.div>
+        
+        <ContactModal 
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          herramienta="Consulta de Precios"
+        />
       </div>
     </section>
   )

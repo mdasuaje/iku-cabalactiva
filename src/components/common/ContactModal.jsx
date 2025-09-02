@@ -1,11 +1,63 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-// Ícono X simple sin dependencias externas
+
 const XIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
   </svg>
 )
+
+const PricingSection = () => {
+  const pricingOptions = [
+    {
+      id: 'single-session',
+      title: 'Sesión Única',
+      price: '$150',
+      paypalUrl: import.meta.env.VITE_PAYPAL_SINGLE_SESSION
+    },
+    {
+      id: 'full-package', 
+      title: 'Programa Completo',
+      price: '$1,000',
+      paypalUrl: import.meta.env.VITE_PAYPAL_FULL_PACKAGE,
+      stripeUrl: import.meta.env.VITE_STRIPE_CHECKOUT
+    }
+  ]
+
+  return (
+    <div className="mt-6 pt-6 border-t border-gray-200">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+        Opciones de Pago Directo
+      </h3>
+      <div className="space-y-3">
+        {pricingOptions.map((option) => (
+          <div key={option.id} className="bg-gray-50 rounded-lg p-4">
+            <div className="flex justify-between items-center mb-2">
+              <span className="font-medium text-gray-800">{option.title}</span>
+              <span className="text-yellow-600 font-bold">{option.price}</span>
+            </div>
+            <div className="space-y-2">
+              {option.stripeUrl && (
+                <button
+                  onClick={() => window.open(option.stripeUrl, '_blank')}
+                  className="w-full bg-purple-600 text-white py-2 px-3 rounded text-sm hover:bg-purple-700 transition-colors"
+                >
+                  💳 Pagar con Tarjeta
+                </button>
+              )}
+              <button
+                onClick={() => window.open(option.paypalUrl, '_blank')}
+                className="w-full bg-blue-600 text-white py-2 px-3 rounded text-sm hover:bg-blue-700 transition-colors"
+              >
+                🌍 Pagar con PayPal
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => {
   const [formData, setFormData] = useState({
@@ -14,6 +66,7 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
     telefono: '',
     mensaje: ''
   })
+  const [showPricing, setShowPricing] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -43,7 +96,7 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-lg p-6 w-full max-w-md"
+            className="bg-white rounded-lg p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
@@ -114,13 +167,24 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
                 />
               </div>
 
-              <button
-                type="submit"
-                className="w-full bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors"
-              >
-                Enviar Consulta
-              </button>
+              <div className="flex space-x-3">
+                <button
+                  type="submit"
+                  className="flex-1 bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors"
+                >
+                  Enviar Consulta
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowPricing(!showPricing)}
+                  className="flex-1 bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors"
+                >
+                  {showPricing ? 'Ocultar' : 'Ver'} Precios
+                </button>
+              </div>
             </form>
+            
+            {showPricing && <PricingSection />}
           </motion.div>
         </motion.div>
       )}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { openMail } from '../../utils/mail'
+import SocialMediaBar from './SocialMediaBar'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -72,8 +73,12 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Botones de acción */}
+          {/* Redes sociales y botones de acción */}
           <div className="flex items-center space-x-4 flex-shrink-0">
+            {/* Redes sociales - solo desktop */}
+            <div className="hidden lg:block">
+              <SocialMediaBar />
+            </div>
             {/* WhatsApp */}
             <button
               onClick={() => openMail('Consulta IKU', 'Hola, quiero más información sobre los servicios.')}

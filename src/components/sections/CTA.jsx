@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '../../utils/whatsapp'
 import UrgencyTimer from '@components/common/UrgencyTimer'
 import Guarantee from '@components/common/Guarantee'
+import ContactModal from '../common/ContactModal'
 
 const CTA = () => {
-  const handleWhatsAppClick = () => {
-    openWhatsApp(WHATSAPP_MESSAGES.sesion)
+  const [showModal, setShowModal] = useState(false)
+
+  const handleContactClick = () => {
+    setShowModal(true)
   }
 
   return (
@@ -87,10 +89,10 @@ const CTA = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={handleWhatsAppClick}
+              onClick={handleContactClick}
               className="bg-slate-900 text-yellow-500 px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-800 transition-colors shadow-lg"
             >
-              💬 Escríbeme "QUIERO MI SESIÓN"
+              💬 Quiero Mi Sesión
             </motion.button>
             
             <p className="text-slate-800 text-sm">
@@ -122,6 +124,12 @@ const CTA = () => {
           </div>
         </motion.div>
       </div>
+      
+      <ContactModal 
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        herramienta="Sesión Cabalística"
+      />
     </section>
   )
 }

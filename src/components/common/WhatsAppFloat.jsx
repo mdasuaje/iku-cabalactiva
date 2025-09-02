@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import ContactModal from './ContactModal'
 
 const WhatsAppFloat = () => {
   const [isVisible, setIsVisible] = useState(true)
   const [showTooltip, setShowTooltip] = useState(false)
-  const [showModal, setShowModal] = useState(false)
 
   const handleClick = () => {
-    setShowModal(true)
+    window.open('https://tr.ee/WhatsAppChannel-iku-cabalactiva', '_blank')
   }
 
   if (!isVisible) return null
@@ -52,11 +50,7 @@ const WhatsAppFloat = () => {
         ×
       </button>
 
-      <ContactModal 
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        herramienta="Consulta General"
-      />
+
     </div>
   )
 }
