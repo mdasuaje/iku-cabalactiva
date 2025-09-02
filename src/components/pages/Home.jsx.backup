@@ -9,8 +9,9 @@ import Herramientas from '@components/sections/Herramientas'
 const Home = () => {
   return (
     <>
-      {/* DIAGNÓSTICO ACTIVO - Solo secciones: Hero */}
+      {/* DIAGNÓSTICO ACTIVO - Solo secciones: Hero, Herramientas */}
       <Hero />
+      <Herramientas />
     </>
   )
 }
