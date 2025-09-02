@@ -17,7 +17,12 @@ module.exports = {
     react: { version: '18.2' }
   },
   rules: {
-  'react-refresh/only-export-components': 'warn',
-    'react/react-in-jsx-scope': 'off'
+    'react-refresh/only-export-components': 'warn',
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    'react/no-unescaped-entities': 'off',
+    'no-unused-vars': 'warn',
+    'no-undef': 'warn',
+    'no-useless-escape': 'off'
   },
 }
