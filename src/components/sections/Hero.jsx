@@ -24,7 +24,7 @@ const Hero = () => {
           
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
             ¿Repites patrones una y otra vez? Quieres encontrar el 'por qué' y el 'para qué', pero no sabes cómo?. <br /> 
-            <span className="text-yellow-500 font-semibold"> Da el primer paso hacia una vida plena</span>
+            <span className="text-yellow-500 font-semibold">Da el primer paso hacia una vida plena</span>
           </p>
           
           <motion.div
