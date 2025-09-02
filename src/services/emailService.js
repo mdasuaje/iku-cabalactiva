@@ -25,7 +25,7 @@ class EmailService {
   // Notificar nueva sesión al Maestro Isaac
   async notificarNuevaSesion(sesionData) {
     const emailData = {
-      to: 'contacto@iku-cabalactiva.com',
+      to: 'kabbalahuniversal@gmail.com',
       cc: 'maor@iku-cabalactiva.com',
       subject: `📅 Nueva Sesión Programada: ${sesionData.tipoSesion}`,
       template: 'nueva-sesion',
@@ -43,7 +43,7 @@ class EmailService {
   // Recordatorio de próxima sesión
   async recordatorioProximaSesion(sesionData) {
     const emailData = {
-      to: 'contacto@iku-cabalactiva.com',
+      to: 'kabbalahuniversal@gmail.com',
       cc: 'maor@iku-cabalactiva.com',
       subject: `⏰ Recordatorio: Sesión en 24 horas`,
       template: 'recordatorio-sesion',

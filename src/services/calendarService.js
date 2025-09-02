@@ -28,7 +28,7 @@ export const createCalendarEvent = async (formData) => {
       timeZone: 'America/New_York'
     },
     attendees: [
-      { email: 'contacto@iku-cabalactiva.com', displayName: 'Isaac Benzaquén' },
+      { email: 'kabbalahuniversal@gmail.com', displayName: 'Isaac Benzaquén' },
       { email: formData.email, displayName: formData.name }
     ],
     reminders: {
@@ -59,7 +59,7 @@ export const createCalendarEvent = async (formData) => {
 export const sendNotificationEmail = async (formData, eventData) => {
   // Using EmailJS or similar service for notifications
   const emailData = {
-    to_email: 'contacto@iku-cabalactiva.com',
+    to_email: 'kabbalahuniversal@gmail.com',
     to_name: 'Isaac Benzaquén',
     from_name: formData.name,
     from_email: formData.email,
