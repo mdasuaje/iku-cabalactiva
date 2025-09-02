@@ -7,7 +7,7 @@
     "update-articles": "node scripts/update-lead-magnets.js",
     "watch-articles": "node scripts/watch-articles.js",
     "dev": "vite",
-    "build": "node scripts/generate-sitemap.js && vite build",
+    "build": "node scripts/verify-env.js && node scripts/generate-sitemap.js && vite build",
     "sitemap": "node scripts/generate-sitemap.js",
     "enable-section": "node scripts/enable-section.js",
     "preview": "vite preview",
