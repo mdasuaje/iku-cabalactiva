@@ -50,7 +50,7 @@ class ContactService {
   async notificarSesionConfirmada(sesionData) {
     const contactData = {
       action: 'send-email',
-      to: 'kabbalahuniversal@gmail.com', // Solo sesiones pagadas
+      to: 'contacto@iku-cabalactiva.com', // Solo sesiones pagadas
       cc: this.emailAdmin,
       subject: '📅 Sesión Confirmada (PAGADA)',
       template: 'sesion-confirmada',

@@ -50,7 +50,7 @@ const Footer = () => {
                 📧 {SOCIAL_LINKS.email}
               </p>
               <p className="text-gray-300 text-sm">
-                💬 WhatsApp: {SOCIAL_LINKS.whatsapp.number}
+                💬 <a href="{SOCIAL_LINKS.whatsapp.channel}" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500 transition-colors">Canal WhatsApp</a>
               </p>
               <p className="text-gray-300 text-sm">
                 🌐 iku-cabalactiva.com

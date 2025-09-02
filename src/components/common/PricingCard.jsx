@@ -27,6 +27,9 @@ const PricingCard = () => {
   const handlePayment = (url) => {
     if (url) {
       window.open(url, '_blank')
+    } else {
+      console.error('URL de pago no configurada')
+      alert('Error: URL de pago no disponible. Contacta al soporte.')
     }
   }
 
