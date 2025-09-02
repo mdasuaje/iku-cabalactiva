@@ -1,31 +1,27 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
-import { loadEnv } from 'vite'
+import path from 'path'
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
-  
-  return {
-    plugins: [react()],
-    define: {
-      'import.meta.env': env
-    },
-    test: {
-      environment: 'jsdom',
-      globals: true,
-      setupFiles: './src/test/setup.js',
-      env: {
-        ...env
-      },
-      coverage: {
-        reporter: ['text', 'json', 'html'],
-        exclude: [
-          'node_modules/',
-          'src/test/',
-          '**/*.config.js',
-          'dist/'
-        ]
-      }
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.js',
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/tests/e2e/**',
+      '**/tests/performance/**',
+      '**/tests/health/**'
+    ]
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@data': path.resolve(__dirname, './src/data')
     }
   }
 })
