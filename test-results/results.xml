@@ -1,0 +1,902 @@
+<testsuites id="" name="" tests="55" failures="55" skipped="0" errors="0" time="11.133657">
+<testsuite name="critical-flow.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="chromium" tests="5" failures="5" skipped="0" time="0.023" errors="0">
+<testcase name="Critical User Flow › Homepage loads and navigation works" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:4:3 Homepage loads and navigation works" type="FAILURE">
+<![CDATA[  [chromium] › critical-flow.spec.js:4:3 › Critical User Flow › Homepage loads and navigation works 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Contact modal functionality" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:22:3 Contact modal functionality" type="FAILURE">
+<![CDATA[  [chromium] › critical-flow.spec.js:22:3 › Critical User Flow › Contact modal functionality ───────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Maestro YouTube link works" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:41:3 Maestro YouTube link works" type="FAILURE">
+<![CDATA[  [chromium] › critical-flow.spec.js:41:3 › Critical User Flow › Maestro YouTube link works ────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Pricing section displays correctly" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:57:3 Pricing section displays correctly" type="FAILURE">
+<![CDATA[  [chromium] › critical-flow.spec.js:57:3 › Critical User Flow › Pricing section displays correctly 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Mobile responsiveness" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:68:3 Mobile responsiveness" type="FAILURE">
+<![CDATA[  [chromium] › critical-flow.spec.js:68:3 › Critical User Flow › Mobile responsiveness ─────────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="chromium" tests="6" failures="6" skipped="0" time="0.032" errors="0">
+<testcase name="Visual Regression Tests › Homepage visual consistency" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:4:3 Homepage visual consistency" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.js:4:3 › Visual Regression Tests › Homepage visual consistency 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Header component visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:15:3 Header component visual" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.js:15:3 › Visual Regression Tests › Header component visual ──
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Hero section visual" classname="visual-regression.spec.js" time="0.006">
+<failure message="visual-regression.spec.js:23:3 Hero section visual" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.js:23:3 › Visual Regression Tests › Hero section visual ──────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Pricing section visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:31:3 Pricing section visual" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.js:31:3 › Visual Regression Tests › Pricing section visual ───
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Contact modal visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:40:3 Contact modal visual" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.js:40:3 › Visual Regression Tests › Contact modal visual ─────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Mobile view visual" classname="visual-regression.spec.js" time="0.006">
+<failure message="visual-regression.spec.js:49:3 Mobile view visual" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.js:49:3 › Visual Regression Tests › Mobile view visual ───────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="critical-flow.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="firefox" tests="5" failures="5" skipped="0" time="0.023" errors="0">
+<testcase name="Critical User Flow › Homepage loads and navigation works" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:4:3 Homepage loads and navigation works" type="FAILURE">
+<![CDATA[  [firefox] › critical-flow.spec.js:4:3 › Critical User Flow › Homepage loads and navigation works ─
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Contact modal functionality" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:22:3 Contact modal functionality" type="FAILURE">
+<![CDATA[  [firefox] › critical-flow.spec.js:22:3 › Critical User Flow › Contact modal functionality ────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Maestro YouTube link works" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:41:3 Maestro YouTube link works" type="FAILURE">
+<![CDATA[  [firefox] › critical-flow.spec.js:41:3 › Critical User Flow › Maestro YouTube link works ─────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Pricing section displays correctly" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:57:3 Pricing section displays correctly" type="FAILURE">
+<![CDATA[  [firefox] › critical-flow.spec.js:57:3 › Critical User Flow › Pricing section displays correctly ─
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Mobile responsiveness" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:68:3 Mobile responsiveness" type="FAILURE">
+<![CDATA[  [firefox] › critical-flow.spec.js:68:3 › Critical User Flow › Mobile responsiveness ──────────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="firefox" tests="6" failures="6" skipped="0" time="0.03" errors="0">
+<testcase name="Visual Regression Tests › Homepage visual consistency" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:4:3 Homepage visual consistency" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.js:4:3 › Visual Regression Tests › Homepage visual consistency 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Header component visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:15:3 Header component visual" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.js:15:3 › Visual Regression Tests › Header component visual ───
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Hero section visual" classname="visual-regression.spec.js" time="0.004">
+<failure message="visual-regression.spec.js:23:3 Hero section visual" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.js:23:3 › Visual Regression Tests › Hero section visual ───────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Pricing section visual" classname="visual-regression.spec.js" time="0.006">
+<failure message="visual-regression.spec.js:31:3 Pricing section visual" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.js:31:3 › Visual Regression Tests › Pricing section visual ────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Contact modal visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:40:3 Contact modal visual" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.js:40:3 › Visual Regression Tests › Contact modal visual ──────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Mobile view visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:49:3 Mobile view visual" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.js:49:3 › Visual Regression Tests › Mobile view visual ────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/firefox-1490/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="critical-flow.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="webkit" tests="5" failures="5" skipped="0" time="0.022" errors="0">
+<testcase name="Critical User Flow › Homepage loads and navigation works" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:4:3 Homepage loads and navigation works" type="FAILURE">
+<![CDATA[  [webkit] › critical-flow.spec.js:4:3 › Critical User Flow › Homepage loads and navigation works ──
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Contact modal functionality" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:22:3 Contact modal functionality" type="FAILURE">
+<![CDATA[  [webkit] › critical-flow.spec.js:22:3 › Critical User Flow › Contact modal functionality ─────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Maestro YouTube link works" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:41:3 Maestro YouTube link works" type="FAILURE">
+<![CDATA[  [webkit] › critical-flow.spec.js:41:3 › Critical User Flow › Maestro YouTube link works ──────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Pricing section displays correctly" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:57:3 Pricing section displays correctly" type="FAILURE">
+<![CDATA[  [webkit] › critical-flow.spec.js:57:3 › Critical User Flow › Pricing section displays correctly ──
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Mobile responsiveness" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:68:3 Mobile responsiveness" type="FAILURE">
+<![CDATA[  [webkit] › critical-flow.spec.js:68:3 › Critical User Flow › Mobile responsiveness ───────────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="webkit" tests="6" failures="6" skipped="0" time="0.03" errors="0">
+<testcase name="Visual Regression Tests › Homepage visual consistency" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:4:3 Homepage visual consistency" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.js:4:3 › Visual Regression Tests › Homepage visual consistency ─
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Header component visual" classname="visual-regression.spec.js" time="0.004">
+<failure message="visual-regression.spec.js:15:3 Header component visual" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.js:15:3 › Visual Regression Tests › Header component visual ────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Hero section visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:23:3 Hero section visual" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.js:23:3 › Visual Regression Tests › Hero section visual ────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Pricing section visual" classname="visual-regression.spec.js" time="0.006">
+<failure message="visual-regression.spec.js:31:3 Pricing section visual" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.js:31:3 › Visual Regression Tests › Pricing section visual ─────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Contact modal visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:40:3 Contact modal visual" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.js:40:3 › Visual Regression Tests › Contact modal visual ───────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Mobile view visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:49:3 Mobile view visual" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.js:49:3 › Visual Regression Tests › Mobile view visual ─────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="critical-flow.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="Mobile Chrome" tests="5" failures="5" skipped="0" time="0.024" errors="0">
+<testcase name="Critical User Flow › Homepage loads and navigation works" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:4:3 Homepage loads and navigation works" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › critical-flow.spec.js:4:3 › Critical User Flow › Homepage loads and navigation works 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Contact modal functionality" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:22:3 Contact modal functionality" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › critical-flow.spec.js:22:3 › Critical User Flow › Contact modal functionality ──
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Maestro YouTube link works" classname="critical-flow.spec.js" time="0.006">
+<failure message="critical-flow.spec.js:41:3 Maestro YouTube link works" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › critical-flow.spec.js:41:3 › Critical User Flow › Maestro YouTube link works ───
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Pricing section displays correctly" classname="critical-flow.spec.js" time="0.004">
+<failure message="critical-flow.spec.js:57:3 Pricing section displays correctly" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › critical-flow.spec.js:57:3 › Critical User Flow › Pricing section displays correctly 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Mobile responsiveness" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:68:3 Mobile responsiveness" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › critical-flow.spec.js:68:3 › Critical User Flow › Mobile responsiveness ────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="Mobile Chrome" tests="6" failures="6" skipped="0" time="0.033" errors="0">
+<testcase name="Visual Regression Tests › Homepage visual consistency" classname="visual-regression.spec.js" time="0.006">
+<failure message="visual-regression.spec.js:4:3 Homepage visual consistency" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.js:4:3 › Visual Regression Tests › Homepage visual consistency 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Header component visual" classname="visual-regression.spec.js" time="0.004">
+<failure message="visual-regression.spec.js:15:3 Header component visual" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.js:15:3 › Visual Regression Tests › Header component visual 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Hero section visual" classname="visual-regression.spec.js" time="0.007">
+<failure message="visual-regression.spec.js:23:3 Hero section visual" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.js:23:3 › Visual Regression Tests › Hero section visual ─
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Pricing section visual" classname="visual-regression.spec.js" time="0.006">
+<failure message="visual-regression.spec.js:31:3 Pricing section visual" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.js:31:3 › Visual Regression Tests › Pricing section visual 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Contact modal visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:40:3 Contact modal visual" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.js:40:3 › Visual Regression Tests › Contact modal visual 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Mobile view visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:49:3 Mobile view visual" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.js:49:3 › Visual Regression Tests › Mobile view visual ──
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium_headless_shell-1187/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="critical-flow.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="Mobile Safari" tests="5" failures="5" skipped="0" time="0.027" errors="0">
+<testcase name="Critical User Flow › Homepage loads and navigation works" classname="critical-flow.spec.js" time="0.006">
+<failure message="critical-flow.spec.js:4:3 Homepage loads and navigation works" type="FAILURE">
+<![CDATA[  [Mobile Safari] › critical-flow.spec.js:4:3 › Critical User Flow › Homepage loads and navigation works 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Contact modal functionality" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:22:3 Contact modal functionality" type="FAILURE">
+<![CDATA[  [Mobile Safari] › critical-flow.spec.js:22:3 › Critical User Flow › Contact modal functionality ──
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Maestro YouTube link works" classname="critical-flow.spec.js" time="0.006">
+<failure message="critical-flow.spec.js:41:3 Maestro YouTube link works" type="FAILURE">
+<![CDATA[  [Mobile Safari] › critical-flow.spec.js:41:3 › Critical User Flow › Maestro YouTube link works ───
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Pricing section displays correctly" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:57:3 Pricing section displays correctly" type="FAILURE">
+<![CDATA[  [Mobile Safari] › critical-flow.spec.js:57:3 › Critical User Flow › Pricing section displays correctly 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Critical User Flow › Mobile responsiveness" classname="critical-flow.spec.js" time="0.005">
+<failure message="critical-flow.spec.js:68:3 Mobile responsiveness" type="FAILURE">
+<![CDATA[  [Mobile Safari] › critical-flow.spec.js:68:3 › Critical User Flow › Mobile responsiveness ────────
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.js" timestamp="2025-09-02T15:33:05.953Z" hostname="Mobile Safari" tests="6" failures="6" skipped="0" time="0.029" errors="0">
+<testcase name="Visual Regression Tests › Homepage visual consistency" classname="visual-regression.spec.js" time="0.006">
+<failure message="visual-regression.spec.js:4:3 Homepage visual consistency" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.js:4:3 › Visual Regression Tests › Homepage visual consistency 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Header component visual" classname="visual-regression.spec.js" time="0.004">
+<failure message="visual-regression.spec.js:15:3 Header component visual" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.js:15:3 › Visual Regression Tests › Header component visual 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Hero section visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:23:3 Hero section visual" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.js:23:3 › Visual Regression Tests › Hero section visual ─
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Pricing section visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:31:3 Pricing section visual" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.js:31:3 › Visual Regression Tests › Pricing section visual 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Contact modal visual" classname="visual-regression.spec.js" time="0.004">
+<failure message="visual-regression.spec.js:40:3 Contact modal visual" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.js:40:3 › Visual Regression Tests › Contact modal visual 
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Visual Regression Tests › Mobile view visual" classname="visual-regression.spec.js" time="0.005">
+<failure message="visual-regression.spec.js:49:3 Mobile view visual" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.js:49:3 › Visual Regression Tests › Mobile view visual ──
+
+    Error: browserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/webkit-2203/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>
