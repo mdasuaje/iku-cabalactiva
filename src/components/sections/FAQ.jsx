@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { openWhatsApp, WHATSAPP_MESSAGES } from '../../utils/whatsapp'
+import ContactModal from '../common/ContactModal'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null)
+  const [showModal, setShowModal] = useState(false)
 
   const faqs = [
     {
@@ -111,12 +112,18 @@ const FAQ = () => {
             ¿Tienes más preguntas? Contáctanos directamente
           </p>
           <button
-            onClick={() => openWhatsApp(WHATSAPP_MESSAGES.consulta)}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            onClick={() => setShowModal(true)}
+            className="bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-6 py-3 rounded-lg font-semibold transition-colors"
           >
-            💬 Preguntar por WhatsApp
+            ✉️ Contactar por Email
           </button>
         </motion.div>
+        
+        <ContactModal 
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          herramienta="Consulta FAQ"
+        />
       </div>
     </section>
   )
