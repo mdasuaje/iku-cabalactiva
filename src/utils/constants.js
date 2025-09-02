@@ -17,7 +17,7 @@ export const SOCIAL_LINKS = {
       he: 'שלום, אני מעוניין לדעת יותר על הכלים הקבליים של IKU קבלה אקטיבית'
     }
   },
-  email: 'kabbalahuniversal@gmail.com',
+  email: 'contacto@iku-cabalactiva.com',
   ikuEmail: 'contacto@iku-cabalactiva.com',
   instagram: 'https://instagram.com/ikuuniversal',
   facebook: {
