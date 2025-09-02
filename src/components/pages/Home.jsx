@@ -6,18 +6,12 @@ import Hero from '@components/sections/Hero'
 import Herramientas from '@components/sections/Herramientas'
 
 // Componentes con lazy loading para mejor performance
-const Philosophy = lazy(() => import('@components/sections/Philosophy'))
 const Home = () => {
   return (
     <>
-      {/* DIAGNÓSTICO ACTIVO - Solo secciones: Hero, Herramientas, Philosophy */}
+      {/* DIAGNÓSTICO ACTIVO - Solo secciones: Hero, Herramientas */}
       <Hero />
       <Herramientas />
-      
-      {/* Secciones con lazy loading optimizado */}
-      <Suspense fallback={<LoadingSpinner message="Cargando contenido..." />}>
-        <Philosophy />
-      </Suspense>
     </>
   )
 }

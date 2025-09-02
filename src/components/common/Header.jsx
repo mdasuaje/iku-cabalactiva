@@ -37,29 +37,29 @@ const Header = () => {
         : 'bg-transparent'
     }`}>
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-20 min-w-0">
           {/* Logo */}
           <button 
             onClick={() => scrollToSection('hero')}
-            className="flex items-center space-x-3 group"
+            className="flex items-center space-x-3 group flex-shrink-0"
           >
-            <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-yellow-500 to-yellow-400 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-              <span className="text-slate-900 font-bold text-lg lg:text-xl">
-                IKU
+            <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-yellow-500 to-yellow-400 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 flex-shrink-0">
+              <span className="text-slate-900 font-bold text-sm lg:text-base select-none">
+                ✨
               </span>
             </div>
-            <div className="hidden sm:block">
-              <div className="text-white font-semibold text-lg lg:text-xl">
-                IKU Cábala Activa
+            <div className="hidden sm:block min-w-0">
+              <div className="text-white font-semibold text-lg lg:text-xl truncate">
+                Cábala Activa
               </div>
-              <div className="text-yellow-500 text-xs lg:text-sm">
+              <div className="text-yellow-500 text-xs lg:text-sm truncate">
                 Sabiduría Ancestral
               </div>
             </div>
           </button>
 
           {/* Navegación Desktop */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8 flex-shrink-0">
             {navigationItems.map((item) => (
               <button
                 key={item.id}
@@ -73,7 +73,7 @@ const Header = () => {
           </div>
 
           {/* Botones de acción */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 flex-shrink-0">
             {/* WhatsApp */}
             <button
               onClick={() => openMail('Consulta IKU', 'Hola, quiero más información sobre los servicios.')}
