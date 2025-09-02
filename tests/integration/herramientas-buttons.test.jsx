@@ -30,17 +30,17 @@ describe('Herramientas Buttons Integration', () => {
     mockOpen.mockClear()
   })
 
-  it('WhatsApp float button redirects to correct channel', () => {
+  it('WhatsApp float button opens ContactModal', () => {
     render(<WhatsAppFloat />)
     
     const whatsappButtons = screen.getAllByRole('button')
     const mainWhatsappButton = whatsappButtons.find(btn => 
-      btn.className.includes('bg-green-500')
+      btn.className.includes('bg-yellow-500')
     )
     
     fireEvent.click(mainWhatsappButton)
     
-    expect(mockOpen).toHaveBeenCalledWith('https://tr.ee/WhatsAppChannel-iku-cabalactiva', '_blank')
+    expect(screen.getByText(/Contacto - Consulta General/)).toBeInTheDocument()
   })
 
   it('ContactModal renders correctly', () => {

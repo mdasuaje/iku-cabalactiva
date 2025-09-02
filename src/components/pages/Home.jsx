@@ -7,11 +7,11 @@ import Herramientas from '@components/sections/Herramientas'
 import Testimonios from '@components/sections/Testimonios'
 import FAQ from '@components/sections/FAQ'
 import CTA from '@components/sections/CTA'
-import Footer from '@components/common/Footer'
+import Contact from '@components/sections/Contact'
+import Pricing from '@components/sections/Pricing'
 
 // Componentes con lazy loading para mejor performance
 const AboutMaestro = lazy(() => import('@components/sections/AboutMaestro'))
-const WhatsAppFloat = lazy(() => import('@components/common/WhatsAppFloat'))
 
 const Home = () => {
   return (
@@ -21,13 +21,11 @@ const Home = () => {
       <Suspense fallback={<LoadingSpinner />}>
         <AboutMaestro />
       </Suspense>
+      <Pricing />
       <Testimonios />
       <FAQ />
+      <Contact />
       <CTA />
-      <Footer />
-      <Suspense fallback={null}>
-        <WhatsAppFloat />
-      </Suspense>
     </>
   )
 }
