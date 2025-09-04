@@ -1,0 +1,272 @@
+name: Complete Testing Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Ejecutar diariamente a las 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Tipo de testing a ejecutar'
+        required: true
+        default: 'complete'
+        type: choice
+        options:
+        - status
+        - complete
+        - e2e-only
+
+jobs:
+  project-status:
+    name: 🔍 Project Status Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run project status tests
+      run: npm run test:status
+      
+    - name: Upload status report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: project-status-report
+        path: test-results/project-status.json
+
+  unit-tests:
+    name: 🧪 Unit Tests
+    runs-on: ubuntu-latest
+    needs: project-status
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run unit tests
+      run: npm run test:ci
+      
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: coverage-report
+        path: coverage/
+
+  build-validation:
+    name: 🏗️ Build Validation
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build project
+      run: npm run build
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: dist/
+
+  e2e-tests:
+    name: 🎭 E2E Tests
+    runs-on: ubuntu-latest
+    needs: build-validation
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+      
+    - name: Build project
+      run: npm run build
+      
+    - name: Run E2E tests
+      run: npm run test:e2e
+      env:
+        BASE_URL: http://localhost:4173
+        
+    - name: Upload E2E reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: e2e-report
+        path: |
+          playwright-report/
+          test-results/
+
+  complete-testing:
+    name: 🚀 Complete Testing Suite
+    runs-on: ubuntu-latest
+    if: github.event.inputs.test_type == 'complete' || github.event.inputs.test_type == ''
+    needs: [project-status, unit-tests, build-validation, e2e-tests]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+      
+    - name: Run complete testing suite
+      run: npm run test:complete
+      
+    - name: Upload complete testing report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: complete-testing-report
+        path: test-results/
+        
+    - name: Comment PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          
+          try {
+            const report = JSON.parse(fs.readFileSync('test-results/complete-testing-report.json', 'utf8'));
+            
+            const comment = `## 🌟 IKU Cábala Activa - Reporte de Testing
+            
+            **Estado General:** ${report.summary.overall_status === 'SUCCESS' ? '✅' : '⚠️'} ${report.summary.overall_status}
+            **Fases Exitosas:** ${report.summary.successful}/${report.summary.total_phases}
+            **Tasa de Éxito:** ${report.summary.success_rate}%
+            **Duración:** ${Math.round(report.summary.duration/1000)}s
+            
+            ### Detalle por Fases:
+            ${Object.entries(report.phases).map(([name, phase]) => 
+              `- **${name}:** ${phase.status === 'SUCCESS' ? '✅' : '❌'} ${phase.status} (${Math.round(phase.duration/1000)}s)`
+            ).join('\n')}
+            
+            [Ver reporte completo](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+          } catch (error) {
+            console.log('No se pudo generar el comentario:', error.message);
+          }
+
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run npm audit
+      run: npm audit --audit-level=moderate
+      continue-on-error: true
+      
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        languages: javascript
+
+  deployment-readiness:
+    name: 🚢 Deployment Readiness
+    runs-on: ubuntu-latest
+    needs: [complete-testing, security-scan]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      
+    - name: Validate deployment readiness
+      run: |
+        echo "🔍 Validando preparación para deployment..."
+        
+        # Verificar que todos los tests pasaron
+        if [ -f "complete-testing-report/complete-testing-report.json" ]; then
+          STATUS=$(cat complete-testing-report/complete-testing-report.json | jq -r '.summary.overall_status')
+          if [ "$STATUS" = "SUCCESS" ]; then
+            echo "✅ Todos los tests pasaron - LISTO PARA DEPLOYMENT"
+            echo "DEPLOYMENT_READY=true" >> $GITHUB_ENV
+          else
+            echo "❌ Tests fallaron - NO LISTO PARA DEPLOYMENT"
+            echo "DEPLOYMENT_READY=false" >> $GITHUB_ENV
+          fi
+        else
+          echo "⚠️ No se encontró reporte de testing"
+          echo "DEPLOYMENT_READY=false" >> $GITHUB_ENV
+        fi
+        
+    - name: Create deployment status
+      if: env.DEPLOYMENT_READY == 'true'
+      run: |
+        echo "🚀 Proyecto listo para deployment automático"
+        echo "Todos los tests de calidad han pasado exitosamente"
