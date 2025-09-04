@@ -127,11 +127,13 @@ class CRMService {
     }
 
     const result = await response.json();
-    
+    // Si el backend responde success: false, lanzar error con el mensaje
+    if (result.success === false) {
+      throw new Error(`Acceso no autorizado: ${result.error || 'Error del servidor'} (${result.code || 'UNKNOWN'})`);
+    }
     if (result.error) {
       throw new Error(`Error del servidor: ${result.error} (${result.code || 'UNKNOWN'})`);
     }
-
     return result;
   }
 
@@ -139,6 +141,14 @@ class CRMService {
   async testConnection() {
     try {
       const result = await this.sendToWebhook('test', {});
+      // Si el backend responde success: false o hay error, devolver success: false
+      if (result.success === false || result.error) {
+        return { success: false, error: result.error || 'Error del servidor' };
+      }
+      // Si el token es incorrecto pero el backend responde success: true, detectar por mensaje
+      if (result.message && /token|autorizado|acceso/i.test(result.message)) {
+        return { success: false, error: result.message };
+      }
       return { success: true, message: result.message };
     } catch (error) {
       return { success: false, error: error.message };
