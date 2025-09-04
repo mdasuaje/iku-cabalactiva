@@ -48,9 +48,10 @@
     "mcp-sequentialthinking-tools": "github:spences10/mcp-sequentialthinking-tools",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.5",
+    "react-hook-form": "^7.62.0",
     "react-hot-toast": "^2.4.0",
     "react-router-dom": "^6.8.1",
+    "react-toastify": "^11.0.5",
     "stripe": "^12.0.0"
   },
   "devDependencies": {
