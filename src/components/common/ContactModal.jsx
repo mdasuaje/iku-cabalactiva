@@ -59,6 +59,10 @@ const PricingSection = () => {
   )
 }
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => {
   const [formData, setFormData] = useState({
     nombre: '',
@@ -67,12 +71,50 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
     mensaje: ''
   })
   const [showPricing, setShowPricing] = useState(false)
+  const [isSending, setIsSending] = useState(false)
 
-  const handleSubmit = (e) => {
+  // URL del Web App de Google Apps Script
+  const scriptURL = import.meta.env.VITE_GOOGLE_APP_SCRIPT_URL
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Aquí iría la lógica del CRM
-    console.log('Formulario enviado:', formData)
-    onClose()
+    if (!scriptURL) {
+      toast.error("El servicio de contacto no está disponible. Inténtelo más tarde.")
+      return
+    }
+    setIsSending(true)
+    const toastId = toast.loading("Enviando mensaje...")
+    try {
+      const response = await fetch(scriptURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      const result = await response.json()
+      if (result.success) {
+        toast.update(toastId, {
+          render: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.",
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        })
+        setFormData({ nombre: '', email: '', telefono: '', mensaje: '' })
+        onClose()
+      } else {
+        throw new Error(result.error || 'Ocurrió un error en el servidor.')
+      }
+    } catch (error) {
+      toast.update(toastId, {
+        render: `Error al enviar: ${error.message}`,
+        type: "error",
+        isLoading: false,
+        autoClose: 6000,
+      })
+    } finally {
+      setIsSending(false)
+    }
   }
 
   const handleChange = (e) => {
@@ -92,6 +134,7 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
           onClick={onClose}
         >
+          <ToastContainer position="bottom-right" theme="dark" style={{ zIndex: 9999 }} />
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -124,7 +167,7 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
                   onChange={handleChange}
                   autoComplete="name"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-900 bg-white placeholder-gray-400"
                 />
               </div>
 
@@ -140,7 +183,7 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
                   onChange={handleChange}
                   autoComplete="email"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-900 bg-white placeholder-gray-400"
                 />
               </div>
 
@@ -155,7 +198,7 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
                   value={formData.telefono}
                   onChange={handleChange}
                   autoComplete="tel"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-900 bg-white placeholder-gray-400"
                 />
               </div>
 
@@ -169,7 +212,7 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
                   value={formData.mensaje}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-900 bg-white placeholder-gray-400"
                   placeholder="Cuéntanos sobre tu consulta..."
                 />
               </div>
@@ -177,9 +220,10 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
               <div className="flex space-x-3">
                 <button
                   type="submit"
-                  className="flex-1 bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors"
+                  disabled={isSending}
+                  className="flex-1 bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  Enviar Consulta
+                  {isSending ? 'Enviando...' : 'Enviar Consulta'}
                 </button>
                 <button
                   type="button"
@@ -190,7 +234,6 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
                 </button>
               </div>
             </form>
-            
             {showPricing && <PricingSection />}
           </motion.div>
         </motion.div>
