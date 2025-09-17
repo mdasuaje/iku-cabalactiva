@@ -1,0 +1,10 @@
+{
+  "activePrompt": "iku-cabala-agent",
+  "prompts": [
+    {
+      "name": "iku-cabala-agent",
+      "description": "Agente especializado en desarrollo y mantenimiento de la landing page IKU-Cábala Activa",
+      "file": "iku-cabala-agent.js"
+    }
+  ]
+}
