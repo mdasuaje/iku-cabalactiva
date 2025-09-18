@@ -4,7 +4,40 @@
     {
       "label": "IKU: Diagnóstico del Proyecto",
       "type": "shell",
-      "command": "/prompt iku-cabala-agent diagnose",
+      "command": "${workspaceFolder}/scripts/iku-agent-cli.sh diagnose",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "IKU: Implementación de Componentes",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/iku-agent-cli.sh implement",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "IKU: Optimización y Arquitectura",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/iku-agent-cli.sh optimize",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "IKU: Guardar Chat Actual",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/workflow/save_chat.sh",
       "presentation": {
         "reveal": "always",
         "panel": "new"

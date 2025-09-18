@@ -4,8 +4,8 @@ import LoadingSpinner from '@components/common/LoadingSpinner'
 // Componentes principales (carga inmediata)
 import Hero from '@components/sections/Hero'
 import Herramientas from '@components/sections/Herramientas'
-import Testimonios from '@components/sections/Testimonios'
-import FAQ from '@components/sections/FAQ'
+import TestimoniosSection from '@components/sections/TestimoniosSection'
+import FAQSection from '@components/sections/FAQSection'
 import CTA from '@components/sections/CTA'
 import Contact from '@components/sections/Contact'
 import Pricing from '@components/sections/Pricing'
@@ -23,8 +23,8 @@ const Home = () => {
         <AboutMaestro />
       </Suspense>
       <Pricing />
-      <Testimonios />
-      <FAQ />
+      <TestimoniosSection />
+      <FAQSection />
       <Contact />
       <CTA />
       <Footer />

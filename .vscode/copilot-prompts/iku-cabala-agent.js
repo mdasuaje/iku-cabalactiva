@@ -8,23 +8,23 @@
 // ----------- CONFIGURACIÓN DE CONTEXTO -----------
 
 const projectContext = {
-  name: "IKU-Cábala Activa Landing Page",
-  repository: "https://github.com/mdasuaje/iku-cabala-activa",
-  domain: "iku-cabalactiva.com",
-  deployment: "GitHub Pages + Squarespace DNS",
-  mainTools: ["React", "Vite", "GitHub Actions", "CSS Modules"],
+  name: 'IKU-Cábala Activa Landing Page',
+  repository: 'https://github.com/mdasuaje/iku-cabala-activa',
+  domain: 'iku-cabalactiva.com',
+  deployment: 'GitHub Pages + Squarespace DNS',
+  mainTools: ['React', 'Vite', 'GitHub Actions', 'CSS Modules'],
   developer: {
-    name: "Mauro D. Asuaje G.",
-    github: "mdasuaje",
-    philosophy: ["Análisis Metódico", "Precisión Samurai", "Integración Holística"]
+    name: 'Mauro D. Asuaje G.',
+    github: 'mdasuaje',
+    philosophy: ['Análisis Metódico', 'Precisión Samurai', 'Integración Holística'],
   },
   projectGoals: [
-    "Crear landing page para herramientas cabalísticas",
-    "Integrar sistema de reserva y pagos",
-    "Optimizar SEO y rendimiento",
-    "Implementar CI/CD automatizado"
-  ]
-};
+    'Crear landing page para herramientas cabalísticas',
+    'Integrar sistema de reserva y pagos',
+    'Optimizar SEO y rendimiento',
+    'Implementar CI/CD automatizado',
+  ],
+}
 
 // ----------- INSTRUCCIONES PRINCIPALES -----------
 
@@ -61,7 +61,7 @@ Como IKU-CabalaActiva-Agent, realiza las siguientes tareas de diagnóstico:
     - Recomendaciones técnicas prioritarias
 
 Formato de respuesta: Markdown estructurado con secciones claras y código relevante.
-`;
+`
 }
 
 /**
@@ -99,7 +99,7 @@ Como IKU-CabalaActiva-Agent, asiste en la implementación de componentes con est
     - Integraciones con APIs externas cuando se solicite
 
 Formato de código: Sintaxis JSX moderna, imports organizados, estructura clara.
-`;
+`
 }
 
 /**
@@ -137,7 +137,7 @@ Como IKU-CabalaActiva-Agent, aplica estos principios para optimización y mejora
     - Implementa JSON-LD para datos estructurados
 
 Formato de respuesta: Recomendaciones técnicas específicas con ejemplos de código implementables.
-`;
+`
 }
 
 /**
@@ -175,7 +175,7 @@ Para cada tarea o solicitud, sigue este flujo sistemático:
     - Confirma compatibilidad con el resto del proyecto
 
 Para cada interacción, establece claramente en qué fase del flujo te encuentras.
-`;
+`
 }
 
 // ----------- ACTIVACIÓN DEL AGENTE -----------
@@ -224,18 +224,18 @@ ${FASE_OPTIMIZACIÓN()}
 ## Activación
 Este agente se activa al trabajar con archivos del proyecto iku-cabala-activa en VS Code.
 Utiliza el contexto proporcionado para ofrecer asistencia precisa y relevante.
-`;
+`
 }
 
 // Exportar la configuración completa del agente
 module.exports = {
-  nombre: "IKU-CabalaActiva-Agent",
-  versión: "1.0.0",
+  nombre: 'IKU-CabalaActiva-Agent',
+  versión: '1.0.0',
   activar: IKU_CABALAACTIVA_AGENT,
   fases: {
-    diagnóstico: FASE_DIAGNÓSTICO,
-    implementación: FASE_IMPLEMENTACIÓN,
-    optimización: FASE_OPTIMIZACIÓN
+    diagnóstico: FASE_DIAGNÓSTICO(),
+    implementación: FASE_IMPLEMENTACIÓN(),
+    optimización: FASE_OPTIMIZACIÓN(),
   },
-  contexto: projectContext
-};
+  contexto: projectContext,
+}

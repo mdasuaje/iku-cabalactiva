@@ -7,7 +7,7 @@ import TestimoniosCarousel from '../common/TestimoniosCarousel'
  * @component
  * @returns {JSX.Element} Componente de sección de testimonios
  */
-const Testimonios = () => {
+const TestimoniosSection = () => {
   return (
     <section
       id="testimonios"
@@ -67,4 +67,4 @@ const Testimonios = () => {
   )
 }
 
-export default Testimonios
+export default TestimoniosSection

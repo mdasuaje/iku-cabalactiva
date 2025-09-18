@@ -9,7 +9,7 @@ import FAQAccordion from '../common/FAQAccordion'
  * @component
  * @returns {JSX.Element} Componente de sección de FAQ
  */
-const FAQ = () => {
+const FAQSection = () => {
   const [showModal, setShowModal] = useState(false)
 
   return (
@@ -95,4 +95,4 @@ const FAQ = () => {
   )
 }
 
-export default FAQ
+export default FAQSection
