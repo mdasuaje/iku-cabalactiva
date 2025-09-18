@@ -5,10 +5,10 @@
 # Añadir todos los archivos nuevos y modificados relacionados con la implementación del agente
 echo "Agregando archivos al commit..."
 
-# Añadir archivos del agente mejorado
-git add .vscode/copilot-prompts/iku-cabalactiva-agent-enhanced.js
-git add .vscode/copilot-prompts/iku-cabalactiva-agent-enhanced.mjs
-git add .vscode/copilot-prompts/iku-cabala-assistant-prompt.md
+# Añadir archivos del agente mejorado (forzando la adición de archivos ignorados)
+git add -f .vscode/copilot-prompts/iku-cabalactiva-agent-enhanced.js
+git add -f .vscode/copilot-prompts/iku-cabalactiva-agent-enhanced.mjs
+git add -f .vscode/copilot-prompts/iku-cabala-assistant-prompt.md
 
 # Añadir scripts de prueba
 git add scripts/test-iku-cabalactiva-agent.js
