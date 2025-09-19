@@ -41,7 +41,8 @@
     "diagnose": "node scripts/diagnose-all.cjs",
     "verify-phone": "node scripts/simple-phone-check.js",
     "backup": "node scripts/secure-backup.js",
-    "test-zero-trust": "node scripts/test-zero-trust.js"
+    "test-zero-trust": "node scripts/test-zero-trust.js",
+    "test-cors": "node scripts/test-cors-implementation.js"
   },
   "dependencies": {
     "framer-motion": "^10.0.1",
