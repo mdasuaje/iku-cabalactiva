@@ -484,7 +484,12 @@ function createSuccessResponse(message, data = null) {
   
   return ContentService
     .createTextOutput(JSON.stringify(response))
-    .setMimeType(ContentService.MimeType.JSON);
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeaders({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization"
+    });
 }
 
 function createErrorResponse(code, message) {
@@ -494,7 +499,33 @@ function createErrorResponse(code, message) {
       code: code,
       timestamp: new Date().toISOString()
     }))
-    .setMimeType(ContentService.MimeType.JSON);
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeaders({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization"
+    });
+}
+
+/**
+ * MANEJO DE PETICIONES OPTIONS (CORS PREFLIGHT)
+ * Esta función es crítica para el funcionamiento correcto del CORS
+ */
+function doOptions(e) {
+  // Habilitar CORS para cualquier origen
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Max-Age": "3600",
+    "Access-Control-Allow-Credentials": "true"
+  };
+  
+  // Retornar headers apropiados para peticiones preflight
+  return ContentService
+    .createTextOutput(JSON.stringify({status: 'success'}))
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeaders(headers);
 }
 
 /**
@@ -509,5 +540,10 @@ function doGet() {
       timestamp: new Date().toISOString(),
       security: 'Zero Trust Enhanced'
     }))
-    .setMimeType(ContentService.MimeType.JSON);
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeaders({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization"
+    });
 }
