@@ -25,7 +25,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
-              Conecta con la sabiduría ancestral de la Cábala קבלה a través de herramientas espirituales personalizadas del Maestro y Rabino Isaac Benzaquén.
+              Conecta con la sabiduría ancestral de la Cábala קבלה a través de herramientas espirituales personalizadas del Rabbí Isaac Benzaquén.
             </p>
             <SocialLinks variant="footer" />
           </div>
@@ -67,7 +67,7 @@ const Footer = () => {
             © {currentYear} Instituto de Kabbalah Universal - IKU Cábala Activa. Todos los derechos reservados.
           </p>
           <p className="text-gray-400 text-xs mt-2">
-            Maestro y Rabino Isaac Benzaquén | Transformación espiritual a través de la Kabbalah קבלה
+            Rabbí Isaac Benzaquén | Transformación espiritual a través de la Kabbalah קבלה
           </p>
         </div>
       </div>

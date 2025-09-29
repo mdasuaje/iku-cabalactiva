@@ -79,7 +79,7 @@ const ValueProposition = () => {
             en lo personal, familiar, espiritual y profesional."
           </p>
           <p className="text-gray-300 mt-4">
-            - Maestro y Rabino Isaac Benzaquén
+            - Rabbí Isaac Benzaquén
           </p>
         </motion.div>
       </div>
