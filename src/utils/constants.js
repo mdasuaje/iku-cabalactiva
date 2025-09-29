@@ -65,6 +65,55 @@ export const SEO_CONFIG = {
   twitterHandle: '@ikucabalaactiva'
 }
 
+export const PRICING_PLANS = [
+  {
+    id: 'carta',
+    title: 'Carta Astral Cabalística',
+    price: '97',
+    features: ['Análisis profundo de tu árbol de la vida', 'Identificación de patrones y bloqueos', 'Guía para la toma de decisiones'],
+    stripeUrlEnv: 'VITE_STRIPE_CARTA_URL',
+    paypalUrlEnv: 'VITE_PAYPAL_CARTA_URL'
+  },
+  {
+    id: 'constelacion',
+    title: 'Constelación Familiar Cabalística',
+    price: '147',
+    features: ['Sanación de lazos familiares', 'Liberación de cargas ancestrales', 'Comprensión de dinámicas sistémicas'],
+    stripeUrlEnv: 'VITE_STRIPE_CONSTELACION_URL',
+    paypalUrlEnv: 'VITE_PAYPAL_CONSTELACION_URL'
+  },
+  {
+    id: 'meditacion',
+    title: 'Meditación Cabalística',
+    price: '97',
+    features: ['Conexión con las letras hebreas', 'Reducción de estrés y ansiedad', 'Expansión de la conciencia'],
+    stripeUrlEnv: 'VITE_STRIPE_MEDITACION_URL',
+    paypalUrlEnv: 'VITE_PAYPAL_MEDITACION_URL'
+  },
+  {
+    id: 'limpieza',
+    title: 'Limpieza Áurica - Shebet Oferet',
+    price: '247',
+    features: ['Ritual del Cometa de Plomo', 'Purificación del campo energético', 'Eliminación de influencias negativas'],
+    stripeUrlEnv: 'VITE_STRIPE_LIMPIEZA_URL',
+    paypalUrlEnv: 'VITE_PAYPAL_LIMPIEZA_URL'
+  },
+  {
+    id: 'paquete-transformacion',
+    title: 'Paquete de Transformación Completa',
+    price: '997',
+    isFeatured: true, // Para destacar esta tarjeta
+    features: [
+      'Sesiones de las 4 herramientas',
+      'Limpieza Áurica con ritual Shebet Oferet',
+      'Kamea: Mandala de Poder y Éxito (Personalizada)'
+    ],
+    stripeUrlEnv: 'VITE_STRIPE_PAQUETE_URL',
+    stripePartesUrlEnv: 'VITE_STRIPE_PAQUETE_PARTES_URL',
+    paypalUrlEnv: 'VITE_PAYPAL_PAQUETE_URL'
+  }
+];
+
 export const FORM_CONFIG = {
   validation: {
     email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
