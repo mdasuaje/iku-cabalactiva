@@ -6,97 +6,134 @@ const Hero = () => {
   const [showModal, setShowModal] = useState(false)
   
   return (
-    <section id="hero" className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="w-full h-full bg-gradient-to-r from-yellow-500/5 to-purple-500/5"></div>
+    <section id="hero" className="min-h-screen relative overflow-hidden flex items-center justify-center">
+      {/* Background inmersivo con múltiples capas */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/80 to-slate-800"></div>
+      
+      {/* Efectos atmosféricos cabalísticos */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-yellow-500/3 to-transparent rounded-full"></div>
+      </div>
+
+      {/* Partículas de luz flotantes */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-yellow-400/30 rounded-full animate-float"></div>
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-purple-400/40 rounded-full animate-float-delay"></div>
+        <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-yellow-300/25 rounded-full animate-float-slow"></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-screen">
-          {/* Columna Derecha - Contenido (Orden 1 en móvil) */}
+        {/* Layout centrado y inmersivo */}
+        <div className="flex flex-col items-center text-center space-y-8 max-w-6xl mx-auto">
+          
+          {/* Imagen del Maestro como elemento dominante */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="relative mb-6"
+          >
+            {/* Aura mística alrededor del Maestro */}
+            <div className="absolute -inset-8 bg-gradient-to-r from-yellow-500/20 via-purple-500/15 to-yellow-500/20 rounded-full blur-2xl animate-pulse-slow"></div>
+            <div className="absolute -inset-4 bg-gradient-to-br from-yellow-400/10 to-purple-600/10 rounded-full blur-xl"></div>
+            
+            {/* Container de la imagen con efectos */}
+            <div className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/30 to-purple-500/30 rounded-full blur-sm"></div>
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-yellow-500/50 shadow-2xl">
+                <img 
+                  src="/images/maestro/isaac-benzaquen-con-firma.jpg" 
+                  alt="Rabbí Isaac Benzaquén - Maestro de Cábala"
+                  className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              
+              {/* Anillos de luz cabalísticos */}
+              <div className="absolute -inset-2 rounded-full border border-yellow-500/20 animate-spin-slow"></div>
+              <div className="absolute -inset-6 rounded-full border border-purple-500/15 animate-spin-reverse-slow"></div>
+            </div>
+          </motion.div>
+
+          {/* Título y subtítulo rediseñados */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center md:text-left order-1 md:order-2"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="space-y-4"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            {/* Nombre del Maestro como elemento principal */}
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-yellow-500 mb-2 tracking-wide">
+              Rabbí Isaac Benzaquén
+            </h2>
+            
+            {/* Título de la plataforma */}
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
               <span className="inline-block">IKU</span> <span className="text-yellow-500 inline-block">Cábala</span> <span className="inline-block">Activa</span>
             </h1>
             
-            <div className="space-y-4 text-gray-300 mb-8">
-              <p className="text-lg md:text-xl leading-relaxed">
-                Transforma tu realidad y atrae abundancia de todo lo bueno a tu vida
+            {/* Filosofía central */}
+            <div className="max-w-4xl mx-auto space-y-3">
+              <p className="text-xl md:text-2xl lg:text-3xl text-yellow-400 font-semibold leading-relaxed">
+                "Transforma tu realidad y atrae abundancia de todo lo bueno a tu vida"
               </p>
-              <p className="text-yellow-500 font-semibold text-lg md:text-xl">
+              <p className="text-lg md:text-xl text-purple-300 font-medium">
                 Sabiduría milenaria para tiempos modernos
               </p>
             </div>
+          </motion.div>
 
-            {/* Información del Rabbí integrada */}
-            <div className="bg-slate-800/30 rounded-2xl p-6 mb-8 backdrop-blur-sm border border-yellow-500/20">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                <span className="text-yellow-500">Rabbí Isaac Benzaquén</span>
-              </h2>
-              <p className="text-gray-300 mb-4 leading-relaxed">
-                Más de 25 años de experiencia en la enseñanza y práctica de la Cábala. 
-                Especializado en herramientas espirituales que transforman vidas y atraen 
-                abundancia en todas sus formas.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-slate-800/50 rounded-lg p-3 text-center">
-                  <div className="text-yellow-500 font-bold text-xl">25+</div>
-                  <div className="text-xs text-gray-400">Años de experiencia</div>
-                </div>
-                <div className="bg-slate-800/50 rounded-lg p-3 text-center">
-                  <div className="text-yellow-500 font-bold text-xl">5000+</div>
-                  <div className="text-xs text-gray-400">Vidas transformadas</div>
-                </div>
+          {/* Credenciales del Maestro de forma elegante */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="bg-slate-800/40 backdrop-blur-lg rounded-3xl p-8 border border-yellow-500/30 shadow-2xl max-w-4xl"
+          >
+            <div className="grid md:grid-cols-3 gap-6 items-center">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-yellow-500 mb-2">25+</div>
+                <div className="text-gray-300 font-medium">Años de experiencia cabalística</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-purple-400 mb-2">5000+</div>
+                <div className="text-gray-300 font-medium">Vidas transformadas</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-yellow-500 mb-2">∞</div>
+                <div className="text-gray-300 font-medium">Sabiduría ancestral</div>
               </div>
             </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center"
-            >
-              <button 
-                onClick={() => setShowModal(true)}
-                className="bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors transform hover:scale-105"
-              >
-                ✉️ Quiero mi Sesión
-              </button>
-              
-              <button 
-                onClick={() => document.getElementById('herramientas')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border-2 border-yellow-500 text-yellow-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-500/10 transition-colors cursor-pointer"
-                style={{ pointerEvents: 'auto' }}
-              >
-                Conocer Herramientas
-              </button>
-            </motion.div>
+            <div className="mt-6 pt-6 border-t border-yellow-500/20">
+              <p className="text-gray-300 leading-relaxed text-center max-w-2xl mx-auto">
+                Especializado en herramientas espirituales que conectan con la esencia divina, 
+                sanando el alma y manifestando abundancia en todos los aspectos de la vida.
+              </p>
+            </div>
           </motion.div>
 
-          {/* Columna Izquierda - Imagen del Maestro (Orden 2 en móvil) */}
+          {/* CTAs rediseñados */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative order-2 md:order-1"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4"
           >
-            <div className="relative max-h-96 mx-auto">
-              <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 -z-10"></div>
-              <div className="relative bg-gradient-to-br from-yellow-500/20 to-purple-500/20 rounded-2xl overflow-hidden">
-                <img 
-                  src="/images/maestro/isaac-benzaquen-con-firma.jpg" 
-                  alt="Rabbí Isaac Benzaquén - IKU Cábala Activa"
-                  className="max-h-96 w-auto object-contain mx-auto"
-                />
-              </div>
-            </div>
+            <button 
+              onClick={() => setShowModal(true)}
+              className="bg-gradient-to-r from-yellow-500 to-yellow-400 text-slate-900 px-10 py-5 rounded-full font-bold text-xl hover:from-yellow-400 hover:to-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-500/25"
+            >
+              🕊️ Iniciar mi Transformación
+            </button>
+            
+            <button 
+              onClick={() => document.getElementById('herramientas')?.scrollIntoView({ behavior: 'smooth' })}
+              className="border-3 border-purple-400 text-purple-300 px-10 py-5 rounded-full font-bold text-xl hover:bg-purple-500/20 hover:border-purple-300 transition-all duration-300 backdrop-blur-sm"
+            >
+              ✨ Explorar Herramientas Sagradas
+            </button>
           </motion.div>
         </div>
       </div>
