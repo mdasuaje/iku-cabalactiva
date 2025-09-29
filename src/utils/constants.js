@@ -71,6 +71,7 @@ export const PRICING_PLANS = [
     title: 'Carta Astral Cabalística',
     price: '97',
     features: ['Análisis profundo de tu árbol de la vida', 'Identificación de patrones y bloqueos', 'Guía para la toma de decisiones'],
+    longDescription: 'La Carta Astral Cabalística es tu piedra fundacional del trabajo espiritual. Esta poderosa herramienta compagina la sabiduría ancestral de la Cábala con la astrología, creando tu árbol de la vida personal. Descubrirás las fortalezas y debilidades que tu alma debe resolver en esta encarnación, revelando un autodescubrimiento profundo de tu esencia divina y tu propósito vital según los secretos de la Cábala.',
     stripeUrlEnv: 'VITE_STRIPE_CARTA_URL',
     paypalUrlEnv: 'VITE_PAYPAL_CARTA_URL'
   },
@@ -79,6 +80,7 @@ export const PRICING_PLANS = [
     title: 'Constelación Familiar Cabalística',
     price: '147',
     features: ['Sanación de lazos familiares', 'Liberación de cargas ancestrales', 'Comprensión de dinámicas sistémicas'],
+    longDescription: 'La Constelación Familiar Cabalística interpreta tu árbol familiar desde la perspectiva sagrada de la Cábala. Esta técnica exclusiva del Maestro Isaac Benzaquén te permite constelar las figuras familiares en el Árbol de la Vida, sanando patrones transgeneracionales y liberando cargas ancestrales que han limitado tu crecimiento. Transformarás conflictos familiares en oportunidades de sanación y restaurarás el equilibrio en tus relaciones más importantes.',
     stripeUrlEnv: 'VITE_STRIPE_CONSTELACION_URL',
     paypalUrlEnv: 'VITE_PAYPAL_CONSTELACION_URL'
   },
@@ -87,6 +89,7 @@ export const PRICING_PLANS = [
     title: 'Meditación Cabalística',
     price: '97',
     features: ['Conexión con las letras hebreas', 'Reducción de estrés y ansiedad', 'Expansión de la conciencia'],
+    longDescription: 'La Meditación Cabalística es una práctica ancestral transmitida de Maestro a Discípulo por generaciones. Bajo la guía del Rabbí Isaac Benzaquén, experimentarás una "orquestación cósmica del alma" que emana de tu Chispa Divina. Esta meditación no solo es una de las mayores fuentes de placer espiritual, sino también una acción profundamente sanadora que transforma tu conciencia y te conecta con la Bondad Divina del Creador.',
     stripeUrlEnv: 'VITE_STRIPE_MEDITACION_URL',
     paypalUrlEnv: 'VITE_PAYPAL_MEDITACION_URL'
   },
@@ -95,6 +98,7 @@ export const PRICING_PLANS = [
     title: 'Limpieza Áurica - Shebet Oferet',
     price: '247',
     features: ['Ritual del Cometa de Plomo', 'Purificación del campo energético', 'Eliminación de influencias negativas'],
+    longDescription: 'La Limpieza Áurica Cabalística con el poderoso ritual Shebet Oferet es un proceso destinado a armonizar y acelerar tu desarrollo espiritual. Desde la perspectiva profunda de la Cábala, cada persona debe apropiarse de ciertas correcciones esenciales para alcanzar la plenitud. Esta limpieza representa el impulso fundamental para un Trabajo Espiritual consciente, integral y completo, despejando tus campos energéticos para que fluyan armónicamente todos tus procesos de crecimiento.',
     stripeUrlEnv: 'VITE_STRIPE_LIMPIEZA_URL',
     paypalUrlEnv: 'VITE_PAYPAL_LIMPIEZA_URL'
   },
@@ -108,6 +112,7 @@ export const PRICING_PLANS = [
       'Limpieza Áurica con ritual Shebet Oferet',
       'Kamea: Mandala de Poder y Éxito (Personalizada)'
     ],
+    longDescription: 'El Paquete de Transformación Completa está diseñado para iniciar tu viaje hacia la espiritualidad plena. Este programa integral te permitirá abordar tus inquietudes actuales, comprender el origen de tus dudas y las experiencias que han moldeado tu vida. Sumérgete en tu interior y elévate hacia el infinito de las realidades espirituales, donde la vida, la salud, la alegría y la felicidad plena existen para ti y tu familia. Crearás tu verdadera realidad con la guía experta del Maestro Isaac Benzaquén durante 6 meses de transformación profunda.',
     stripeUrlEnv: 'VITE_STRIPE_PAQUETE_URL',
     stripePartesUrlEnv: 'VITE_STRIPE_PAQUETE_PARTES_URL',
     paypalUrlEnv: 'VITE_PAYPAL_PAQUETE_URL'
