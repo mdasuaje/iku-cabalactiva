@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import UrgencyTimer from '@components/common/UrgencyTimer'
-import Guarantee from '@components/common/Guarantee'
 import ContactModal from '../common/ContactModal'
 
 const CTA = () => {
@@ -11,6 +10,10 @@ const CTA = () => {
     setShowModal(true)
   }
 
+  const handleVerPlanesClick = () => {
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section className="py-20 bg-gradient-to-r from-yellow-600 to-yellow-500">
       <div className="container mx-auto px-6">
@@ -18,88 +21,88 @@ const CTA = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto"
+          className="text-center max-w-5xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
             ¿Listo para Transformar tu Vida?
           </h2>
           
-          <p className="text-xl text-slate-800 mb-8 leading-relaxed">
+          <p className="text-xl md:text-2xl text-slate-800 mb-8 leading-relaxed font-medium">
             Cábala Activa no es teoría: son herramientas prácticas que transforman tu vida 
             en lo personal, familiar, espiritual y profesional.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-slate-800/20 cursor-pointer"
-              onClick={() => window.open('https://www.paypal.com/ncp/payment/FJGC4GE6SBS98', '_blank')}
-            >
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                Sesión Única
-              </h3>
-              <div className="text-3xl font-bold text-slate-900 mb-2">
-                $150 USD
+          {/* TESTIMONIO DESTACADO - PRUEBA SOCIAL */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 mb-12 border border-slate-900/30 shadow-2xl"
+          >
+            <div className="flex items-center justify-center mb-4">
+              <div className="flex text-yellow-400">
+                {'★'.repeat(5)}
               </div>
-              <p className="text-slate-800 text-sm">
-                Combinación personalizada de herramientas cabalísticas
-              </p>
-              <div className="mt-4 bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg text-center font-semibold">
-                💳 Pagar Ahora
-              </div>
-            </motion.div>
+            </div>
+            <blockquote className="text-lg md:text-xl text-slate-900 italic font-medium mb-4">
+              "El trabajo con el Rabbí Isaac ha sido la experiencia más transformadora de mi vida. 
+              Las herramientas cabalísticas me han ayudado a comprender aspectos profundos de mi ser."
+            </blockquote>
+            <cite className="text-slate-700 font-semibold">
+              — María Elena González, España
+            </cite>
+          </motion.div>
 
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-white/30 backdrop-blur-sm rounded-xl p-6 border-2 border-slate-900/30"
-            >
-              <div className="bg-slate-900 text-yellow-500 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block">
-                Más Popular
+          {/* GARANTÍA INTEGRADA - REDUCCIÓN DE RIESGO */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="bg-green-500/20 border-2 border-green-600/40 rounded-2xl p-8 mb-12 shadow-lg"
+          >
+            <div className="flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-green-500/30 rounded-full flex items-center justify-center mr-4">
+                <span className="text-3xl">🛡️</span>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                Programa Completo
+              <h3 className="text-green-700 font-bold text-2xl">
+                GARANTÍA TOTAL DE SATISFACCIÓN
               </h3>
-              <div className="text-3xl font-bold text-slate-900 mb-2">
-                $1,000 USD
-              </div>
-              <p className="text-slate-800 text-sm mb-4">
-                10 sesiones / 6 meses (se puede financiar en 3 partes)
-              </p>
-              <div className="space-y-2">
-                <button
-                  onClick={() => window.open(import.meta.env.VITE_STRIPE_CHECKOUT, '_blank')}
-                  className="w-full bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg font-semibold hover:bg-slate-800 transition-colors"
-                >
-                  💳 Pagar con Tarjeta
-                </button>
-                <button
-                  onClick={() => window.open('https://www.paypal.com/ncp/payment/QHUXGLD7VZ8RA', '_blank')}
-                  className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                >
-                  🌐 Pagar con PayPal
-                </button>
-              </div>
-            </motion.div>
-          </div>
+            </div>
+            <p className="text-green-800 text-lg font-medium">
+              Si no experimentas una transformación significativa en los primeros 30 días, 
+              te devolvemos el 100% de tu inversión. Sin preguntas.
+            </p>
+          </motion.div>
 
-          <div className="space-y-4">
+          {/* LLAMADOS A LA ACCIÓN OPTIMIZADOS */}
+          <div className="space-y-6">
             <UrgencyTimer />
-            <Guarantee />
             
+            {/* BOTÓN PRINCIPAL - DIRIGIR A PRICING */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={handleContactClick}
-              className="bg-slate-900 text-yellow-500 px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-800 transition-colors shadow-lg"
+              onClick={handleVerPlanesClick}
+              className="bg-slate-900 text-yellow-500 px-12 py-5 rounded-2xl font-bold text-xl hover:bg-slate-800 transition-all duration-300 shadow-2xl mx-auto block"
             >
-              💬 Quiero Mi Sesión
+              ✨ Ver Planes de Transformación
             </motion.button>
             
-            <p className="text-slate-800 text-sm">
-              Te guiaré personalmente en tu proceso de transformación
+            <p className="text-slate-800 text-lg font-medium">
+              Elige la herramienta perfecta para tu camino espiritual
             </p>
+
+            {/* OPCIÓN SECUNDARIA - CONTACTO PARA DUDAS */}
+            <div className="pt-4">
+              <button
+                onClick={handleContactClick}
+                className="text-slate-700 hover:text-slate-900 font-semibold text-lg underline decoration-2 underline-offset-4 transition-colors"
+              >
+                ¿Todavía tienes dudas? Contáctanos
+              </button>
+            </div>
             
-            <p className="text-slate-700 text-xs">
+            <p className="text-slate-700 text-sm">
               ✅ Respuesta inmediata • ✅ Sin compromisos • ✅ Consulta gratuita
             </p>
           </div>
