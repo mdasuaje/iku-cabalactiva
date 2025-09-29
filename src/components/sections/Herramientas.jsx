@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { herramientasCabalisticas } from '../../data/herramientas'
+import { PRICING_PLANS } from '../../utils/constants'
 import ContactModal from '../common/ContactModal'
+import ToolDetailModal from '../common/ToolDetailModal'
 
 const Herramientas = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [selectedHerramienta, setSelectedHerramienta] = useState('')
+  const [showContactModal, setShowContactModal] = useState(false)
+  const [showToolModal, setShowToolModal] = useState(false)
+  const [selectedTool, setSelectedTool] = useState('')
+  const [selectedPlan, setSelectedPlan] = useState(null)
 
-  const handleIniciarCamino = (herramienta) => {
-    setSelectedHerramienta(herramienta.nombre)
-    setShowModal(true)
+  // Filtrar solo las herramientas individuales (excluir el paquete)
+  const herramientas = PRICING_PLANS.filter(plan => plan.id !== 'paquete-transformacion')
+
+  const handleToolClick = (plan) => {
+    setSelectedPlan(plan)
+    setShowToolModal(true)
+  }
+
+  const handleOpenContact = (toolTitle) => {
+    setSelectedTool(toolTitle)
+    setShowContactModal(true)
   }
 
   return (
@@ -30,13 +41,14 @@ const Herramientas = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {herramientasCabalisticas.map((herramienta, index) => (
+          {herramientas.map((plan, index) => (
             <motion.div
-              key={herramienta.id}
+              key={plan.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-slate-700/50 backdrop-blur-sm rounded-xl p-6 border border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-300 hover:transform hover:scale-105"
+              className="bg-slate-700/50 backdrop-blur-sm rounded-xl p-6 border border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
+              onClick={() => handleToolClick(plan)}
             >
               <div className="text-center">
                 <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -44,49 +56,25 @@ const Herramientas = () => {
                 </div>
                 
                 <h3 className="text-xl font-bold text-white mb-3">
-                  {herramienta.nombre}
+                  {plan.title}
                 </h3>
                 
-                <p className="text-gray-300 text-sm mb-4 line-clamp-3">
-                  {herramienta.descripcion}
+                <p className="text-gray-300 text-sm mb-4">
+                  {plan.features.join(' • ')}
                 </p>
                 
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-center mb-4">
                   <span className="text-yellow-500 font-bold text-lg">
-                    ${herramienta.precio} {herramienta.moneda}
-                  </span>
-                  <span className="text-gray-400 text-sm">
-                    {herramienta.duracion}
+                    ${plan.price} USD
                   </span>
                 </div>
                 
-                <div className="space-y-2">
-                  <div className="bg-green-500/10 border border-green-500/30 rounded p-2 mb-2">
-                    <p className="text-green-400 text-xs font-semibold text-center">
-                      🎁 DESCUENTO 20% - Solo esta semana
+                <div className="mt-4">
+                  <div className="bg-gradient-to-r from-purple-500/20 to-yellow-500/20 border border-yellow-500/30 rounded-lg p-3 mb-3">
+                    <p className="text-yellow-400 text-xs font-semibold text-center">
+                      ✨ Haz clic para conocer más detalles
                     </p>
                   </div>
-                  <button 
-                    onClick={() => {
-                      try {
-                        const paypalWindow = window.open(herramienta.paypalLink, '_blank')
-                        if (!paypalWindow) {
-                          window.location.href = herramienta.paypalLink
-                        }
-                      } catch (error) {
-                        window.location.href = herramienta.paypalLink
-                      }
-                    }}
-                    className="w-full bg-yellow-500 text-slate-900 py-3 rounded-lg font-bold hover:bg-yellow-400 transition-colors transform hover:scale-105"
-                  >
-                    💳 ADQUIRIR AHORA
-                  </button>
-                  <button 
-                    onClick={() => handleIniciarCamino(herramienta)}
-                    className="w-full border border-yellow-500 text-yellow-500 py-2 rounded-lg font-semibold hover:bg-yellow-500/10 transition-colors text-sm"
-                  >
-                    🌟 Iniciar mi Camino
-                  </button>
                 </div>
               </div>
             </motion.div>
@@ -94,10 +82,19 @@ const Herramientas = () => {
         </div>
       </div>
       
+      {/* Tool Detail Modal */}
+      <ToolDetailModal 
+        isOpen={showToolModal}
+        onClose={() => setShowToolModal(false)}
+        plan={selectedPlan}
+        onOpenContact={handleOpenContact}
+      />
+      
+      {/* Contact Modal */}
       <ContactModal 
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        herramienta={selectedHerramienta}
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+        herramienta={selectedTool}
       />
     </section>
   )

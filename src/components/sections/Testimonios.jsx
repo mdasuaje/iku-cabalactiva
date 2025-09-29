@@ -8,7 +8,7 @@ const Testimonios = () => {
       id: 1,
       nombre: 'María Elena González',
       pais: 'España',
-      comentario: 'El trabajo con el Maestro Isaac ha sido la experiencia más transformadora de mi vida. Las herramientas cabalísticas me han ayudado a comprender aspectos profundos de mi ser.',
+      comentario: 'El trabajo con el Rabbí Isaac ha sido la experiencia más transformadora de mi vida. Las herramientas cabalísticas me han ayudado a comprender aspectos profundos de mi ser.',
       rating: 5,
       herramienta: 'Paquete Completo'
     },

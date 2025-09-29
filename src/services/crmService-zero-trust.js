@@ -1,35 +1,42 @@
 // CRM Service - Integración con Google Sheets (ZERO TRUST)
 class CRMService {
   constructor() {
-    this.webhookUrl = 'https://script.google.com/macros/s/AKfycby47dq2ghkTTBdjoSw7ALCou0YpwznBvkLX69pt8FPKsVPijZ0YqBFR9HiPcKqp61JgTg/exec';
+    this.webhookUrl =
+      import.meta.env.VITE_GOOGLE_APP_SCRIPT_URL ||
+      'https://script.google.com/macros/s/AKfycbzNdYV5WC2o_PF8qeWle8hZ9kvIsBiDeWXA4U5CNYwI6Blzx_ju-Cw19oDTRYYgnUzQxA/exec'
     // Token secreto - debe coincidir con Google Apps Script
-    this.secretToken = import.meta.env.VITE_CRM_SECRET_TOKEN || 'IKU_CRM_2025_SECURE_TOKEN_CHANGE_ME';
+    this.secretToken =
+      import.meta.env.VITE_CRM_SECRET_TOKEN ||
+      'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025'
   }
 
   // Validaciones frontend
   validateClienteData(clienteData) {
-    const errors = [];
-    
+    const errors = []
+
     if (!clienteData.nombre || !/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{2,50}$/.test(clienteData.nombre)) {
-      errors.push('Nombre inválido (solo letras, 2-50 caracteres)');
+      errors.push('Nombre inválido (solo letras, 2-50 caracteres)')
     }
-    
-    if (!clienteData.email || !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(clienteData.email)) {
-      errors.push('Email inválido');
+
+    if (
+      !clienteData.email ||
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(clienteData.email)
+    ) {
+      errors.push('Email inválido')
     }
-    
+
     if (!clienteData.telefono || clienteData.telefono.length < 8) {
-      errors.push('Teléfono inválido (mínimo 8 caracteres)');
+      errors.push('Teléfono inválido (mínimo 8 caracteres)')
     }
-    
-    return { valid: errors.length === 0, errors };
+
+    return { valid: errors.length === 0, errors }
   }
 
   async registrarCliente(clienteData) {
     // Validación frontend
-    const validation = this.validateClienteData(clienteData);
+    const validation = this.validateClienteData(clienteData)
     if (!validation.valid) {
-      throw new Error(`Datos inválidos: ${validation.errors.join(', ')}`);
+      throw new Error(`Datos inválidos: ${validation.errors.join(', ')}`)
     }
 
     const cliente = {
@@ -39,25 +46,25 @@ class CRMService {
       telefono: clienteData.telefono.trim(),
       fecha_registro: new Date().toISOString(),
       estado: 'Activo',
-      prioridad: 'Normal'
-    };
+      prioridad: 'Normal',
+    }
 
     await this.sendToWebhook('update-crm', {
       sheetName: 'Clientes',
-      values: Object.values(cliente)
-    });
+      values: Object.values(cliente),
+    })
 
-    return cliente;
+    return cliente
   }
 
   async registrarCompra(compraData) {
     // Validación frontend
     if (!compraData.clienteId || !compraData.producto || !compraData.monto) {
-      throw new Error('Datos de compra incompletos');
+      throw new Error('Datos de compra incompletos')
     }
-    
+
     if (compraData.monto <= 0 || compraData.monto > 10000) {
-      throw new Error('Monto inválido');
+      throw new Error('Monto inválido')
     }
 
     const compra = {
@@ -67,25 +74,25 @@ class CRMService {
       proveedor: compraData.proveedor || 'No especificado',
       fecha_compra: new Date().toISOString(),
       estado_pago: compraData.estadoPago || 'Pendiente',
-      sesiones_restantes: compraData.sesionesRestantes || 1
-    };
+      sesiones_restantes: compraData.sesionesRestantes || 1,
+    }
 
     await this.sendToWebhook('update-crm', {
       sheetName: 'Compras',
-      values: Object.values(compra)
-    });
+      values: Object.values(compra),
+    })
 
-    return compra;
+    return compra
   }
 
   async programarSesion(sesionData) {
     // Validación frontend
     if (!sesionData.clienteId || !sesionData.tipoSesion) {
-      throw new Error('Datos de sesión incompletos');
+      throw new Error('Datos de sesión incompletos')
     }
-    
+
     if (sesionData.fechaSesion && new Date(sesionData.fechaSesion) < new Date()) {
-      throw new Error('La fecha de sesión no puede ser en el pasado');
+      throw new Error('La fecha de sesión no puede ser en el pasado')
     }
 
     const sesion = {
@@ -94,15 +101,15 @@ class CRMService {
       tipo_sesion: sesionData.tipoSesion.trim(),
       estado: 'Programada',
       notas: (sesionData.notas || '').trim(),
-      proxima_sesion: sesionData.proximaSesion || ''
-    };
+      proxima_sesion: sesionData.proximaSesion || '',
+    }
 
     await this.sendToWebhook('update-crm', {
       sheetName: 'Sesiones',
-      values: Object.values(sesion)
-    });
+      values: Object.values(sesion),
+    })
 
-    return sesion;
+    return sesion
   }
 
   async sendToWebhook(action, data) {
@@ -110,60 +117,64 @@ class CRMService {
       action,
       token: this.secretToken, // Zero Trust token
       timestamp: new Date().toISOString(),
-      ...data
-    };
+      ...data,
+    }
 
     const response = await fetch(this.webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CRM-Token': this.secretToken // Token también en header
+        'X-CRM-Token': this.secretToken, // Token también en header
       },
-      body: JSON.stringify(payload)
-    });
+      body: JSON.stringify(payload),
+    })
 
     if (!response.ok) {
-      throw new Error(`Error en webhook: ${response.status} ${response.statusText}`);
+      throw new Error(`Error en webhook: ${response.status} ${response.statusText}`)
     }
 
-    const result = await response.json();
+    const result = await response.json()
     // Si el backend responde success: false, lanzar error con el mensaje
     if (result.success === false) {
-      throw new Error(`Acceso no autorizado: ${result.error || 'Error del servidor'} (${result.code || 'UNKNOWN'})`);
+      throw new Error(
+        `Acceso no autorizado: ${result.error || 'Error del servidor'} (${
+          result.code || 'UNKNOWN'
+        })`
+      )
     }
     if (result.error) {
-      throw new Error(`Error del servidor: ${result.error} (${result.code || 'UNKNOWN'})`);
+      throw new Error(`Error del servidor: ${result.error} (${result.code || 'UNKNOWN'})`)
     }
-    return result;
+    return result
   }
 
   // Método de prueba de conexión
   async testConnection() {
     try {
-      const result = await this.sendToWebhook('test', {});
+      const result = await this.sendToWebhook('test', {})
       // Si el backend responde success: false o hay error, devolver success: false
       if (result.success === false || result.error) {
-        return { success: false, error: result.error || 'Error del servidor' };
+        return { success: false, error: result.error || 'Error del servidor' }
       }
       // Si el token es incorrecto pero el backend responde success: true, detectar por mensaje
       if (result.message && /token|autorizado|acceso/i.test(result.message)) {
-        return { success: false, error: result.message };
+        return { success: false, error: result.message }
       }
-      return { success: true, message: result.message };
+      return { success: true, message: result.message }
     } catch (error) {
-      return { success: false, error: error.message };
+      return { success: false, error: error.message }
     }
   }
 }
 
 // Validador de email reutilizable
-export const validateEmail = (email) => {
-  return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
-};
+export const validateEmail = email => {
+  return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+}
 
 // Sanitizador de strings
-export const sanitizeString = (str) => {
-  return str ? str.trim().replace(/[<>"'&]/g, '') : '';
-};
+export const sanitizeString = str => {
+  return str ? str.trim().replace(/[<>"'&]/g, '') : ''
+}
 
-export default new CRMService();
+export default new CRMService()
