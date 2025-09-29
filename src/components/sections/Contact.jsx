@@ -38,7 +38,7 @@ const Contact = () => {
               ¿Listo para tu transformación?
             </h3>
             <p className="text-xl text-gray-300 mb-8">
-              Conecta con el Maestro Isaac y descubre el poder de la Cábala en tu vida
+              Conecta con el Rabbí Isaac y descubre el poder de la Cábala en tu vida
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
