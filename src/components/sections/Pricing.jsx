@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { paquetes } from '../../data/herramientas'
+import { PRICING_PLANS } from '../../utils/constants'
 import ContactModal from '../common/ContactModal'
 import PricingCard from '../common/PricingCard'
 
@@ -28,9 +28,15 @@ const Pricing = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
+          className="grid lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto"
         >
-          <PricingCard />
+          {PRICING_PLANS.map((plan, index) => (
+            <PricingCard 
+              key={plan.id}
+              {...plan}
+              delay={index * 0.1}
+            />
+          ))}
         </motion.div>
 
         <motion.div

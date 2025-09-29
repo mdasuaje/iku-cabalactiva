@@ -1,9 +1,11 @@
 // Contact Service - Gestión inteligente de contactos
 class ContactService {
   constructor() {
-    this.webhookUrl = 'https://script.google.com/macros/s/AKfycby47dq2ghkTTBdjoSw7ALCou0YpwznBvkLX69pt8FPKsVPijZ0YqBFR9HiPcKqp61JgTg/exec';
-    this.emailContacto = 'contacto@iku-cabalactiva.com';
-    this.emailAdmin = 'maor@iku-cabalactiva.com';
+    this.webhookUrl =
+      import.meta.env.VITE_GOOGLE_APP_SCRIPT_URL ||
+      'https://script.google.com/macros/s/AKfycbzNdYV5WC2o_PF8qeWle8hZ9kvIsBiDeWXA4U5CNYwI6Blzx_ju-Cw19oDTRYYgnUzQxA/exec'
+    this.emailContacto = 'contacto@iku-cabalactiva.com'
+    this.emailAdmin = 'maor@iku-cabalactiva.com'
   }
 
   // Enviar lead magnet (descarga gratuita)
@@ -11,22 +13,22 @@ class ContactService {
     const contactData = {
       action: 'send-email',
       to: this.emailContacto, // contacto@iku-cabalactiva.com
-      cc: this.emailAdmin,    // maor@iku-cabalactiva.com
+      cc: this.emailAdmin, // maor@iku-cabalactiva.com
       subject: `📥 Nuevo Lead: ${emailData.leadMagnet || 'Descarga PDF'}`,
       template: 'lead-magnet',
       data: {
         email: emailData.email,
         leadMagnet: emailData.leadMagnet,
         timestamp: new Date().toISOString(),
-        source: emailData.source || 'website'
-      }
-    };
+        source: emailData.source || 'website',
+      },
+    }
 
     // Registrar en CRM
-    await this.registrarLead(emailData);
+    await this.registrarLead(emailData)
 
     // Enviar notificación
-    return this.enviarNotificacion(contactData);
+    return this.enviarNotificacion(contactData)
   }
 
   // Enviar consulta general
@@ -34,16 +36,16 @@ class ContactService {
     const contactData = {
       action: 'send-email',
       to: this.emailContacto, // contacto@iku-cabalactiva.com
-      cc: this.emailAdmin,    // maor@iku-cabalactiva.com
+      cc: this.emailAdmin, // maor@iku-cabalactiva.com
       subject: '💬 Nueva Consulta General',
       template: 'consulta-general',
-      data: consultaData
-    };
+      data: consultaData,
+    }
 
     // Registrar en CRM
-    await this.registrarConsulta(consultaData);
+    await this.registrarConsulta(consultaData)
 
-    return this.enviarNotificacion(contactData);
+    return this.enviarNotificacion(contactData)
   }
 
   // Solo para sesiones confirmadas (pagadas)
@@ -54,10 +56,10 @@ class ContactService {
       cc: this.emailAdmin,
       subject: '📅 Sesión Confirmada (PAGADA)',
       template: 'sesion-confirmada',
-      data: sesionData
-    };
+      data: sesionData,
+    }
 
-    return this.enviarNotificacion(contactData);
+    return this.enviarNotificacion(contactData)
   }
 
   // Registrar lead en CRM
@@ -74,12 +76,12 @@ class ContactService {
           leadData.source || 'website',
           leadData.leadMagnet || 'PDF Descarga',
           new Date().toISOString(),
-          'Nuevo'
-        ]
-      })
-    });
+          'Nuevo',
+        ],
+      }),
+    })
 
-    return response.json();
+    return response.json()
   }
 
   // Registrar consulta en CRM
@@ -97,12 +99,12 @@ class ContactService {
           consultaData.telefono || '',
           consultaData.mensaje,
           new Date().toISOString(),
-          'Pendiente'
-        ]
-      })
-    });
+          'Pendiente',
+        ],
+      }),
+    })
 
-    return response.json();
+    return response.json()
   }
 
   // Enviar notificación
@@ -110,15 +112,15 @@ class ContactService {
     const response = await fetch(this.webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(emailData)
-    });
+      body: JSON.stringify(emailData),
+    })
 
     if (!response.ok) {
-      throw new Error(`Error enviando notificación: ${response.statusText}`);
+      throw new Error(`Error enviando notificación: ${response.statusText}`)
     }
 
-    return response.json();
+    return response.json()
   }
 }
 
-export default new ContactService();
+export default new ContactService()
