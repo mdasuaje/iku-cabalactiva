@@ -55,6 +55,7 @@ export default {
       spacing: {
         '18': '4.5rem',
         '88': '22rem',
+        '92': '23rem',
         '128': '32rem'
       },
       animation: {

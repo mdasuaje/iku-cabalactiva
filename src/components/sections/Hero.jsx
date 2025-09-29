@@ -22,46 +22,79 @@ const Hero = () => {
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-yellow-400/30 rounded-full animate-float"></div>
         <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-purple-400/40 rounded-full animate-float-delay"></div>
         <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-yellow-300/25 rounded-full animate-float-slow"></div>
+        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-yellow-200/20 rounded-full animate-float"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-purple-300/25 rounded-full animate-float-slow"></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
-        {/* Layout centrado y inmersivo */}
-        <div className="flex flex-col items-center text-center space-y-8 max-w-6xl mx-auto">
+        {/* Layout centrado y inmersivo con espaciado superior */}
+        <div className="flex flex-col items-center text-center space-y-12 max-w-6xl mx-auto pt-20 pb-12">
           
           {/* Imagen del Maestro como elemento dominante */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="relative mb-6"
+            className="relative mb-8"
           >
-            {/* Aura mística alrededor del Maestro */}
-            <div className="absolute -inset-8 bg-gradient-to-r from-yellow-500/20 via-purple-500/15 to-yellow-500/20 rounded-full blur-2xl animate-pulse-slow"></div>
-            <div className="absolute -inset-4 bg-gradient-to-br from-yellow-400/10 to-purple-600/10 rounded-full blur-xl"></div>
+            {/* Aura mística alrededor del Maestro - más intensa */}
+            <div className="absolute -inset-12 bg-gradient-to-r from-yellow-500/25 via-purple-500/20 to-yellow-500/25 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div className="absolute -inset-8 bg-gradient-to-br from-yellow-400/15 to-purple-600/15 rounded-full blur-2xl"></div>
+            <div className="absolute -inset-4 bg-gradient-to-br from-yellow-300/10 to-purple-500/10 rounded-full blur-xl"></div>
             
-            {/* Container de la imagen con efectos */}
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/30 to-purple-500/30 rounded-full blur-sm"></div>
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-yellow-500/50 shadow-2xl">
+            {/* Container de la imagen con efectos mejorados */}
+            <div className="relative w-88 h-88 lg:w-96 lg:h-96 mx-auto">
+              {/* Resplandor de fondo */}
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-purple-500/20 rounded-full blur-lg"></div>
+              
+              {/* Imagen del Maestro con bordes muy difuminados */}
+              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl">
+                {/* Borde interno difuminado */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-transparent to-slate-900/20 z-10"></div>
+                
                 <img 
                   src="/images/maestro/isaac-benzaquen-con-firma.jpg" 
                   alt="Rabbí Isaac Benzaquén - Maestro de Cábala"
-                  className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-top scale-110 transform hover:scale-115 transition-transform duration-700 filter brightness-105 contrast-105"
+                  style={{ 
+                    objectPosition: '50% 20%',
+                    filter: 'brightness(1.05) contrast(1.1) saturate(1.1)' 
+                  }}
                 />
+                
+                {/* Overlay sutil para mejorar contraste */}
+                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-slate-900/5 rounded-full"></div>
               </div>
               
-              {/* Anillos de luz cabalísticos */}
-              <div className="absolute -inset-2 rounded-full border border-yellow-500/20 animate-spin-slow"></div>
-              <div className="absolute -inset-6 rounded-full border border-purple-500/15 animate-spin-reverse-slow"></div>
+              {/* Anillos de luz cabalísticos mejorados */}
+              <div className="absolute -inset-3 rounded-full border-2 border-yellow-500/30 animate-spin-slow shadow-lg shadow-yellow-500/20"></div>
+              <div className="absolute -inset-8 rounded-full border border-purple-500/20 animate-spin-reverse-slow"></div>
+              <div className="absolute -inset-12 rounded-full border border-yellow-400/10 animate-spin-slow"></div>
             </div>
+
+            {/* Firma del Rabbí como elemento distintivo */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
+              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2"
+            >
+              <div className="bg-slate-800/80 backdrop-blur-sm rounded-xl px-6 py-3 border border-yellow-500/30">
+                <img 
+                  src="/images/maestro/rabbi-firma.png" 
+                  alt="Firma del Rabbí Isaac Benzaquén"
+                  className="h-8 w-auto opacity-90 filter brightness-110"
+                />
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Título y subtítulo rediseñados */}
+          {/* Título y subtítulo rediseñados con mejor espaciado */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="space-y-4"
+            className="space-y-6"
           >
             {/* Nombre del Maestro como elemento principal */}
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-yellow-500 mb-2 tracking-wide">
@@ -89,7 +122,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="bg-slate-800/40 backdrop-blur-lg rounded-3xl p-8 border border-yellow-500/30 shadow-2xl max-w-4xl"
+            className="bg-slate-800/50 backdrop-blur-lg rounded-3xl p-10 border border-yellow-500/30 shadow-2xl max-w-5xl mt-4"
           >
             <div className="grid md:grid-cols-3 gap-6 items-center">
               <div className="text-center">
