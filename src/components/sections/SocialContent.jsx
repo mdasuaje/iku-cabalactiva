@@ -116,7 +116,7 @@ const SocialContent = () => {
             </h3>
             <p className="text-gray-300 mb-6">
               Únete a nuestro canal de WhatsApp y recibe mensajes diarios de transformación, 
-              ofertas especiales y contenido exclusivo del Maestro Isaac Benzaquén.
+              ofertas especiales y contenido exclusivo del Rabbí Isaac Benzaquén.
             </p>
             <button
               onClick={() => window.open(SOCIAL_LINKS.whatsapp.channel, '_blank')}

@@ -77,7 +77,7 @@ const Philosophy = () => {
                 Guía Experta
               </h4>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Con la guía amable y experta del Rabino y Maestro de Cábala Isaac Benzaquén, 
+                Con la guía amable y experta del Rabbí Isaac Benzaquén, 
                 un líder espiritual con décadas de experiencia, podrás alinear tu ser interior 
                 con tu propósito de vida y experimentar una profunda armonía.
               </p>
