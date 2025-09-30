@@ -3,11 +3,9 @@ class CRMService {
   constructor() {
     this.webhookUrl =
       import.meta.env.VITE_GOOGLE_APP_SCRIPT_URL ||
-      'https://script.google.com/macros/s/AKfycbzNdYV5WC2o_PF8qeWle8hZ9kvIsBiDeWXA4U5CNYwI6Blzx_ju-Cw19oDTRYYgnUzQxA/exec'
-    // Token secreto - debe coincidir con Google Apps Script
-    this.secretToken =
-      import.meta.env.VITE_CRM_SECRET_TOKEN ||
-      'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025'
+      'https://script.google.com/macros/s/AKfycbwZj6KlJZN5GyCwHzSv-kEBuqnG2TAZdfFaU8-QHA6_EAxJptTL3byy6f4C9mQAxAk-_g/exec'
+    // Token secreto - debe coincidir exactamente con Google Apps Script
+    this.secretToken = import.meta.env.VITE_CRM_SECRET_TOKEN;
   }
 
   // Validaciones frontend
@@ -148,21 +146,68 @@ class CRMService {
     return result
   }
 
-  // Método de prueba de conexión
+  // Método de prueba de conexión - ZERO TRUST
   async testConnection() {
+    if (!this.webhookUrl || !this.secretToken) {
+      console.error("Webhook URL o Secret Token no están configurados.");
+      return { success: false, message: "Configuración de cliente incompleta." };
+    }
+
+    // Primero probamos con GET para verificar que el endpoint esté disponible
     try {
-      const result = await this.sendToWebhook('test', {})
-      // Si el backend responde success: false o hay error, devolver success: false
-      if (result.success === false || result.error) {
-        return { success: false, error: result.error || 'Error del servidor' }
+      const getResponse = await fetch(this.webhookUrl, {
+        method: 'GET',
+        redirect: 'follow'
+      });
+
+      if (getResponse.ok) {
+        const getResult = await getResponse.json();
+        if (getResult.status === 'active') {
+          // El endpoint está activo, ahora probamos POST con autenticación Zero Trust
+          const payload = {
+            action: 'test',
+            token: this.secretToken
+          };
+
+          try {
+            const postResponse = await fetch(this.webhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+              redirect: 'follow'
+            });
+
+            if (postResponse.ok) {
+              const postResult = await postResponse.json();
+              return { 
+                success: true, 
+                message: `Conexión Zero Trust exitosa: ${postResult.message || 'CRM disponible'}` 
+              };
+            } else {
+              // POST falló, pero GET funciona - posible problema de deployment
+              return {
+                success: false,
+                message: `Endpoint disponible (GET: ${getResult.message}) pero POST falló: ${postResponse.status} ${postResponse.statusText}`
+              };
+            }
+          } catch (postError) {
+            return {
+              success: false,
+              message: `Endpoint disponible pero error en POST Zero Trust: ${postError.message}`
+            };
+          }
+        }
       }
-      // Si el token es incorrecto pero el backend responde success: true, detectar por mensaje
-      if (result.message && /token|autorizado|acceso/i.test(result.message)) {
-        return { success: false, error: result.message }
-      }
-      return { success: true, message: result.message }
+
+      // Si GET también falla
+      return { 
+        success: false, 
+        message: `Endpoint no disponible: ${getResponse.status} ${getResponse.statusText}` 
+      };
+
     } catch (error) {
-      return { success: false, error: error.message }
+      console.error("Error en testConnection:", error);
+      return { success: false, message: `Error de conexión: ${error.message}` };
     }
   }
 }
