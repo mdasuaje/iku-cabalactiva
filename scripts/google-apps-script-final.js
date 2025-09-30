@@ -3,7 +3,7 @@
 // Copiar este código completo en Google Apps Script
 
 const CONFIG = {
-  SPREADSHEET_ID: '1nvmrScXlIQ8Rc-zodT-RFWpy8QPvpO07NcZQlQ85nFK60tkkfBX6qHgH',
+  SPREADSHEET_ID: '16I11Nkg2g_XZIEj6_1RDFQ-vbsCFTHPAad0iHog-oXY',
   EMAIL_ADMIN: 'maor@iku-cabalactiva.com',
   EMAIL_MAESTRO: 'contacto@iku-cabalactiva.com',
   SECRET_TOKEN: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025',
