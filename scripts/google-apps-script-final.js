@@ -8,19 +8,19 @@ const CONFIG = {
   EMAIL_MAESTRO: 'contacto@iku-cabalactiva.com',
   SECRET_TOKEN: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025',
   MAX_STRING_LENGTH: 500,
-  MIN_MESSAGE_LENGTH: 10
-};
+  MIN_MESSAGE_LENGTH: 10,
+}
 
 // Validadores Zero Trust
 const VALIDATORS = {
   email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   nombre: /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{2,50}$/,
   mensaje: /^.{10,500}$/,
-  token: /^[A-Z0-9_]{20,}$/
-};
+  token: /^[A-Z0-9_]{20,}$/,
+}
 
 // Cache para optimización de rendimiento
-let spreadsheetCache = null;
+let spreadsheetCache = null
 
 /**
  * ROUTER PRINCIPAL - Punto de entrada único
@@ -30,37 +30,36 @@ function doPost(e) {
   try {
     // Validación inicial de petición
     if (!e?.postData?.contents) {
-      return createErrorResponse('INVALID_REQUEST', 'Petición malformada');
+      return createErrorResponse('INVALID_REQUEST', 'Petición malformada')
     }
 
     // Parseo seguro de JSON
-    let data;
+    let data
     try {
-      data = JSON.parse(e.postData.contents);
+      data = JSON.parse(e.postData.contents)
     } catch (parseError) {
-      log_error('JSON Parse Error', parseError.toString());
-      return createErrorResponse('INVALID_JSON', 'Formato JSON inválido');
+      log_error('JSON Parse Error', parseError.toString())
+      return createErrorResponse('INVALID_JSON', 'Formato JSON inválido')
     }
 
     // Validación de token Zero Trust (primera línea de defensa)
-    const authResult = validateSecurityToken(data, e);
+    const authResult = validateSecurityToken(data, e)
     if (!authResult.valid) {
-      log_error('Authentication Failed', authResult.message);
-      return createErrorResponse('UNAUTHORIZED', 'Acceso denegado');
+      log_error('Authentication Failed', authResult.message)
+      return createErrorResponse('UNAUTHORIZED', 'Acceso denegado')
     }
 
     // Validación de datos de entrada
-    const validationResult = validateInputData(data);
+    const validationResult = validateInputData(data)
     if (!validationResult.valid) {
-      return createErrorResponse(validationResult.code, validationResult.message);
+      return createErrorResponse(validationResult.code, validationResult.message)
     }
 
     // Router de acciones
-    return routeAction(data);
-
+    return routeAction(data)
   } catch (error) {
-    log_error('Critical System Error', error.toString());
-    return createErrorResponse('INTERNAL_ERROR', 'Error interno del servidor');
+    log_error('Critical System Error', error.toString())
+    return createErrorResponse('INTERNAL_ERROR', 'Error interno del servidor')
   }
 }
 
@@ -68,21 +67,21 @@ function doPost(e) {
  * ROUTER DE ACCIONES - Distribuye peticiones a handlers específicos
  */
 function routeAction(data) {
-  const { action } = data;
-  
+  const { action } = data
+
   switch (action) {
     case 'registrar-consulta':
-      return handle_registrar_consulta(data);
+      return handle_registrar_consulta(data)
     case 'enviar-email-admin':
-      return handle_enviar_email_admin(data);
+      return handle_enviar_email_admin(data)
     case 'enviar-email-cliente':
-      return handle_enviar_email_cliente(data);
+      return handle_enviar_email_cliente(data)
     case 'update-crm':
-      return handle_update_crm(data);
+      return handle_update_crm(data)
     case 'test':
-      return createSuccessResponse('Conexión Zero Trust exitosa');
+      return createSuccessResponse('Conexión Zero Trust exitosa')
     default:
-      return createErrorResponse('INVALID_ACTION', 'Acción no reconocida');
+      return createErrorResponse('INVALID_ACTION', 'Acción no reconocida')
   }
 }
 
@@ -92,11 +91,11 @@ function routeAction(data) {
  */
 function handle_registrar_consulta(data) {
   try {
-    const { emailData } = data;
-    
+    const { emailData } = data
+
     // Sanitizar datos antes del registro
-    const sanitizedData = sanitizeUserInput(emailData);
-    
+    const sanitizedData = sanitizeUserInput(emailData)
+
     // Preparar datos para CRM
     const crmData = [
       new Date().toISOString(),
@@ -105,31 +104,30 @@ function handle_registrar_consulta(data) {
       sanitizedData.herramienta || 'No especificado',
       sanitizedData.mensaje,
       'Pendiente',
-      'Web'
-    ];
+      'Web',
+    ]
 
     // Registrar en CRM
-    const crmResult = updateSpreadsheet('Consultas', crmData);
+    const crmResult = updateSpreadsheet('Consultas', crmData)
     if (!crmResult.success) {
-      throw new Error('Error registrando en CRM: ' + crmResult.error);
+      throw new Error('Error registrando en CRM: ' + crmResult.error)
     }
 
     // Enviar notificaciones
     const adminNotification = handle_enviar_email_admin({
       emailData: sanitizedData,
-      skipValidation: true
-    });
-    
+      skipValidation: true,
+    })
+
     const clientConfirmation = handle_enviar_email_cliente({
       emailData: sanitizedData,
-      skipValidation: true
-    });
+      skipValidation: true,
+    })
 
-    return createSuccessResponse('Consulta registrada exitosamente');
-
+    return createSuccessResponse('Consulta registrada exitosamente')
   } catch (error) {
-    log_error('Consulta Registration Error', error.toString());
-    return createErrorResponse('CONSULTA_ERROR', 'Error procesando consulta');
+    log_error('Consulta Registration Error', error.toString())
+    return createErrorResponse('CONSULTA_ERROR', 'Error procesando consulta')
   }
 }
 
@@ -139,30 +137,29 @@ function handle_registrar_consulta(data) {
  */
 function handle_enviar_email_admin(data) {
   try {
-    const { emailData } = data;
-    
+    const { emailData } = data
+
     if (!data.skipValidation) {
-      const validation = validateEmailData(emailData);
+      const validation = validateEmailData(emailData)
       if (!validation.valid) {
-        return createErrorResponse(validation.code, validation.message);
+        return createErrorResponse(validation.code, validation.message)
       }
     }
 
-    const sanitizedData = sanitizeUserInput(emailData);
-    const template = getEmailTemplate('nueva-consulta', sanitizedData);
-    
+    const sanitizedData = sanitizeUserInput(emailData)
+    const template = getEmailTemplate('nueva-consulta', sanitizedData)
+
     const emailOptions = {
       to: CONFIG.EMAIL_ADMIN,
       cc: CONFIG.EMAIL_MAESTRO,
       subject: `Nueva Consulta: ${sanitizedData.herramienta || 'Consulta General'}`,
-      htmlBody: template
-    };
+      htmlBody: template,
+    }
 
-    return sendSecureEmail(emailOptions);
-
+    return sendSecureEmail(emailOptions)
   } catch (error) {
-    log_error('Admin Email Error', error.toString());
-    return createErrorResponse('EMAIL_ERROR', 'Error enviando notificación');
+    log_error('Admin Email Error', error.toString())
+    return createErrorResponse('EMAIL_ERROR', 'Error enviando notificación')
   }
 }
 
@@ -172,29 +169,28 @@ function handle_enviar_email_admin(data) {
  */
 function handle_enviar_email_cliente(data) {
   try {
-    const { emailData } = data;
-    
+    const { emailData } = data
+
     if (!data.skipValidation) {
-      const validation = validateEmailData(emailData);
+      const validation = validateEmailData(emailData)
       if (!validation.valid) {
-        return createErrorResponse(validation.code, validation.message);
+        return createErrorResponse(validation.code, validation.message)
       }
     }
 
-    const sanitizedData = sanitizeUserInput(emailData);
-    const template = getEmailTemplate('confirmacion-consulta', sanitizedData);
-    
+    const sanitizedData = sanitizeUserInput(emailData)
+    const template = getEmailTemplate('confirmacion-consulta', sanitizedData)
+
     const emailOptions = {
       to: sanitizedData.cliente.email,
       subject: 'Consulta Recibida - IKU Cábala Activa',
-      htmlBody: template
-    };
+      htmlBody: template,
+    }
 
-    return sendSecureEmail(emailOptions);
-
+    return sendSecureEmail(emailOptions)
   } catch (error) {
-    log_error('Client Email Error', error.toString());
-    return createErrorResponse('EMAIL_ERROR', 'Error enviando confirmación');
+    log_error('Client Email Error', error.toString())
+    return createErrorResponse('EMAIL_ERROR', 'Error enviando confirmación')
   }
 }
 
@@ -204,25 +200,24 @@ function handle_enviar_email_cliente(data) {
  */
 function handle_update_crm(data) {
   try {
-    const { sheetName, values } = data;
-    
+    const { sheetName, values } = data
+
     // Validar hoja permitida
-    const allowedSheets = ['Clientes', 'Compras', 'Sesiones', 'Reportes', 'Consultas'];
+    const allowedSheets = ['Clientes', 'Compras', 'Sesiones', 'Reportes', 'Consultas']
     if (!allowedSheets.includes(sheetName)) {
-      return createErrorResponse('FORBIDDEN_SHEET', 'Hoja no permitida');
+      return createErrorResponse('FORBIDDEN_SHEET', 'Hoja no permitida')
     }
 
-    const result = updateSpreadsheet(sheetName, values);
-    
+    const result = updateSpreadsheet(sheetName, values)
+
     if (result.success) {
-      return createSuccessResponse('CRM actualizado correctamente');
+      return createSuccessResponse('CRM actualizado correctamente')
     } else {
-      return createErrorResponse('CRM_ERROR', result.error);
+      return createErrorResponse('CRM_ERROR', result.error)
     }
-
   } catch (error) {
-    log_error('CRM Update Error', error.toString());
-    return createErrorResponse('CRM_ERROR', 'Error actualizando CRM');
+    log_error('CRM Update Error', error.toString())
+    return createErrorResponse('CRM_ERROR', 'Error actualizando CRM')
   }
 }
 
@@ -230,23 +225,23 @@ function handle_update_crm(data) {
  * VALIDACIÓN DE TOKEN ZERO TRUST
  */
 function validateSecurityToken(data, e) {
-  const tokenFromHeader = e.parameter?.token;
-  const tokenFromBody = data?.token;
-  const providedToken = tokenFromHeader || tokenFromBody;
-  
+  const tokenFromHeader = e.parameter?.token
+  const tokenFromBody = data?.token
+  const providedToken = tokenFromHeader || tokenFromBody
+
   if (!providedToken) {
-    return { valid: false, message: 'Token requerido' };
+    return { valid: false, message: 'Token requerido' }
   }
-  
+
   if (!VALIDATORS.token.test(providedToken)) {
-    return { valid: false, message: 'Formato de token inválido' };
+    return { valid: false, message: 'Formato de token inválido' }
   }
-  
+
   if (providedToken !== CONFIG.SECRET_TOKEN) {
-    return { valid: false, message: 'Token inválido' };
+    return { valid: false, message: 'Token inválido' }
   }
-  
-  return { valid: true };
+
+  return { valid: true }
 }
 
 /**
@@ -254,22 +249,22 @@ function validateSecurityToken(data, e) {
  */
 function validateInputData(data) {
   if (!data?.action) {
-    return { valid: false, code: 'MISSING_ACTION', message: 'Acción requerida' };
+    return { valid: false, code: 'MISSING_ACTION', message: 'Acción requerida' }
   }
 
   // Validaciones específicas por acción
   switch (data.action) {
     case 'registrar-consulta':
-      return validateConsultaData(data);
+      return validateConsultaData(data)
     case 'enviar-email-admin':
     case 'enviar-email-cliente':
-      return validateEmailData(data.emailData);
+      return validateEmailData(data.emailData)
     case 'update-crm':
-      return validateCRMData(data);
+      return validateCRMData(data)
     case 'test':
-      return { valid: true };
+      return { valid: true }
     default:
-      return { valid: false, code: 'INVALID_ACTION', message: 'Acción no válida' };
+      return { valid: false, code: 'INVALID_ACTION', message: 'Acción no válida' }
   }
 }
 
@@ -277,27 +272,39 @@ function validateInputData(data) {
  * VALIDACIÓN DE DATOS DE CONSULTA
  */
 function validateConsultaData(data) {
-  const { emailData } = data;
-  
+  const { emailData } = data
+
   if (!emailData?.cliente) {
-    return { valid: false, code: 'MISSING_CLIENT', message: 'Datos de cliente requeridos' };
+    return { valid: false, code: 'MISSING_CLIENT', message: 'Datos de cliente requeridos' }
   }
-  
-  const { cliente, mensaje } = emailData;
-  
+
+  const { cliente, mensaje } = emailData
+
   if (!cliente.nombre || !VALIDATORS.nombre.test(cliente.nombre)) {
-    return { valid: false, code: 'INVALID_NAME', message: 'Nombre inválido (2-50 caracteres, solo letras)' };
+    return {
+      valid: false,
+      code: 'INVALID_NAME',
+      message: 'Nombre inválido (2-50 caracteres, solo letras)',
+    }
   }
-  
+
   if (!cliente.email || !VALIDATORS.email.test(cliente.email)) {
-    return { valid: false, code: 'INVALID_EMAIL', message: 'Email inválido' };
+    return { valid: false, code: 'INVALID_EMAIL', message: 'Email inválido' }
   }
-  
-  if (!mensaje || mensaje.length < CONFIG.MIN_MESSAGE_LENGTH || mensaje.length > CONFIG.MAX_STRING_LENGTH) {
-    return { valid: false, code: 'INVALID_MESSAGE', message: `Mensaje debe tener entre ${CONFIG.MIN_MESSAGE_LENGTH}-${CONFIG.MAX_STRING_LENGTH} caracteres` };
+
+  if (
+    !mensaje ||
+    mensaje.length < CONFIG.MIN_MESSAGE_LENGTH ||
+    mensaje.length > CONFIG.MAX_STRING_LENGTH
+  ) {
+    return {
+      valid: false,
+      code: 'INVALID_MESSAGE',
+      message: `Mensaje debe tener entre ${CONFIG.MIN_MESSAGE_LENGTH}-${CONFIG.MAX_STRING_LENGTH} caracteres`,
+    }
   }
-  
-  return { valid: true };
+
+  return { valid: true }
 }
 
 /**
@@ -305,14 +312,14 @@ function validateConsultaData(data) {
  */
 function validateEmailData(emailData) {
   if (!emailData?.cliente?.email || !VALIDATORS.email.test(emailData.cliente.email)) {
-    return { valid: false, code: 'INVALID_EMAIL', message: 'Email inválido' };
+    return { valid: false, code: 'INVALID_EMAIL', message: 'Email inválido' }
   }
-  
+
   if (!emailData?.cliente?.nombre || !VALIDATORS.nombre.test(emailData.cliente.nombre)) {
-    return { valid: false, code: 'INVALID_NAME', message: 'Nombre inválido' };
+    return { valid: false, code: 'INVALID_NAME', message: 'Nombre inválido' }
   }
-  
-  return { valid: true };
+
+  return { valid: true }
 }
 
 /**
@@ -320,47 +327,47 @@ function validateEmailData(emailData) {
  */
 function validateCRMData(data) {
   if (!data?.sheetName) {
-    return { valid: false, code: 'MISSING_SHEET', message: 'Nombre de hoja requerido' };
+    return { valid: false, code: 'MISSING_SHEET', message: 'Nombre de hoja requerido' }
   }
-  
+
   if (!data?.values || !Array.isArray(data.values)) {
-    return { valid: false, code: 'INVALID_VALUES', message: 'Valores requeridos como array' };
+    return { valid: false, code: 'INVALID_VALUES', message: 'Valores requeridos como array' }
   }
-  
-  return { valid: true };
+
+  return { valid: true }
 }
 
 /**
  * SANITIZACIÓN DE ENTRADA DE USUARIO
  */
 function sanitizeUserInput(data) {
-  if (!data) return data;
-  
-  const sanitized = JSON.parse(JSON.stringify(data));
-  
+  if (!data) return data
+
+  const sanitized = JSON.parse(JSON.stringify(data))
+
   // Sanitizar strings recursivamente
   function sanitizeString(str) {
-    if (typeof str !== 'string') return str;
+    if (typeof str !== 'string') return str
     return str
       .replace(/[<>]/g, '') // Remover < >
       .replace(/javascript:/gi, '') // Remover javascript:
       .replace(/on\w+=/gi, '') // Remover event handlers
       .trim()
-      .substring(0, CONFIG.MAX_STRING_LENGTH);
+      .substring(0, CONFIG.MAX_STRING_LENGTH)
   }
-  
+
   function sanitizeObject(obj) {
     for (const key in obj) {
       if (typeof obj[key] === 'string') {
-        obj[key] = sanitizeString(obj[key]);
+        obj[key] = sanitizeString(obj[key])
       } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-        sanitizeObject(obj[key]);
+        sanitizeObject(obj[key])
       }
     }
   }
-  
-  sanitizeObject(sanitized);
-  return sanitized;
+
+  sanitizeObject(sanitized)
+  return sanitized
 }
 
 /**
@@ -370,19 +377,18 @@ function updateSpreadsheet(sheetName, values) {
   try {
     // Usar cache para optimizar rendimiento
     if (!spreadsheetCache) {
-      spreadsheetCache = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+      spreadsheetCache = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID)
     }
-    
-    const worksheet = spreadsheetCache.getSheetByName(sheetName);
+
+    const worksheet = spreadsheetCache.getSheetByName(sheetName)
     if (!worksheet) {
-      return { success: false, error: `Hoja ${sheetName} no encontrada` };
+      return { success: false, error: `Hoja ${sheetName} no encontrada` }
     }
-    
-    worksheet.appendRow(values);
-    return { success: true };
-    
+
+    worksheet.appendRow(values)
+    return { success: true }
   } catch (error) {
-    return { success: false, error: error.toString() };
+    return { success: false, error: error.toString() }
   }
 }
 
@@ -392,27 +398,26 @@ function updateSpreadsheet(sheetName, values) {
 function sendSecureEmail(options) {
   try {
     if (!options.to || !VALIDATORS.email.test(options.to)) {
-      return createErrorResponse('INVALID_EMAIL', 'Email destinatario inválido');
+      return createErrorResponse('INVALID_EMAIL', 'Email destinatario inválido')
     }
-    
+
     if (!options.subject || options.subject.length < 5) {
-      return createErrorResponse('INVALID_SUBJECT', 'Asunto requerido');
+      return createErrorResponse('INVALID_SUBJECT', 'Asunto requerido')
     }
-    
+
     const emailOptions = {
-      htmlBody: options.htmlBody || options.body
-    };
-    
-    if (options.cc) emailOptions.cc = options.cc;
-    if (options.attachments) emailOptions.attachments = options.attachments;
-    
-    GmailApp.sendEmail(options.to, options.subject, '', emailOptions);
-    
-    return createSuccessResponse('Email enviado correctamente');
-    
+      htmlBody: options.htmlBody || options.body,
+    }
+
+    if (options.cc) emailOptions.cc = options.cc
+    if (options.attachments) emailOptions.attachments = options.attachments
+
+    GmailApp.sendEmail(options.to, options.subject, '', emailOptions)
+
+    return createSuccessResponse('Email enviado correctamente')
   } catch (error) {
-    log_error('Email Send Error', error.toString());
-    return createErrorResponse('EMAIL_ERROR', 'Error enviando email');
+    log_error('Email Send Error', error.toString())
+    return createErrorResponse('EMAIL_ERROR', 'Error enviando email')
   }
 }
 
@@ -450,10 +455,10 @@ function getEmailTemplate(template, data) {
         <p>Te contactaremos en las próximas 24-48 horas.</p>
         <p style="margin-top: 30px;">Con luz y bendiciones,<br><strong>Equipo IKU Cábala Activa</strong></p>
       </div>
-    `
-  };
-  
-  return templates[template] || '<p>Plantilla no encontrada</p>';
+    `,
+  }
+
+  return templates[template] || '<p>Plantilla no encontrada</p>'
 }
 
 /**
@@ -461,17 +466,16 @@ function getEmailTemplate(template, data) {
  */
 function log_error(message, details) {
   try {
-    const timestamp = new Date().toISOString();
-    const logEntry = [timestamp, message, details, 'ERROR'];
-    
+    const timestamp = new Date().toISOString()
+    const logEntry = [timestamp, message, details, 'ERROR']
+
     // Intentar registrar en hoja de logs
-    updateSpreadsheet('Logs de Errores', logEntry);
-    
+    updateSpreadsheet('Logs de Errores', logEntry)
+
     // También log en consola para desarrollo
-    console.error(`[${timestamp}] ${message}:`, details);
-    
+    console.error(`[${timestamp}] ${message}:`, details)
   } catch (logError) {
-    console.error('Error logging failed:', logError);
+    console.error('Error logging failed:', logError)
   }
 }
 
@@ -479,35 +483,35 @@ function log_error(message, details) {
  * UTILIDADES DE RESPUESTA
  */
 function createSuccessResponse(message, data = null) {
-  const response = { success: true, message };
-  if (data) response.data = data;
-  
-  return ContentService
-    .createTextOutput(JSON.stringify(response))
-    .setMimeType(ContentService.MimeType.JSON);
+  const response = { success: true, message }
+  if (data) response.data = data
+
+  return ContentService.createTextOutput(JSON.stringify(response)).setMimeType(
+    ContentService.MimeType.JSON
+  )
 }
 
 function createErrorResponse(code, message) {
-  return ContentService
-    .createTextOutput(JSON.stringify({
+  return ContentService.createTextOutput(
+    JSON.stringify({
       error: message,
       code: code,
-      timestamp: new Date().toISOString()
-    }))
-    .setMimeType(ContentService.MimeType.JSON);
+      timestamp: new Date().toISOString(),
+    })
+  ).setMimeType(ContentService.MimeType.JSON)
 }
 
 /**
  * ENDPOINT DE SALUD DEL SISTEMA
  */
 function doGet() {
-  return ContentService
-    .createTextOutput(JSON.stringify({
+  return ContentService.createTextOutput(
+    JSON.stringify({
       status: 'active',
       message: 'IKU CRM Zero Trust Webhook - Arquitectura Refactorizada',
       version: '2.0.0',
       timestamp: new Date().toISOString(),
-      security: 'Zero Trust Enhanced'
-    }))
-    .setMimeType(ContentService.MimeType.JSON);
+      security: 'Zero Trust Enhanced',
+    })
+  ).setMimeType(ContentService.MimeType.JSON)
 }

@@ -13,7 +13,7 @@ const FAQ = () => {
     },
     {
       pregunta: '¿Necesito conocimientos previos de Cábala?',
-      respuesta: 'No es necesario tener conocimientos previos. El Maestro Isaac adapta cada sesión al nivel de comprensión de cada persona, desde principiantes hasta estudiantes avanzados.'
+      respuesta: 'No es necesario tener conocimientos previos. El Rabbí Isaac adapta cada sesión al nivel de comprensión de cada persona, desde principiantes hasta estudiantes avanzados.'
     },
     {
       pregunta: '¿Cómo funcionan las sesiones online?',

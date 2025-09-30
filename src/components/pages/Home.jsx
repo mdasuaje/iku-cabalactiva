@@ -1,5 +1,4 @@
-import React, { Suspense, lazy } from 'react'
-import LoadingSpinner from '@components/common/LoadingSpinner'
+import React from 'react'
 
 // Componentes principales (carga inmediata)
 import Hero from '@components/sections/Hero'
@@ -11,17 +10,13 @@ import Contact from '@components/sections/Contact'
 import Pricing from '@components/sections/Pricing'
 import Footer from '@components/common/Footer'
 
-// Componentes con lazy loading para mejor performance
-const AboutMaestro = lazy(() => import('@components/sections/AboutMaestro'))
+// AboutMaestro ha sido fusionado con Hero para mayor impacto visual y autoridad
 
 const Home = () => {
   return (
     <>
       <Hero />
       <Herramientas />
-      <Suspense fallback={<LoadingSpinner />}>
-        <AboutMaestro />
-      </Suspense>
       <Pricing />
       <Testimonios />
       <FAQ />
