@@ -90,20 +90,58 @@ const ToolDetailModal = ({ isOpen, onClose, plan, onOpenContact }) => {
               </ul>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={handleViewPricing}
-                className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-6 py-4 rounded-lg font-semibold text-lg transition-colors transform hover:scale-105"
-              >
-                💎 Ver Planes de Inversión
-              </button>
-              <button
-                onClick={handleAskQuestion}
-                className="flex-1 border-2 border-purple-500 text-purple-400 px-6 py-4 rounded-lg font-semibold text-lg hover:bg-purple-500/10 transition-colors"
-              >
-                💬 Tengo una Pregunta
-              </button>
+            {/* CTA Buttons - Prioridad a captura de leads */}
+            <div className="space-y-4">
+              {/* CTA Principal - Captura de leads */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={handleAskQuestion}
+                  className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-6 py-4 rounded-lg font-semibold text-lg transition-colors transform hover:scale-105"
+                >
+                  � Quiero Más Información
+                </button>
+                <button
+                  onClick={handleViewPricing}
+                  className="flex-1 border-2 border-purple-500 text-purple-400 px-6 py-4 rounded-lg font-semibold text-lg hover:bg-purple-500/10 transition-colors"
+                >
+                  � Ver Todos los Planes
+                </button>
+              </div>
+
+              {/* Separador visual */}
+              <div className="flex items-center justify-center my-6">
+                <div className="border-t border-gray-600 flex-1"></div>
+                <span className="px-4 text-gray-400 text-sm">O si ya estás decidido</span>
+                <div className="border-t border-gray-600 flex-1"></div>
+              </div>
+
+              {/* CTAs Secundarios - Conversión directa */}
+              <div className="bg-slate-900/50 rounded-lg p-4 border border-yellow-500/20">
+                <p className="text-gray-300 text-center text-sm mb-4">
+                  ⚡ Adquiere esta herramienta directamente:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a
+                    href={import.meta.env.VITE_PAYPAL_SINGLE_SESSION}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg font-semibold text-center transition-colors"
+                  >
+                    💙 Sesión Individual - $297
+                  </a>
+                  <a
+                    href={import.meta.env.VITE_STRIPE_CHECKOUT}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-slate-900 px-4 py-3 rounded-lg font-semibold text-center transition-colors"
+                  >
+                    ⚡ Paquete Completo - $997
+                  </a>
+                </div>
+                <p className="text-gray-400 text-xs text-center mt-2">
+                  ✅ Pago seguro • ✅ Acceso inmediato • ✅ Garantía 30 días
+                </p>
+              </div>
             </div>
 
             {/* Footer note */}

@@ -12,7 +12,7 @@ export default defineConfig({
     ['junit', { outputFile: 'test-results/results.xml' }]
   ],
   use: {
-    baseURL: process.env.BASE_URL || 'https://iku-cabalactiva.com',
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -40,7 +40,8 @@ export default defineConfig({
     },
   ],
   webServer: process.env.CI ? undefined : {
-    command: 'npm run preview',
-    port: 4173,
+    command: 'npm run dev',
+    port: 3000,
+    reuseExistingServer: true,
   },
 });

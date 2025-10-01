@@ -78,19 +78,69 @@ const CTA = () => {
           <div className="space-y-6">
             <UrgencyTimer />
             
-            {/* BOTÓN PRINCIPAL - DIRIGIR A PRICING */}
+            {/* BOTONES DE CONVERSIÓN DIRECTA */}
+            <div className="bg-white/30 backdrop-blur-sm rounded-2xl p-8 border border-slate-900/20 shadow-xl">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                🚀 Comienza tu Transformación Ahora
+              </h3>
+              
+              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                {/* PAQUETE COMPLETO - STRIPE */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-xl p-6 text-slate-900 shadow-lg border-2 border-yellow-600"
+                >
+                  <div className="text-center mb-4">
+                    <span className="bg-slate-900 text-yellow-500 px-3 py-1 rounded-full text-sm font-bold">
+                      MÁS POPULAR
+                    </span>
+                  </div>
+                  <h4 className="text-xl font-bold mb-2">Paquete de Transformación Completa</h4>
+                  <p className="text-sm mb-4 opacity-90">4 herramientas cabalísticas + sesiones personalizadas</p>
+                  <div className="text-3xl font-bold mb-4">$997 USD</div>
+                  <a
+                    href={import.meta.env.VITE_STRIPE_CHECKOUT}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-slate-900 text-yellow-500 py-4 px-6 rounded-lg font-bold text-center hover:bg-slate-800 transition-colors"
+                  >
+                    ⚡ Transformar mi Vida Ahora
+                  </a>
+                </motion.div>
+
+                {/* SESIÓN ÚNICA - PAYPAL */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-white/50 rounded-xl p-6 text-slate-900 shadow-lg border-2 border-slate-300"
+                >
+                  <h4 className="text-xl font-bold mb-2">Sesión Individual</h4>
+                  <p className="text-sm mb-4 opacity-90">Consulta personalizada de 90 minutos</p>
+                  <div className="text-3xl font-bold mb-4">$297 USD</div>
+                  <a
+                    href={import.meta.env.VITE_PAYPAL_SINGLE_SESSION}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-bold text-center hover:bg-blue-700 transition-colors"
+                  >
+                    💙 Reservar Sesión Única
+                  </a>
+                </motion.div>
+              </div>
+
+              <p className="text-slate-700 text-sm mt-6 text-center">
+                ✅ Pago seguro • ✅ Acceso inmediato • ✅ Garantía 30 días
+              </p>
+            </div>
+            
+            {/* BOTÓN ALTERNATIVO - VER MÁS OPCIONES */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleVerPlanesClick}
-              className="bg-slate-900 text-yellow-500 px-12 py-5 rounded-2xl font-bold text-xl hover:bg-slate-800 transition-all duration-300 shadow-2xl mx-auto block"
+              className="bg-slate-900/20 text-slate-900 px-8 py-3 rounded-xl font-semibold text-lg hover:bg-slate-900/30 transition-all duration-300 mx-auto block"
             >
-              ✨ Ver Planes de Transformación
+              Ver Todas las Opciones
             </motion.button>
-            
-            <p className="text-slate-800 text-lg font-medium">
-              Elige la herramienta perfecta para tu camino espiritual
-            </p>
 
             {/* OPCIÓN SECUNDARIA - CONTACTO PARA DUDAS */}
             <div className="pt-4">

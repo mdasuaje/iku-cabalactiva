@@ -24,7 +24,6 @@ const Header = () => {
   const navigationItems = [
     { id: 'hero', label: 'Inicio' },
     { id: 'herramientas', label: 'Herramientas' },
-    { id: 'maestro', label: 'Maestro' },
     { id: 'pricing', label: 'Precios' },
     { id: 'testimonios', label: 'Testimonios' },
     { id: 'contact', label: 'Contacto' }

@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import toast from 'react-hot-toast'
-import { t } from '../../utils/i18n'
-import contactService from '../../services/contactService'
 import ContactModal from '../common/ContactModal'
 
 const Contact = () => {
@@ -33,29 +30,47 @@ const Contact = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center max-w-4xl mx-auto"
         >
-          <div className="bg-gradient-to-br from-yellow-500/10 to-purple-500/10 rounded-2xl p-8 border border-yellow-500/20">
-            <h3 className="text-3xl font-bold text-white mb-6">
-              ¿Listo para tu transformación?
+                      <div data-testid="contact-form" className="bg-gradient-to-br from-yellow-500/10 to-purple-500/10 rounded-2xl p-8 border border-yellow-500/20">
+            <h3 className="text-3xl font-bold text-white mb-4">
+              🎯 ¿Listo para tu transformación?
             </h3>
-            <p className="text-xl text-gray-300 mb-8">
-              Conecta con el Rabbí Isaac y descubre el poder de la Cábala en tu vida
+            <p className="text-xl text-gray-300 mb-6">
+              Conecta con el Rabbí Isaac y recibe una consulta personalizada <strong className="text-yellow-500">completamente gratuita</strong>
             </p>
+            
+            {/* Beneficios destacados */}
+            <div className="grid md:grid-cols-3 gap-4 mb-8 text-sm">
+              <div className="text-gray-300">
+                <span className="text-yellow-500">✓</span> Respuesta en 24 horas
+              </div>
+              <div className="text-gray-300">
+                <span className="text-yellow-500">✓</span> Consulta sin compromiso
+              </div>
+              <div className="text-gray-300">
+                <span className="text-yellow-500">✓</span> Orientación personalizada
+              </div>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setShowModal(true)}
-                className="bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+                data-testid="submit-button"
+                className="bg-yellow-500 hover:bg-yellow-600 text-slate-900 px-8 py-4 rounded-lg font-bold text-lg transition-colors shadow-lg"
               >
-                ✉️ Contactar por Email
+                ✉️ Solicitar Consulta Gratuita
               </button>
               
               <button
                 onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
                 className="border-2 border-yellow-500 text-yellow-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-500/10 transition-colors"
               >
-                Ver Herramientas
+                🔍 Explorar Herramientas
               </button>
             </div>
+            
+            <p className="text-gray-400 text-sm mt-4">
+              📞 También disponible por WhatsApp para respuestas inmediatas
+            </p>
           </div>
         </motion.div>
         

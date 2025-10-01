@@ -31,6 +31,7 @@ const PricingCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       whileHover={{ scale: 1.02 }}
+      data-testid="pricing-card"
       className={`relative bg-slate-700/50 backdrop-blur-sm rounded-xl p-6 border h-full flex flex-col ${
         isFeatured 
           ? 'border-yellow-500/50 bg-gradient-to-br from-yellow-500/10 to-purple-500/10 lg:col-span-1 xl:col-span-1' 

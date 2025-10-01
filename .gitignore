@@ -88,3 +88,7 @@ Thumbs.db
 # Backups
 backup-iku-cabala*
 
+# Playwright Testing
+playwright-report/
+test-results/
+

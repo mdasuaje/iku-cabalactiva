@@ -7,5 +7,5 @@ describe('CRMService Zero Trust Integration', () => {
     const result = await crmService.testConnection();
     expect(result.success).toBe(true);
     expect(result.message).toBeDefined();
-  });
+  }, 15000); // Timeout aumentado a 15 segundos para manejar redirecciones de Google Apps Script
 });

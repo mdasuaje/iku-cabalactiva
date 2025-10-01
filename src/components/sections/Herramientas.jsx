@@ -24,7 +24,7 @@ const Herramientas = () => {
   }
 
   return (
-    <section id="herramientas" className="py-20 bg-slate-800">
+    <section id="herramientas" data-testid="herramientas-section" className="py-20 bg-slate-800">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

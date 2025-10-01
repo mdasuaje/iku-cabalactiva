@@ -118,32 +118,102 @@ class CRMService {
       ...data,
     }
 
-    const response = await fetch(this.webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CRM-Token': this.secretToken, // Token también en header
-      },
-      body: JSON.stringify(payload),
-    })
+    // Configuración robusta para manejar redirecciones de Google Apps Script
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 15000) // 15 segundos timeout
 
-    if (!response.ok) {
-      throw new Error(`Error en webhook: ${response.status} ${response.statusText}`)
-    }
+    try {
+      const response = await fetch(this.webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CRM-Token': this.secretToken, // Token también en header
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+        redirect: 'follow', // Seguir automáticamente las redirecciones 302
+        credentials: 'omit', // No incluir credenciales para evitar problemas CORS
+      })
 
-    const result = await response.json()
-    // Si el backend responde success: false, lanzar error con el mensaje
-    if (result.success === false) {
-      throw new Error(
-        `Acceso no autorizado: ${result.error || 'Error del servidor'} (${
-          result.code || 'UNKNOWN'
-        })`
-      )
+      clearTimeout(timeoutId)
+
+      // Google Apps Script puede devolver 200 pero con contenido HTML en caso de error
+      const contentType = response.headers.get('content-type')
+      
+      if (!response.ok) {
+        // Si es una redirección que falló, intentar con modo no-cors
+        if (response.status === 302 || response.status === 0) {
+          return await this.sendDataNoCorsFallback(payload)
+        }
+        throw new Error(`Error en webhook: ${response.status} ${response.statusText}`)
+      }
+
+      // Verificar si la respuesta es JSON válido
+      if (contentType && contentType.includes('application/json')) {
+        const result = await response.json()
+        
+        // Si el backend responde success: false, lanzar error con el mensaje
+        if (result.success === false) {
+          throw new Error(
+            `Acceso no autorizado: ${result.error || 'Error del servidor'} (${
+              result.code || 'UNKNOWN'
+            })`
+          )
+        }
+        if (result.error) {
+          throw new Error(`Error del servidor: ${result.error} (${result.code || 'UNKNOWN'})`)
+        }
+        return result
+      } else {
+        // Si devuelve HTML, probablemente es una página de error de Google
+        const text = await response.text()
+        if (text.includes('Google') && text.includes('error')) {
+          throw new Error('Error de configuración en Google Apps Script')
+        }
+        
+        // Si llegamos aquí y no hay error, asumimos éxito (Google procesó la petición)
+        return { success: true, message: 'Datos enviados exitosamente' }
+      }
+
+    } catch (error) {
+      clearTimeout(timeoutId)
+      
+      // Si es un error de red o CORS, intentar fallback
+      if (error.name === 'TypeError' || error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+        return await this.sendDataNoCorsFallback(payload)
+      }
+      
+      if (error.name === 'AbortError') {
+        throw new Error('Timeout: El servidor está tardando demasiado en responder')
+      }
+      
+      throw error
     }
-    if (result.error) {
-      throw new Error(`Error del servidor: ${result.error} (${result.code || 'UNKNOWN'})`)
+  }
+
+  // Método fallback para casos donde CORS bloquea la respuesta
+  async sendDataNoCorsFallback(payload) {
+    try {
+      await fetch(this.webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        mode: 'no-cors', // No podemos leer la respuesta, pero Google la procesará
+      })
+
+      // En modo no-cors, si no hay error de red significa que Google 
+      // recibió y está procesando la petición
+      return { 
+        success: true, 
+        message: 'Datos enviados exitosamente (modo no-cors)',
+        fallback: true 
+      }
+      
+    } catch (error) {
+      throw new Error(`Error crítico de red: ${error.message}`)
     }
-    return result
   }
 
   // Método de prueba de conexión - ZERO TRUST

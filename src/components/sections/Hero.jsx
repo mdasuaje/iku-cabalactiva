@@ -6,7 +6,7 @@ const Hero = () => {
   const [showModal, setShowModal] = useState(false)
   
   return (
-    <section id="hero" className="min-h-screen relative overflow-hidden flex items-center justify-center">
+    <section id="hero" data-testid="hero-section" className="min-h-screen relative overflow-hidden flex items-center justify-center">
       {/* Background inmersivo con múltiples capas */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/80 to-slate-800"></div>
       

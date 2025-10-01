@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import crmService from '../../services/crmService-zero-trust.js'
 
 const XIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,10 +62,6 @@ const PricingSection = () => {
   )
 }
 
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => {
   const [formData, setFormData] = useState({
     nombre: '',
@@ -73,41 +72,48 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
   const [showPricing, setShowPricing] = useState(false)
   const [isSending, setIsSending] = useState(false)
 
-  // URL del Web App de Google Apps Script
-  const scriptURL = import.meta.env.VITE_GOOGLE_APP_SCRIPT_URL
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!scriptURL) {
-      toast.error("El servicio de contacto no está disponible. Inténtelo más tarde.")
-      return
-    }
     setIsSending(true)
     const toastId = toast.loading("Enviando mensaje...")
+    
     try {
-      const response = await fetch(scriptURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Usar crmService.registrarCliente que maneja redirecciones y errores correctamente
+      const resultado = await crmService.registrarCliente({
+        nombre: formData.nombre,
+        email: formData.email,
+        telefono: formData.telefono,
+        mensaje: formData.mensaje
       })
-      const result = await response.json()
-      if (result.success) {
-        toast.update(toastId, {
-          render: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.",
-          type: "success",
-          isLoading: false,
-          autoClose: 5000,
-        })
-        setFormData({ nombre: '', email: '', telefono: '', mensaje: '' })
-        onClose()
-      } else {
-        throw new Error(result.error || 'Ocurrió un error en el servidor.')
-      }
-    } catch (error) {
+
       toast.update(toastId, {
-        render: `Error al enviar: ${error.message}`,
+        render: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.",
+        type: "success",
+        isLoading: false,
+        autoClose: 5000,
+      })
+      
+      setFormData({ nombre: '', email: '', telefono: '', mensaje: '' })
+      onClose()
+      
+    } catch (error) {
+      console.error('Error al enviar formulario:', error)
+      
+      // Manejo mejorado de errores específicos
+      let errorMessage = "Error al enviar el mensaje"
+      
+      if (error.message.includes('Datos inválidos')) {
+        errorMessage = error.message
+      } else if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
+        errorMessage = "Problema de conexión. Inténtelo de nuevo."
+      } else if (error.message.includes('Timeout')) {
+        errorMessage = "El servidor está tardando en responder. Inténtelo más tarde."
+      } else {
+        errorMessage = `Error: ${error.message}`
+      }
+
+      toast.update(toastId, {
+        render: errorMessage,
         type: "error",
         isLoading: false,
         autoClose: 6000,
@@ -136,6 +142,9 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
         >
           <ToastContainer position="bottom-right" theme="dark" style={{ zIndex: 9999 }} />
           <motion.div
+            role="dialog"
+            aria-labelledby="modal-title"
+            aria-modal="true"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -143,7 +152,7 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-gray-800">
+              <h2 id="modal-title" className="text-xl font-bold text-gray-800">
                 Contacto - {herramienta}
               </h2>
               <button
