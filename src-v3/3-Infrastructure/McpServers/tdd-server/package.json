@@ -2,11 +2,6 @@
   "name": "mcp-tdd-server",
   "version": "1.0.0",
   "main": "mcp-server.js",
-  "scripts": {
-    "start": "node --experimental-modules mcp-server.mjs"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "jest": "^29.7.0"
-  }
+  "scripts": { "start": "node mcp-server.js" },
+  "dependencies": { "express": "^4.18.2", "jest": "^29.7.0" }
 }
