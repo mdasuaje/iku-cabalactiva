@@ -1,7 +1,7 @@
 // src-v3/2-Application/UseCases/RegisterUserUseCase.test.js
-const { RegisterUserUseCase } = require('./RegisterUserUseCase');
-const { User } = require('../../1-Domain/Entities/User');
-const { GoogleSheetsUserRepository } = require('../../3-Infrastructure/Persistence/GoogleSheetsUserRepository');
+import { RegisterUserUseCase } from './RegisterUserUseCase.js';
+import { User } from '../../1-Domain/Entities/User.js';
+import { GoogleSheetsUserRepository } from '../../3-Infrastructure/Persistence/GoogleSheetsUserRepository.js';
 
 /**
  * Mock User Repository for testing

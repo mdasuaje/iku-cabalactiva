@@ -1,5 +1,5 @@
-const { IUserRepository } = require('../../2-Application/Ports/IUserRepository');
-const http = require('http');
+import { IUserRepository } from '../../2-Application/Ports/IUserRepository.js';
+import http from 'http';
 
 // Esta es la implementación CONCRETA que habla con nuestra infraestructura (el agente MCP).
 class GoogleSheetsUserRepository extends IUserRepository {
@@ -59,7 +59,7 @@ class GoogleSheetsUserRepository extends IUserRepository {
     const exists = await this.existsByEmail(email);
     if (exists) {
       // Si existe, retornar un objeto User simulado
-      const { User } = require('../../1-Domain/Entities/User');
+      const { User } = await import('../../1-Domain/Entities/User.js');
       return new User({ 
         email: email, 
         passwordHash: 'existing_hash',
@@ -79,4 +79,4 @@ class GoogleSheetsUserRepository extends IUserRepository {
   }
 }
 
-module.exports = { GoogleSheetsUserRepository };
+export { GoogleSheetsUserRepository };

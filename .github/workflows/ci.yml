@@ -20,8 +20,8 @@ jobs:
       - name: Install Dependencies & Run Tests
         run: |
           npm install
-          npx jest src-v3/1-Domain/Entities/User.test.js
-          npx jest src-v3/2-Application/UseCases/RegisterUserUseCase.test.js
+          npm test -- src-v3/1-Domain/Entities/User.test.js --run
+          npm test -- src-v3/2-Application/UseCases/RegisterUserUseCase.test.js --run
 
   build-agents:
     runs-on: ubuntu-latest

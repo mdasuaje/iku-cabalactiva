@@ -52,4 +52,4 @@ class IUserRepository {
   }
 }
 
-module.exports = { IUserRepository };
+export { IUserRepository };

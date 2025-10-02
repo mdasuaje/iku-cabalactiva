@@ -1,5 +1,5 @@
 // src-v3/1-Domain/Entities/User.test.js
-const { User } = require('./User');
+import { User } from './User.js';
 
 describe('User Entity', () => {
   describe('Valid User Creation', () => {

@@ -1,5 +1,5 @@
 // src-v3/2-Application/UseCases/RegisterUserUseCase.js
-const { User } = require('../../1-Domain/Entities/User');
+import { User } from '../../1-Domain/Entities/User.js';
 
 /**
  * Register User Use Case
@@ -76,9 +76,9 @@ class RegisterUserUseCase {
    */
   async _defaultPasswordHasher(password) {
     // Simple hash for testing - DO NOT use in production
-    const crypto = require('crypto');
+    const crypto = await import('crypto');
     return crypto.createHash('sha256').update(password + 'salt').digest('hex');
   }
 }
 
-module.exports = { RegisterUserUseCase };
+export { RegisterUserUseCase };
