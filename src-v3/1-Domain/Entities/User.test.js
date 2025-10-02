@@ -1,5 +1,5 @@
 // src-v3/1-Domain/Entities/User.test.js
-import { User } from './User';
+const { User } = require('./User');
 
 describe('User Entity', () => {
   it('should create a user with a valid email and hashed password', () => {
