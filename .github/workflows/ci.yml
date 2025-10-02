@@ -1,0 +1,50 @@
+name: CI - Build & Test v3 Architecture
+
+on:
+  push:
+    branches: [ feature/architecture-v3-genesis ]
+  workflow_dispatch:
+
+jobs:
+  validate-architecture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies & Run Tests
+        run: |
+          npm install
+          npx jest src-v3/1-Domain/Entities/User.test.js
+          npx jest src-v3/2-Application/UseCases/RegisterUserUseCase.test.js
+
+  build-agents:
+    runs-on: ubuntu-latest
+    needs: validate-architecture
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Build TDD Agent (JS)
+        run: docker build -t tdd-agent:latest ./src-v3/3-Infrastructure/McpServers/tdd-server
+        
+      - name: Build Persistence Agent (Python)
+        run: docker build -t persistence-agent:latest ./src-v3/3-Infrastructure/McpServers/persistence-agent
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    needs: validate-architecture
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Build Next.js App
+        run: |
+          cd webapp
+          npm install
+          npm run build
