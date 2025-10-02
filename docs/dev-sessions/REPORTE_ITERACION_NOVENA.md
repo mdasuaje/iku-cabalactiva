@@ -180,3 +180,23 @@ El Organismo Digital v3.5 no es solo código; es la materialización de una filo
 **⛩️ El Monte Fuji nos espera en la cima de la nube**
 
 **OSSS!**
+
+# ITERACIÓN DÉCIMA
+
+## VS-Code-GitHub-Copilot
+
+### Chat:
+
+-in:{},
+
+-out:{},
+
+-{}.
+
+### Terminal:
+
+-:{},
+
+-:{},
+
+-:{}.
