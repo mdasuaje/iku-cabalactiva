@@ -1,0 +1,64 @@
+# .github/workflows/deploy-staging.yml
+name: Deploy to Staging (GitHub Pages)
+
+on:
+  push:
+    branches:
+      - develop # Se activa solo en la rama de desarrollo/staging
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate STAGING Environment Variables
+        run: node scripts/validate-env.mjs
+        env:
+          VITE_GOOGLE_APP_SCRIPT_URL: ${{ secrets.STAGING_VITE_GOOGLE_APP_SCRIPT_URL }}
+          VITE_CRM_SECRET_TOKEN: ${{ secrets.STAGING_VITE_CRM_SECRET_TOKEN }}
+          VITE_PAYPAL_SESION_INDIVIDUAL: ${{ secrets.STAGING_VITE_PAYPAL_SESION_INDIVIDUAL }}
+          VITE_PAYPAL_PAQUETE_COMPLETO: ${{ secrets.STAGING_VITE_PAYPAL_PAQUETE_COMPLETO }}
+          VITE_STRIPE_SESION_INDIVIDUAL: ${{ secrets.STAGING_VITE_STRIPE_SESION_INDIVIDUAL }}
+          VITE_STRIPE_PAQUETE_COMPLETO: ${{ secrets.STAGING_VITE_STRIPE_PAQUETE_COMPLETO }}
+      
+      - name: Build
+        run: npm run build
+        env:
+          VITE_GOOGLE_APP_SCRIPT_URL: ${{ secrets.STAGING_VITE_GOOGLE_APP_SCRIPT_URL }}
+          VITE_CRM_SECRET_TOKEN: ${{ secrets.STAGING_VITE_CRM_SECRET_TOKEN }}
+          VITE_PAYPAL_SESION_INDIVIDUAL: ${{ secrets.STAGING_VITE_PAYPAL_SESION_INDIVIDUAL }}
+          VITE_PAYPAL_PAQUETE_COMPLETO: ${{ secrets.STAGING_VITE_PAYPAL_PAQUETE_COMPLETO }}
+          VITE_STRIPE_SESION_INDIVIDUAL: ${{ secrets.STAGING_VITE_STRIPE_SESION_INDIVIDUAL }}
+          VITE_STRIPE_PAQUETE_COMPLETO: ${{ secrets.STAGING_VITE_STRIPE_PAQUETE_COMPLETO }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+          
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: staging
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages (Staging)
+        id: deployment
+        uses: actions/deploy-pages@v4
