@@ -1,6 +1,7 @@
 // src-v3/2-Application/UseCases/RegisterUserUseCase.test.js
 const { RegisterUserUseCase } = require('./RegisterUserUseCase');
 const { User } = require('../../1-Domain/Entities/User');
+const { GoogleSheetsUserRepository } = require('../../3-Infrastructure/Persistence/GoogleSheetsUserRepository');
 
 /**
  * Mock User Repository for testing
@@ -263,5 +264,26 @@ describe('RegisterUserUseCase', () => {
       expect(savedUser.passwordHash).toBeTruthy();
       expect(savedUser.passwordHash).not.toBe('ValidPass123'); // Should be hashed
     });
+  });
+});
+
+// AÑADIR ESTE NUEVO BLOQUE AL FINAL DEL ARCHIVO
+describe('RegisterUserUseCase (Integration)', () => {
+  // Esta prueba requiere que el persistence-agent esté corriendo en Docker.
+  it('should register a user using the real persistence agent', async () => {
+    const realRepo = new GoogleSheetsUserRepository();
+    const useCase = new RegisterUserUseCase(realRepo);
+    const userEmail = `integration-test-${Date.now()}@iku.com`;
+
+    // 1. Verificar que el usuario no existe
+    const existsBefore = await realRepo.existsByEmail(userEmail);
+    expect(existsBefore).toBe(false);
+    
+    // 2. Ejecutar el caso de uso para registrarlo
+    await useCase.execute({ email: userEmail, password: 'ValidPass123' });
+
+    // 3. Verificar que el usuario ahora sí existe
+    const existsAfter = await realRepo.existsByEmail(userEmail);
+    expect(existsAfter).toBe(true);
   });
 });
