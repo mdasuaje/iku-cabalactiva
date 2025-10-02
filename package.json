@@ -45,7 +45,6 @@
   },
   "dependencies": {
     "framer-motion": "^10.0.1",
-    "mcp-sequentialthinking-tools": "github:spences10/mcp-sequentialthinking-tools",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.62.0",

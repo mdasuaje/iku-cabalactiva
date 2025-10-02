@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import crmService from '../../services/crmService.js'
 
 const XIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -11,16 +12,18 @@ const PricingSection = () => {
   const pricingOptions = [
     {
       id: 'single-session',
-      title: 'Sesión Única',
-      price: '$150',
-      paypalUrl: import.meta.env.VITE_PAYPAL_SINGLE_SESSION
+      title: 'Sesión Individual',
+      price: '$297',
+      paypalUrlEnv: 'VITE_PAYPAL_SESION_INDIVIDUAL',
+      stripeUrlEnv: 'VITE_STRIPE_SESION_INDIVIDUAL'
     },
     {
       id: 'full-package', 
-      title: 'Programa Completo',
-      price: '$1,000',
-      paypalUrl: import.meta.env.VITE_PAYPAL_FULL_PACKAGE,
-      stripeUrl: import.meta.env.VITE_STRIPE_CHECKOUT
+      title: 'Paquete Completo',
+      price: '$997',
+      paypalUrlEnv: 'VITE_PAYPAL_PAQUETE_COMPLETO',
+      stripeUrlEnv: 'VITE_STRIPE_PAQUETE_COMPLETO',
+      stripePartesUrlEnv: 'VITE_STRIPE_PAQUETE_PARTES'
     }
   ]
 
@@ -37,20 +40,67 @@ const PricingSection = () => {
               <span className="text-yellow-600 font-bold">{option.price}</span>
             </div>
             <div className="space-y-2">
-              {option.stripeUrl && (
-                <button
-                  onClick={() => window.open(option.stripeUrl, '_blank')}
-                  className="w-full bg-purple-600 text-white py-2 px-3 rounded text-sm hover:bg-purple-700 transition-colors"
+              {/* --- INICIO DE IMPLEMENTACIÓN STRIPE CON FALLBACK INTELIGENTE --- */}
+              {/* Stripe Payment Button - SIEMPRE VISIBLE */}
+              {option.stripeUrlEnv && import.meta.env[option.stripeUrlEnv] ? (
+                <a
+                  href={import.meta.env[option.stripeUrlEnv]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-blue-600 text-white text-center font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
                 >
-                  💳 Pagar con Tarjeta
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                  </svg>
+                  <span>💳 Pagar con Tarjeta (Stripe)</span>
+                </a>
+              ) : (
+                <button
+                  onClick={() => 
+                    alert('La opción de pago con tarjeta no está disponible en este momento. Por favor, contáctanos a ' + (import.meta.env.VITE_EMAIL_ADMIN || 'soporte@iku-cabalactiva.com') + ' para procesar tu pago manualmente.')
+                  }
+                  className="w-full bg-gray-400 text-white text-center font-bold py-3 px-4 rounded-lg cursor-not-allowed flex items-center justify-center space-x-2"
+                  title="Opción de pago con tarjeta no disponible temporalmente"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                  </svg>
+                  <span>💳 Pagar con Tarjeta (Stripe)</span>
                 </button>
               )}
-              <button
-                onClick={() => window.open(option.paypalUrl, '_blank')}
-                className="w-full bg-blue-600 text-white py-2 px-3 rounded text-sm hover:bg-blue-700 transition-colors"
-              >
-                🌍 Pagar con PayPal
-              </button>
+              
+              {/* Stripe Payment in Parts Button - SIEMPRE VISIBLE */}
+              {option.stripePartesUrlEnv && import.meta.env[option.stripePartesUrlEnv] ? (
+                <a
+                  href={import.meta.env[option.stripePartesUrlEnv]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-slate-900 text-center font-bold py-3 px-4 rounded-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                >
+                  <span>⚡ Pagar en Cuotas</span>
+                </a>
+              ) : option.stripePartesUrlEnv ? (
+                <button
+                  onClick={() => 
+                    alert('El pago en cuotas no está disponible temporalmente. Contáctanos a ' + (import.meta.env.VITE_EMAIL_ADMIN || 'soporte@iku-cabalactiva.com') + ' para opciones de financiamiento.')
+                  }
+                  className="w-full bg-gray-300 text-gray-600 text-center font-bold py-3 px-4 rounded-lg cursor-not-allowed flex items-center justify-center space-x-2"
+                  title="Pago en cuotas no disponible temporalmente"
+                >
+                  <span>⚡ Pagar en Cuotas</span>
+                </button>
+              ) : null}
+              {/* --- FIN DE IMPLEMENTACIÓN STRIPE CON FALLBACK --- */}
+              
+              {/* PayPal Payment Button */}
+              {option.paypalUrlEnv && import.meta.env[option.paypalUrlEnv] && (
+                <button
+                  onClick={() => window.open(import.meta.env[option.paypalUrlEnv], '_blank')}
+                  className="w-full bg-blue-600 text-white py-2 px-3 rounded text-sm hover:bg-blue-700 transition-colors"
+                >
+                  🌍 Pagar con PayPal
+                </button>
+              )}
             </div>
           </div>
         ))}
@@ -85,32 +135,51 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
     setIsSending(true)
     const toastId = toast.loading("Enviando mensaje...")
     try {
-      const response = await fetch(scriptURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-      const result = await response.json()
-      if (result.success) {
-        toast.update(toastId, {
-          render: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.",
-          type: "success",
-          isLoading: false,
-          autoClose: 5000,
-        })
-        setFormData({ nombre: '', email: '', telefono: '', mensaje: '' })
-        onClose()
-      } else {
-        throw new Error(result.error || 'Ocurrió un error en el servidor.')
+      // Validar que la URL del script esté configurada (versión mejorada de develop)
+      if (!scriptURL) {
+        throw new Error('URL del Google Apps Script no configurada')
       }
-    } catch (error) {
+
+      // Usar crmService.registrarCliente que maneja redirecciones y errores correctamente (de develop)
+      await crmService.registrarCliente({
+        nombre: formData.nombre,
+        email: formData.email,
+        telefono: formData.telefono,
+        mensaje: formData.mensaje
+      })
+
       toast.update(toastId, {
-        render: `Error al enviar: ${error.message}`,
+        render: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.",
+        type: "success",
+        isLoading: false,
+        autoClose: 5000,
+      })
+      
+      // Limpiar formulario solo en caso de éxito
+      setFormData({ nombre: '', email: '', telefono: '', mensaje: '' })
+      onClose()
+      
+    } catch (error) {
+      console.error('Error al enviar formulario:', error)
+      
+      // Manejo mejorado de errores específicos (de develop)
+      let errorMessage = "Error al enviar el mensaje"
+      
+      if (error.message.includes('Datos inválidos')) {
+        errorMessage = error.message
+      } else if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
+        errorMessage = "Problema de conexión. Verifique su internet e inténtelo de nuevo."
+      } else if (error.message.includes('Timeout')) {
+        errorMessage = "El servidor está tardando en responder. Inténtelo más tarde."
+      } else if (error.message.includes('URL del Google Apps Script no configurada')) {
+        errorMessage = "Error de configuración. Contacte al administrador."
+      }
+      
+      toast.update(toastId, {
+        render: errorMessage,
         type: "error",
         isLoading: false,
-        autoClose: 6000,
+        autoClose: 8000,
       })
     } finally {
       setIsSending(false)

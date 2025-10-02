@@ -40,14 +40,27 @@ jobs:
         run: |
           npm ci
           npm list terser || npm install terser
+      
+      - name: 🛡️ Validate Environment Variables (DOJO BLINDAJE)
+        run: node scripts/validate-env.mjs
+        env:
+          VITE_GOOGLE_APP_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_APP_SCRIPT_URL }}
+          VITE_CRM_SECRET_TOKEN: ${{ secrets.VITE_CRM_SECRET_TOKEN }}
+          VITE_PAYPAL_SESION_INDIVIDUAL: ${{ secrets.VITE_PAYPAL_SESION_INDIVIDUAL }}
+          VITE_PAYPAL_PAQUETE_COMPLETO: ${{ secrets.VITE_PAYPAL_PAQUETE_COMPLETO }}
+          VITE_STRIPE_SESION_INDIVIDUAL: ${{ secrets.VITE_STRIPE_SESION_INDIVIDUAL }}
+          VITE_STRIPE_PAQUETE_COMPLETO: ${{ secrets.VITE_STRIPE_PAQUETE_COMPLETO }}
+      
       - name: Build project
         env:
-          VITE_STRIPE_PUBLIC_KEY: ${{ secrets.VITE_STRIPE_PUBLIC_KEY }}
-          VITE_STRIPE_CHECKOUT: ${{ secrets.VITE_STRIPE_CHECKOUT }}
-          VITE_PAYPAL_SINGLE_SESSION: ${{ secrets.VITE_PAYPAL_SINGLE_SESSION }}
-          VITE_PAYPAL_FULL_PACKAGE: ${{ secrets.VITE_PAYPAL_FULL_PACKAGE }}
-          VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
           VITE_GOOGLE_APP_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_APP_SCRIPT_URL }}
+          VITE_CRM_SECRET_TOKEN: ${{ secrets.VITE_CRM_SECRET_TOKEN }}
+          VITE_PAYPAL_SESION_INDIVIDUAL: ${{ secrets.VITE_PAYPAL_SESION_INDIVIDUAL }}
+          VITE_PAYPAL_PAQUETE_COMPLETO: ${{ secrets.VITE_PAYPAL_PAQUETE_COMPLETO }}
+          VITE_STRIPE_SESION_INDIVIDUAL: ${{ secrets.VITE_STRIPE_SESION_INDIVIDUAL }}
+          VITE_STRIPE_PAQUETE_COMPLETO: ${{ secrets.VITE_STRIPE_PAQUETE_COMPLETO }}
+          VITE_STRIPE_PAQUETE_PARTES: ${{ secrets.VITE_STRIPE_PAQUETE_PARTES }}
+          VITE_EMAIL_ADMIN: ${{ secrets.VITE_EMAIL_ADMIN }}
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5

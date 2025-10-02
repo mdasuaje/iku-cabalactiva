@@ -65,7 +65,68 @@ export const SEO_CONFIG = {
   twitterHandle: '@ikucabalaactiva'
 }
 
-export const PRICING_PLANS = [
+export const PRICING_PLANS = {
+  sesionUnica: {
+    title: 'Sesión Única de Transformación',
+    price: 297,
+    paypalUrl: import.meta?.env?.VITE_PAYPAL_SESION_INDIVIDUAL,
+    stripeUrl: import.meta?.env?.VITE_STRIPE_SESION_INDIVIDUAL,
+  },
+  paqueteCompleto: {
+    title: 'Programa de Transformación Completa (6 Meses)',
+    price: 997,
+    originalPrice: 1441, // Para mostrar el ahorro
+    paypalUrl: import.meta?.env?.VITE_PAYPAL_PAQUETE_COMPLETO,
+    stripeUrl: import.meta?.env?.VITE_STRIPE_PAQUETE_COMPLETO,
+    stripeInstallmentsUrl: import.meta?.env?.VITE_STRIPE_PAQUETE_PARTES,
+    description: `
+      <ul class="text-left space-y-2">
+        <li class="flex items-center"><span class="text-green-500 mr-2">✔</span><strong>4 Herramientas Cabalísticas Esenciales</strong> (Valor $588)</li>
+        <li class="flex items-center"><span class="text-green-500 mr-2">✔</span><strong>Kamea Personalizada</strong> (Valor $300)</li>
+        <li class="flex items-center"><span class="text-green-500 mr-2">✔</span><strong>6 Sesiones de Seguimiento</strong> (Valor $600)</li>
+        <li class="flex items-center"><span class="text-yellow-400 mr-2">🔥</span><strong>¡Ahorras $444!</strong></li>
+      </ul>
+    `
+  }
+};
+
+export const HERRAMIENTAS_PRECIOS = {
+  carta: { 
+    price: 97, 
+    paypalUrl: import.meta?.env?.VITE_PAYPAL_CARTA_URL, 
+    stripeUrl: import.meta?.env?.VITE_STRIPE_CARTA_URL,
+    title: 'Carta Astral Cabalística',
+    features: ['Análisis profundo de tu árbol de la vida', 'Identificación de patrones y bloqueos', 'Guía para la toma de decisiones'],
+    longDescription: 'La Carta Astral Cabalística es tu piedra fundacional del trabajo espiritual. Esta poderosa herramienta compagina la sabiduría ancestral de la Cábala con la astrología, creando tu árbol de la vida personal. Descubrirás las fortalezas y debilidades que tu alma debe resolver en esta encarnación, revelando un autodescubrimiento profundo de tu esencia divina y tu propósito vital según los secretos de la Cábala.'
+  },
+  constelacion: { 
+    price: 147, 
+    paypalUrl: import.meta?.env?.VITE_PAYPAL_CONSTELACION_URL, 
+    stripeUrl: import.meta?.env?.VITE_STRIPE_CONSTELACION_URL,
+    title: 'Constelación Familiar Cabalística',
+    features: ['Sanación de lazos familiares', 'Liberación de cargas ancestrales', 'Comprensión de dinámicas sistémicas'],
+    longDescription: 'La Constelación Familiar Cabalística interpreta tu árbol familiar desde la perspectiva sagrada de la Cábala. Esta técnica exclusiva del Maestro Isaac Benzaquén te permite constelar las figuras familiares en el Árbol de la Vida, sanando patrones transgeneracionales y liberando cargas ancestrales que han limitado tu crecimiento. Transformarás conflictos familiares en oportunidades de sanación y restaurarás el equilibrio en tus relaciones más importantes.'
+  },
+  meditacion: { 
+    price: 97, 
+    paypalUrl: import.meta?.env?.VITE_PAYPAL_MEDITACION_URL, 
+    stripeUrl: import.meta?.env?.VITE_STRIPE_MEDITACION_URL,
+    title: 'Meditación Cabalística',
+    features: ['Conexión con las letras hebreas', 'Reducción de estrés y ansiedad', 'Expansión de la conciencia'],
+    longDescription: 'La Meditación Cabalística es una práctica ancestral transmitida de Maestro a Discípulo por generaciones. Bajo la guía del Rabbí Isaac Benzaquén, experimentarás una "orquestación cósmica del alma" que emana de tu Chispa Divina. Esta meditación no solo es una de las mayores fuentes de placer espiritual, sino también una acción profundamente sanadora que transforma tu conciencia y te conecta con la Bondad Divina del Creador.'
+  },
+  limpieza: { 
+    price: 247, 
+    paypalUrl: import.meta?.env?.VITE_PAYPAL_LIMPIEZA_URL, 
+    stripeUrl: import.meta?.env?.VITE_STRIPE_LIMPIEZA_URL,
+    title: 'Limpieza Áurica - Shebet Oferet',
+    features: ['Ritual del Cometa de Plomo', 'Purificación del campo energético', 'Eliminación de influencias negativas'],
+    longDescription: 'La Limpieza Áurica Cabalística con el poderoso ritual Shebet Oferet es un proceso destinado a armonizar y acelerar tu desarrollo espiritual. Desde la perspectiva profunda de la Cábala, cada persona debe apropiarse de ciertas correcciones esenciales para alcanzar la plenitud. Esta limpieza representa el impulso fundamental para un Trabajo Espiritual consciente, integral y completo, despejando tus campos energéticos para que fluyan armónicamente todos tus procesos de crecimiento.'
+  }
+};
+
+// LEGACY ARRAY FOR BACKWARD COMPATIBILITY - Mantener temporalmente
+export const PRICING_PLANS_LEGACY = [
   {
     id: 'carta',
     title: 'Carta Astral Cabalística',

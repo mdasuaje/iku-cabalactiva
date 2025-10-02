@@ -88,3 +88,35 @@ Thumbs.db
 # Backups
 backup-iku-cabala*
 
+# Testing Artifacts (Clean Architecture Principle - Separate Test Concerns)
+test-results/
+playwright-report/
+coverage/
+*.spec.js.results
+*.test.js.results
+
+# Build and Distribution Artifacts
+dist/
+build/
+out/
+
+# Environment-Specific Configs (Security & Clean Separation)
+.env.*
+!.env.example
+
+# Development Artifacts (Keep Repository Clean)
+.vscode/settings.json
+.vscode/launch.json
+*.log
+*.tmp
+*.temp
+
+# CI/CD Artifacts (Should not be versioned)
+.github/workflows/*.log
+deployment-logs/
+
+# Clean Architecture - Domain Layer Protection
+# (Future: src-v3/ artifacts that should not be committed during development)
+src-v3/temp/
+src-v3/experiments/
+
