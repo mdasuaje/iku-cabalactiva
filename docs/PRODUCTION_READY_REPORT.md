@@ -171,4 +171,4 @@ dist/assets/js/vendor-DEQ385Nk.js   139.23 kB │ gzip: 45.04 kB
 
 ---
 
-*Análisis generado el: 2025-09-29 | Commit: dd7e71e | Rama: feature/frontend-refactor*
+*Análisis generado el: 2025-09-29 | Commit: dd7e71e | Rama: feature/frontend-refactor*Despliegue a producción completado: Tue Oct 14 21:24:05 UTC 2025

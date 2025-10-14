@@ -8,7 +8,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const ENV_PRODUCTION = path.join(__dirname, '../.env.production');
 
-console.log('🔍 Verificando variables de entorno de producción...');
+/**
+ * Verifica las variables de entorno necesarias para la aplicación
+ * @param {string} envPath - Ruta opcional al archivo .env a verificar
+ * @return {boolean} - true si todas las variables están correctas
+ */
+export default function verifyEnvironmentVars(envPath = ENV_PRODUCTION) {
+  console.log('🔍 Verificando variables de entorno de producción...');
 
 if (!fs.existsSync(ENV_PRODUCTION)) {
   console.error('❌ Archivo .env.production no encontrado');
@@ -52,9 +58,11 @@ requiredVars.forEach(varName => {
   console.log(`✅ ${varName}: OK`);
 });
 
-if (hasErrors) {
-  console.error('\n❌ Verificación de variables de entorno FALLIDA');
-  process.exit(1);
-}
+  if (hasErrors) {
+    console.error('\n❌ Verificación de variables de entorno FALLIDA');
+    return false;
+  }
 
-console.log('\n✅ Todas las variables de entorno verificadas correctamente');
+  console.log('\n✅ Todas las variables de entorno verificadas correctamente');
+  return !hasErrors;
+}
