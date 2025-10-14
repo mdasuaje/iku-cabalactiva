@@ -11,6 +11,7 @@
     "sitemap": "node scripts/generate-sitemap.js",
     "enable-section": "node scripts/enable-section.js",
     "preview": "vite preview",
+    "clean": "bash scripts/clean-temp-files.sh",
     "test": "vitest",
     "test:ci": "vitest run --coverage",
     "test:ui": "vitest --ui",
