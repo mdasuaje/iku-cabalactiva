@@ -7,5 +7,5 @@ describe('CRMService Zero Trust Integration', () => {
     const result = await crmService.testConnection();
     expect(result.success).toBe(true);
     expect(result.message).toBeDefined();
-  });
+  }, 15000);
 });

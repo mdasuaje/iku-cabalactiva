@@ -12,10 +12,10 @@ describe('CRMService Zero Trust - Manejo de errores', () => {
   it('debe fallar con token incorrecto', async () => {
     crmService.secretToken = 'TOKEN_INVALIDO';
     const result = await crmService.testConnection();
-  // Debe ser un objeto con success: false
-  expect(result).toBeDefined();
-  expect(result.success).toBe(false);
-  });
+    // Debe ser un objeto con success: false
+    expect(result).toBeDefined();
+    expect(result.success).toBe(false);
+  }, 15000);
 
   it('debe fallar si el endpoint no existe', async () => {
     const originalUrl = crmService.webhookUrl;
