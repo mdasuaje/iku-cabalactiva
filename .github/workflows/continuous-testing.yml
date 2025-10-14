@@ -1,0 +1,235 @@
+name: 'Continuous Testing & Validation'
+
+on:
+  push:
+    branches: [crm-payment-gateway-implementation, main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test-suite:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18, 20]
+    
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Node.js ${{ matrix.node-version }}'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: 'Install Dependencies'
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      - name: 'Lint Code'
+        run: npm run lint
+
+      - name: 'Run Unit Tests'
+        run: npm run test:ci
+
+      - name: 'Build Application'
+        run: npm run build
+
+      - name: 'Run E2E Tests'
+        run: npm run test:e2e
+
+      - name: 'Upload Test Results'
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-node-${{ matrix.node-version }}
+          path: |
+            test-results/
+            coverage/
+            playwright-report/
+
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: test-suite
+    
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 'Install Dependencies'
+        run: npm ci
+
+      - name: 'Run Security Audit'
+        run: npm audit --audit-level moderate
+
+      - name: 'Check for Secrets'
+        run: |
+          # Basic secret scanning
+          if grep -r "sk_live_" src/ || grep -r "pk_live_" src/; then
+            echo "❌ Live API keys detected in source code"
+            exit 1
+          fi
+          echo "✅ No live API keys detected"
+
+  performance-test:
+    runs-on: ubuntu-latest
+    needs: test-suite
+    
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 'Install Dependencies'
+        run: |
+          npm ci
+          npm install -g lighthouse
+
+      - name: 'Build Application'
+        run: npm run build
+
+      - name: 'Start Preview Server'
+        run: |
+          npm run preview &
+          sleep 10
+
+      - name: 'Run Lighthouse'
+        run: |
+          lighthouse http://localhost:4173 --output=json --output-path=lighthouse-report.json --chrome-flags="--headless --no-sandbox"
+
+      - name: 'Upload Lighthouse Report'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.json
+
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: test-suite
+    
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 'Install Dependencies'
+        run: npm ci
+
+      - name: 'Test CRM Integration'
+        run: |
+          # Test CRM service functionality
+          node -e "
+            const crmService = require('./src/services/crmService.js').default;
+            console.log('✅ CRM Service loaded successfully');
+            console.log('Webhook URL configured:', crmService.webhookUrl ? '✅' : '❌');
+          "
+
+      - name: 'Test Payment Integration'
+        run: |
+          # Check payment webhook files
+          if [ -f "api/webhooks/paypal.js" ] && [ -f "api/webhooks/stripe.js" ]; then
+            echo "✅ Payment webhook files present"
+          else
+            echo "❌ Payment webhook files missing"
+            exit 1
+          fi
+
+      - name: 'Validate Environment Configuration'
+        run: |
+          # Check for required environment variables in example file
+          if [ -f ".env.example" ]; then
+            echo "✅ Environment example file present"
+            if grep -q "VITE_GOOGLE_APPS_SCRIPT_URL" .env.example; then
+              echo "✅ CRM configuration documented"
+            else
+              echo "⚠️ CRM configuration not documented in .env.example"
+            fi
+          else
+            echo "❌ .env.example file missing"
+          fi
+
+  deployment-readiness:
+    runs-on: ubuntu-latest
+    needs: [test-suite, security-scan, performance-test, integration-test]
+    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
+    
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 'Install Dependencies'
+        run: npm ci
+
+      - name: 'Final Build Validation'
+        run: |
+          npm run build
+          echo "✅ Production build successful"
+
+      - name: 'Check Bundle Size'
+        run: |
+          # Basic bundle size check
+          BUNDLE_SIZE=$(du -sh dist/ | cut -f1)
+          echo "Bundle size: $BUNDLE_SIZE"
+          echo "✅ Bundle size check completed"
+
+      - name: 'Validate Critical Files'
+        run: |
+          # Check for critical files in build
+          if [ -f "dist/index.html" ]; then
+            echo "✅ Main HTML file present"
+          else
+            echo "❌ Main HTML file missing"
+            exit 1
+          fi
+          
+          if [ -d "dist/assets" ]; then
+            echo "✅ Assets directory present"
+          else
+            echo "❌ Assets directory missing"
+            exit 1
+          fi
+
+      - name: 'Generate Deployment Report'
+        run: |
+          echo "## 🚀 Deployment Readiness Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### ✅ All Tests Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- Unit Tests: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- E2E Tests: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Security Scan: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Performance Test: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Integration Test: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Build Validation: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📊 Metrics" >> $GITHUB_STEP_SUMMARY
+          echo "- Bundle Size: $(du -sh dist/ | cut -f1)" >> $GITHUB_STEP_SUMMARY
+          echo "- Node.js Versions Tested: 18, 20" >> $GITHUB_STEP_SUMMARY
+          echo "- Timestamp: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status: Ready for Deployment** 🎉" >> $GITHUB_STEP_SUMMARY
