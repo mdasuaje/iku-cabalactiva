@@ -1,94 +1,66 @@
-#!/bin/bash#!/usr/bin/env bash
+#!/usr/bin/env bash
 
+# Script de Despliegue a Producción
+# Este script facilita el despliegue del proyecto a producción después de verificación
 
-
-# Script para despliegue a producción# Script de Despliegue a Producción
-
-# Usa el script deploy.sh existente con configuraciones adicionales para producción# Este script facilita el despliegue del proyecto a producción después de verificación
-
-
-
-echo "🚀 Iniciando despliegue a producción de IKU Cábala Activa..."# Colores para mejor legibilidad
-
+# Colores para mejor legibilidad
 GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
 
-# Verificar que estamos en la rama principalRED='\033[0;31m'
-
-CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)YELLOW='\033[1;33m'
-
-if [ "$CURRENT_BRANCH" != "main" ]; thenBLUE='\033[0;34m'
-
-  echo "❌ ERROR: Debes estar en la rama main para desplegar a producción"NC='\033[0m' # No Color
-
-  exit 1
-
-fiecho -e "${BLUE}=========================================================${NC}"
-
+echo -e "${BLUE}=========================================================${NC}"
 echo -e "${YELLOW}🚀 DESPLIEGUE A PRODUCCIÓN - IKU CABALACTIVA${NC}"
+echo -e "${BLUE}=========================================================${NC}"
+echo ""
 
-# Verificar que no hay cambios sin confirmarecho -e "${BLUE}=========================================================${NC}"
+# Verificar que estamos en la raíz del proyecto
+if [ ! -f "./package.json" ]; then
+  echo -e "${RED}❌ Error: Este script debe ejecutarse desde la raíz del proyecto${NC}"
+  echo "   Actualmente en: $(pwd)"
+  exit 1
+fi
 
-if [ -n "$(git status --porcelain)" ]; thenecho ""
+# Verificar que estamos en la rama principal
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENT_BRANCH" != "main" ]; then
+  echo -e "${RED}❌ ERROR: Debes estar en la rama main para desplegar a producción${NC}"
+  exit 1
+fi
 
-  echo "⚠️ ADVERTENCIA: Hay cambios sin confirmar. Considera confirmarlos antes de continuar."
+# Verificar que no hay cambios sin confirmar
+if [ -n "$(git status --porcelain)" ]; then
+  echo -e "${YELLOW}⚠️ ADVERTENCIA: Hay cambios sin confirmar. Considera confirmarlos antes de continuar.${NC}"
+  read -p "¿Deseas continuar de todos modos? (s/n): " CONTINUE
+  if [ "$CONTINUE" != "s" ]; then
+    echo -e "${RED}❌ Despliegue abortado.${NC}"
+    exit 1
+  fi
+fi
 
-  read -p "¿Deseas continuar de todos modos? (s/n): " CONTINUE# Verificar que estamos en la raíz del proyecto
-
-  if [ "$CONTINUE" != "s" ]; thenif [ ! -f "./package.json" ]; then
-
-    echo "❌ Despliegue abortado."  echo -e "${RED}❌ Error: Este script debe ejecutarse desde la raíz del proyecto${NC}"
-
-    exit 1  echo "   Actualmente en: $(pwd)"
-
-  fi  exit 1
-
-fifi
-
-
-
-# Configurar variables de entorno para producción# Función para verificar la certificación
-
-export NODE_ENV=productioncheck_certification() {
-
+# Función para verificar la certificación
+check_certification() {
   local cert_file="./docs/CERTIFICACION_DESPLIEGUE_PRODUCCION.md"
-
-# Ejecutar diagnóstico previo al despliegue  if [ ! -f "$cert_file" ]; then
-
-echo "🔍 Ejecutando diagnóstico previo al despliegue..."    echo -e "${RED}❌ Error: No se encontró el archivo de certificación de despliegue${NC}"
-
-python diagnose.py    echo "   El proyecto debe estar certificado antes de ser desplegado"
-
+  if [ ! -f "$cert_file" ]; then
+    echo -e "${RED}❌ Error: No se encontró el archivo de certificación de despliegue${NC}"
+    echo "   El proyecto debe estar certificado antes de ser desplegado"
     return 1
-
-# Si el diagnóstico es exitoso, continuar con el despliegue  fi
-
-if [ $? -eq 0 ]; then  
-
-  echo "✅ Diagnóstico exitoso. Continuando con el despliegue..."  # Verificar que no haya issues pendientes en el reporte de diagnóstico
-
-    local issues_count=$(grep -c "Total de issues: 0" "$cert_file" || echo "0")
-
-  # Usar el script de despliegue existente  if [ "$issues_count" -eq "0" ]; then
-
-  ./deploy.sh    echo -e "${RED}❌ Error: La certificación indica issues pendientes${NC}"
-
-      echo "   Por favor, resuelva todos los issues antes de desplegar"
-
-  echo "📝 Actualizando documentación de despliegue..."    return 1
-
-  echo "Despliegue a producción completado: $(date)" >> docs/PRODUCTION_READY_REPORT.md  fi
-
-else  
-
-  echo "❌ El diagnóstico falló. Abortando despliegue a producción."  # Verificar que todos los componentes estén aprobados
-
-  exit 1  local components_count=$(grep -c "✅ APROBADO" "$cert_file" || echo "0")
-
-fi  if [ "$components_count" -lt "5" ]; then
-
+  fi
+  
+  # Verificar que no haya issues pendientes en el reporte de diagnóstico
+  local issues_count=$(grep -c "Total de issues: 0" "$cert_file" || echo "0")
+  if [ "$issues_count" -eq "0" ]; then
+    echo -e "${RED}❌ Error: La certificación indica issues pendientes${NC}"
+    echo "   Por favor, resuelva todos los issues antes de desplegar"
+    return 1
+  fi
+  
+  # Verificar que todos los componentes estén aprobados
+  local components_count=$(grep -c "✅ APROBADO" "$cert_file" || echo "0")
+  if [ "$components_count" -lt "5" ]; then
     echo -e "${RED}❌ Error: No todos los componentes están marcados como aprobados en la certificación${NC}"
-
-echo "✅ Despliegue a producción completado."    echo "   Se requiere aprobación de todos los componentes críticos"
+    echo "   Se requiere aprobación de todos los componentes críticos"
     return 1
   fi
   
@@ -96,31 +68,26 @@ echo "✅ Despliegue a producción completado."    echo "   Se requiere aprobaci
   return 0
 }
 
-# Función para verificar rama
-check_branch() {
-  local current_branch=$(git branch --show-current)
-  
-  if [ "$current_branch" != "crm-payment-gateway-implementation" ]; then
-    echo -e "${YELLOW}⚠️ Advertencia: No estás en la rama crm-payment-gateway-implementation${NC}"
-    echo -e "   Rama actual: ${current_branch}"
-    
-    read -p "¿Deseas continuar de todos modos? (s/N): " confirm
-    if [[ $confirm != [sS] ]]; then
-      echo -e "${BLUE}ℹ️ Operación cancelada por el usuario${NC}"
-      return 1
-    fi
-  else
-    echo -e "${GREEN}✅ Rama correcta: crm-payment-gateway-implementation${NC}"
-  fi
-  
-  return 0
-}
-
 # Función para ejecutar diagnóstico final
 run_final_diagnosis() {
-  echo -e "${YELLOW}📋 Ejecutando diagnóstico final pre-despliegue...${NC}"
+  echo -e "${YELLOW}📋 Ejecutando diagnóstico previo al despliegue...${NC}"
   
-  if ! ./diagnose.sh; then
+  # Configurar variables de entorno para producción
+  export NODE_ENV=production
+
+  # Ejecutar diagnóstico Python y Bash
+  python diagnose.py
+  
+  if [ $? -ne 0 ]; then
+    echo -e "${RED}❌ Error: El diagnóstico ha fallado${NC}"
+    echo "   No se puede proceder con el despliegue"
+    return 1
+  fi
+  
+  # Ejecutar el diagnóstico Bash adicional
+  ./diagnose.sh
+  
+  if [ $? -ne 0 ]; then
     echo -e "${RED}❌ Error: El diagnóstico final ha fallado${NC}"
     echo "   No se puede proceder con el despliegue"
     return 1
@@ -197,6 +164,11 @@ perform_deployment() {
   fi
   
   echo -e "${GREEN}✅ Despliegue a producción completado exitosamente${NC}"
+  
+  # Actualizar documentación de despliegue
+  echo -e "${YELLOW}📝 Actualizando documentación de despliegue...${NC}"
+  echo "Despliegue a producción completado: $(date)" >> docs/PRODUCTION_READY_REPORT.md
+  
   return 0
 }
 
@@ -224,41 +196,36 @@ main() {
   check_certification
   if [ $? -ne 0 ]; then exit 1; fi
   
-  # Paso 2: Verificar rama
-  echo -e "\n${YELLOW}PASO 2: Verificando rama actual${NC}"
-  check_branch
-  if [ $? -ne 0 ]; then exit 1; fi
-  
-  # Paso 3: Ejecutar diagnóstico final
-  echo -e "\n${YELLOW}PASO 3: Ejecutando diagnóstico final${NC}"
+  # Paso 2: Ejecutar diagnóstico final
+  echo -e "\n${YELLOW}PASO 2: Ejecutando diagnóstico final${NC}"
   run_final_diagnosis
   if [ $? -ne 0 ]; then exit 1; fi
   
-  # Paso 4: Confirmar con el usuario
-  echo -e "\n${YELLOW}PASO 4: Confirmación para continuar${NC}"
+  # Paso 3: Confirmar con el usuario
+  echo -e "\n${YELLOW}PASO 3: Confirmación para continuar${NC}"
   read -p "¿Estás seguro de que deseas desplegar a producción? (s/N): " confirm
   if [[ $confirm != [sS] ]]; then
     echo -e "${BLUE}ℹ️ Operación cancelada por el usuario${NC}"
     exit 0
   fi
   
-  # Paso 5: Crear tag de versión
-  echo -e "\n${YELLOW}PASO 5: Creando tag de versión${NC}"
+  # Paso 4: Crear tag de versión
+  echo -e "\n${YELLOW}PASO 4: Creando tag de versión${NC}"
   create_version_tag
   if [ $? -ne 0 ]; then exit 1; fi
   
-  # Paso 6: Preparar despliegue
-  echo -e "\n${YELLOW}PASO 6: Preparando archivos para despliegue${NC}"
+  # Paso 5: Preparar despliegue
+  echo -e "\n${YELLOW}PASO 5: Preparando archivos para despliegue${NC}"
   prepare_deployment
   if [ $? -ne 0 ]; then exit 1; fi
   
-  # Paso 7: Realizar despliegue
-  echo -e "\n${YELLOW}PASO 7: Realizando despliegue${NC}"
+  # Paso 6: Realizar despliegue
+  echo -e "\n${YELLOW}PASO 6: Realizando despliegue${NC}"
   perform_deployment
   if [ $? -ne 0 ]; then exit 1; fi
   
-  # Paso 8: Verificar despliegue
-  echo -e "\n${YELLOW}PASO 8: Verificando despliegue${NC}"
+  # Paso 7: Verificar despliegue
+  echo -e "\n${YELLOW}PASO 7: Verificando despliegue${NC}"
   verify_deployment
   
   # Éxito
