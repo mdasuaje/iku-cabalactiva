@@ -23,6 +23,19 @@ pids
 
 # Coverage directory used by tools like istanbul
 coverage/
+coverage-temp/
+coverage-report*/
+
+# Test results and reports
+test-results/
+playwright-report/
+**/test-report*/
+*.test-result.json
+*.spec.result.json
+**/__snapshots__/*.snap.tmp
+**/temp-test-files/
+temp-*.js
+*.test.log
 
 # nyc test coverage
 .nyc_output
@@ -69,6 +82,20 @@ jspm_packages/
 # DynamoDB Local files
 .dynamodb/
 
+# Archivos de diagnóstico y temporales
+**/diagnostics/*.tmp
+**/diagnostics/*.json
+**/diagnose-*.log
+**/temp/
+__temp__/
+
+# Archivos de caché de compilación y ejecución
+.eslintcache
+.vite/
+stats.html
+bundle-stats.json
+.rollup.cache/
+
 # IDE
 .vscode/
 .idea/
@@ -87,4 +114,22 @@ Thumbs.db
 
 # Backups
 backup-iku-cabala*
+*-backup.*
+*.bak
+
+# Archivos de debug y configuración temporal
+.debug
+debug.config
+debug-*.js
+.debug-env
+**/debug-logs/
+config.local.js
+.hmr*
+webpack.stats.json
+
+# Archivos de traza y perfilado
+trace-*.json
+profile-*.json
+**/chrome-user-data/
+**/lighthouse/
 

@@ -15,6 +15,7 @@ vi.mock('react-hot-toast', () => ({
 }))
 
 // Mock fetch globally
+const global = globalThis;
 global.fetch = vi.fn()
 
 describe('CRMService Integration Tests', () => {
@@ -219,7 +220,6 @@ describe('CRMService Integration Tests', () => {
       await expect(CRMService.registrarCliente(clienteData))
         .rejects.toThrow()
     }, 15000)
-    })
   })
 
   describe('testConnection', () => {
