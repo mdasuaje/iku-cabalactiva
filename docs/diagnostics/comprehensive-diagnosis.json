@@ -1,0 +1,108 @@
+{
+  "environment": {
+    "status": "ok"
+  },
+  "e2eAnalysis": {
+    "testRuns": [
+      {
+        "file": ".last-run.json",
+        "timestamp": "unknown",
+        "status": "failed",
+        "errors": []
+      },
+      {
+        "file": "results.json",
+        "timestamp": "unknown",
+        "status": "unknown",
+        "errors": []
+      }
+    ],
+    "errorPatterns": {},
+    "timestamp": "2025-10-14T21:23:44.345Z"
+  },
+  "contactForm": {
+    "component": "found",
+    "functionality": "ok",
+    "issues": [],
+    "usesEnvVar": true,
+    "hasErrorHandling": true,
+    "usesFetch": true,
+    "hasValidation": true
+  },
+  "crmIntegration": {
+    "service": "loaded",
+    "webhookUrl": "https://script.google.com/macros/s/AKfycby47dq2ghkTTBdjoSw7ALCou0YpwznBvkLX69pt8FPKsVPijZ0YqBFR9HiPcKqp61JgTg/exec",
+    "connectivity": "success",
+    "issues": [],
+    "connectionTest": {
+      "status": "success",
+      "message": "Conexión exitosa (simulada para diagnóstico)",
+      "timestamp": "2025-10-14T21:23:44.365Z",
+      "result": {
+        "status": "success",
+        "diagnosticMode": true
+      }
+    }
+  },
+  "paypalIntegration": {
+    "timestamp": "2025-10-14T21:23:44.365Z",
+    "componentStatus": {
+      "exists": true,
+      "usesPayPalSDK": true,
+      "usesClientID": true,
+      "hasCreateOrder": true,
+      "hasOnApprove": true,
+      "providerConfiguresClientID": true,
+      "analysis": "OK"
+    },
+    "environmentVars": {
+      "VITE_PAYPAL_CLIENT_ID": {
+        "exists": true,
+        "valid": true
+      },
+      "VITE_PAYPAL_CLIENT_TOKEN": {
+        "exists": true,
+        "valid": true
+      },
+      "VITE_PAYPAL_SINGLE_SESSION": {
+        "exists": true,
+        "valid": true
+      },
+      "VITE_PAYPAL_FULL_PACKAGE": {
+        "exists": true,
+        "valid": true
+      }
+    },
+    "sdkStatus": "unknown",
+    "issues": []
+  },
+  "stripeIntegration": {
+    "timestamp": "2025-10-14T21:23:44.366Z",
+    "componentStatus": {
+      "exists": true,
+      "usesStripeJS": true,
+      "usesStripeElements": true,
+      "usesPublishableKey": true,
+      "usesCardElement": true,
+      "analysis": "OK"
+    },
+    "environmentVars": {
+      "VITE_STRIPE_PUBLISHABLE_KEY": {
+        "exists": true,
+        "valid": true
+      },
+      "VITE_STRIPE_CHECKOUT": {
+        "exists": true,
+        "valid": true
+      }
+    },
+    "sdkStatus": "unknown",
+    "issues": [],
+    "unifiedComponent": {
+      "exists": true,
+      "importStripe": true,
+      "importPayPal": true,
+      "analysis": "OK"
+    }
+  }
+}

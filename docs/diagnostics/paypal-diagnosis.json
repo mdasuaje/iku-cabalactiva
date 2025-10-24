@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-14T21:23:44.365Z",
+  "componentStatus": {
+    "exists": true,
+    "usesPayPalSDK": true,
+    "usesClientID": true,
+    "hasCreateOrder": true,
+    "hasOnApprove": true,
+    "providerConfiguresClientID": true,
+    "analysis": "OK"
+  },
+  "environmentVars": {
+    "VITE_PAYPAL_CLIENT_ID": {
+      "exists": true,
+      "valid": true
+    },
+    "VITE_PAYPAL_CLIENT_TOKEN": {
+      "exists": true,
+      "valid": true
+    },
+    "VITE_PAYPAL_SINGLE_SESSION": {
+      "exists": true,
+      "valid": true
+    },
+    "VITE_PAYPAL_FULL_PACKAGE": {
+      "exists": true,
+      "valid": true
+    }
+  },
+  "sdkStatus": "unknown",
+  "issues": []
+}
