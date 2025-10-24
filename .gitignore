@@ -8,6 +8,9 @@ dist/
 .env.test.local
 .env.production.local
 
+# Ignore all env variants (safer to catch new local env files)
+.env*
+
 # Logs
 logs
 *.log
@@ -132,4 +135,81 @@ trace-*.json
 profile-*.json
 **/chrome-user-data/
 **/lighthouse/
+
+# ------------------------------
+# Testing & temporary artifacts (added)
+# ------------------------------
+# Pytest and Python caches
+.pytest_cache/
+__pycache__/
+*.py[cod]
+# Python coverage files
+.coverage
+coverage.*
+# Common coverage reports
+coverage-reports/
+
+# Playwright and test reporters
+playwright-report/
+# Playwright traces, videos, screenshots
+playwright-report/**
+playwright/traces/
+playwright/traces/**
+playwright/videos/
+playwright/videos/**
+playwright/screenshots/
+playwright/screenshots/**
+playwright/**/trace.zip
+
+# Generic screenshots / traces produced by other tools
+screenshots/
+screenshots/**
+traces/
+traces/**
+
+test-results/
+
+# Playwright artifacts: traces, screenshots, videos, traces zip
+playwright-traces/
+playwright-trace/
+playwright-trace.*
+playwright-trace.zip
+playwright-screenshots/
+playwright-videos/
+**/screenshots/
+**/videos/
+
+# Generic test artifacts and artifacts folders
+artifacts/
+**/artifacts/
+
+# Playwright test-runner outputs
+.playwright/
+
+# Vitest / Jest / other test caches
+node_modules/.vite
+test-coverage/
+
+# Temporary and cache files
+.cache/
+.parcel-cache/
+.temp/
+.tmp/
+tmp/
+*.tmp
+*.temp
+
+# Editor swap / lock files
+*.swp
+*.swo
+
+# Misc
+*.lcov
+*.log
+
+# Keep local dev envs out
+.env.local
+.env.*.local
+
+
 

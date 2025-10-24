@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-10-14T21:23:44.366Z",
+  "componentStatus": {
+    "exists": true,
+    "usesStripeJS": true,
+    "usesStripeElements": true,
+    "usesPublishableKey": true,
+    "usesCardElement": true,
+    "analysis": "OK"
+  },
+  "environmentVars": {
+    "VITE_STRIPE_PUBLISHABLE_KEY": {
+      "exists": true,
+      "valid": true
+    },
+    "VITE_STRIPE_CHECKOUT": {
+      "exists": true,
+      "valid": true
+    }
+  },
+  "sdkStatus": "unknown",
+  "issues": [],
+  "unifiedComponent": {
+    "exists": true,
+    "importStripe": true,
+    "importPayPal": true,
+    "analysis": "OK"
+  }
+}
