@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import contactService from '../../services/contactService'
+import { apiService } from '../../services/api'
 
 /**
  * Formulario de contacto reutilizable
@@ -17,9 +17,7 @@ const ContactForm = ({
   asunto = 'Consulta General',
   compact = false
 }) => {
-  // URL del Web App de Google Apps Script
-  const scriptURL = import.meta.env.VITE_GOOGLE_APP_SCRIPT_URL || 
-    'https://script.google.com/macros/s/AKfycby47dq2ghkTTBdjoSw7ALCou0YpwznBvkLX69pt8FPKsVPijZ0YqBFR9HiPcKqp61JgTg/exec'
+
 
   // Estado del formulario
   const [formData, setFormData] = useState({
@@ -98,28 +96,12 @@ const ContactForm = ({
     const toastId = toast.loading("Enviando mensaje...")
     
     try {
-      // Enviar directamente al webhook con fetch
-      const response = await fetch(scriptURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          action: 'send-email',
-          to: 'contacto@iku-cabalactiva.com',
-          cc: 'maor@iku-cabalactiva.com',
-          subject: `💬 Nueva Consulta: ${asunto}`,
-          template: 'consulta-general',
-          data: formData
-        })
-      })
-      
-      const result = await response.json()
-      
-      // También registrar en el CRM usando el servicio
-      await contactService.enviarConsulta({
+      // Enviar usando el servicio API de AWS
+      const result = await apiService.sendContactForm({
         ...formData,
-        asunto
+        asunto,
+        to: 'contacto@iku-cabalactiva.com',
+        cc: 'maor@iku-cabalactiva.com'
       })
       
       if (result.success) {

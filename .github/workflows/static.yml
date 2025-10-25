@@ -48,6 +48,10 @@ jobs:
           VITE_PAYPAL_FULL_PACKAGE: ${{ secrets.VITE_PAYPAL_FULL_PACKAGE }}
           VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
           VITE_GOOGLE_APP_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_APP_SCRIPT_URL }}
+          VITE_API_GATEWAY_URL: ${{ secrets.VITE_API_GATEWAY_URL }}
+          VITE_AWS_REGION: ${{ secrets.VITE_AWS_REGION }}
+          VITE_CONTACT_EMAIL: ${{ secrets.VITE_CONTACT_EMAIL }}
+          VITE_CC_EMAIL: ${{ secrets.VITE_CC_EMAIL }}
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5

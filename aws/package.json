@@ -1,0 +1,17 @@
+{
+  "name": "iku-cabalactiva-aws",
+  "version": "1.0.0",
+  "description": "AWS backend services for IKU Cábala Activa",
+  "main": "scripts/process-queue.js",
+  "scripts": {
+    "process-queue": "node scripts/process-queue.js",
+    "test-queue": "node scripts/test-queue.js",
+    "setup-cron": "echo '*/5 * * * * cd /workspaces/iku-cabalactiva && node aws/scripts/process-queue.js' | crontab -"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1490.0"
+  },
+  "keywords": ["aws", "sqs", "ses", "cabala"],
+  "author": "IKU Cábala Activa",
+  "license": "PRIVATE"
+}

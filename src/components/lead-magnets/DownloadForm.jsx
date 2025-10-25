@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
-import contactService from '../../services/contactService';
+import { apiService } from '../../services/api';
 
 export default function DownloadForm({ leadMagnet, onSuccess, onClose }) {
   const [email, setEmail] = useState('');
@@ -13,10 +13,13 @@ export default function DownloadForm({ leadMagnet, onSuccess, onClose }) {
 
     setLoading(true);
     try {
-      await contactService.enviarLeadMagnet({
+      await apiService.sendContactForm({
         email,
+        nombre: 'Lead Magnet',
+        asunto: `Lead Magnet: ${leadMagnet.title}`,
+        mensaje: `Descarga de recurso: ${leadMagnet.title}`,
         source: `lead-magnet-${leadMagnet.id}`,
-        leadMagnet: leadMagnet.title
+        to: 'contacto@iku-cabalactiva.com'
       });
 
       toast.success('¡Descarga iniciada! Revisa tu email.');

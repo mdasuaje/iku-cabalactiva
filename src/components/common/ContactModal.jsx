@@ -60,8 +60,9 @@ const PricingSection = () => {
 }
 
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { apiService } from '../../services/api'
 
 const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => {
   const [formData, setFormData] = useState({
@@ -73,26 +74,19 @@ const ContactModal = ({ isOpen, onClose, herramienta = "Consulta General" }) => 
   const [showPricing, setShowPricing] = useState(false)
   const [isSending, setIsSending] = useState(false)
 
-  // URL del Web App de Google Apps Script
-  const scriptURL = import.meta.env.VITE_GOOGLE_APP_SCRIPT_URL
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!scriptURL) {
-      toast.error("El servicio de contacto no está disponible. Inténtelo más tarde.")
-      return
-    }
     setIsSending(true)
     const toastId = toast.loading("Enviando mensaje...")
     try {
-      const response = await fetch(scriptURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const result = await apiService.sendContactForm({
+        ...formData,
+        asunto: herramienta,
+        to: 'contacto@iku-cabalactiva.com',
+        cc: 'maor@iku-cabalactiva.com'
       })
-      const result = await response.json()
       if (result.success) {
         toast.update(toastId, {
           render: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.",
