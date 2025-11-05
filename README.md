@@ -1,17 +1,19 @@
 # 🌟 IKU Cábala Activa
 
-**Herramientas Espirituales del Maestro Isaac Benzaquén**
+**Herramientas Espirituales del Rabbí Isaac Benzaquén**
 
 Una plataforma web moderna para conectar personas with la sabiduría ancestral de la Cábala a través de herramientas espirituales personalizadas.
 
 ## 🎯 Descripción del Proyecto
 
-IKU Cábala Activa es una landing page diseñada para promocionar y vender herramientas espirituales cabalísticas desarrolladas por el Maestro y Rabino Isaac Benzaquén. El sitio ofrece cuatro herramientas principales:
+IKU Cábala Activa es una landing page diseñada para promocionar y vender herramientas espirituales cabalísticas desarrolladas por el Rabbí Isaac Benzaquén. El sitio ofrece cuatro herramientas principales:
 
-1. **Carta Astral Cabalística** ($67 USD)
-2. **Constelación Familiar Cabalística** ($97 USD)  
-3. **Limpieza Áurica Cabalística** ($150 USD)
-4. **Meditación Cabalística** ($67 USD)
+1. **Carta Astral Cabalística** ($97 USD)
+2. **Constelación Familiar Cabalística** ($147 USD)  
+3. **Limpieza Áurica Cabalística** ($247 USD)
+4. **Meditación Cabalística** ($97 USD)
+
+Las cuatro (04) herramientas cabalísticas se presentan como un paquete completo que incluye además un Bono Especial que consiste en una 'Mandala de Poder y Éxito' que contiene un Árbol Cabalístico Personalizado imprimible. Esta 'Mandala de Poder y Éxito' o Kamea tiene un Valor Individual de $597 USD, y se ofrece todo este paquete por un valor de $997 USD.
 
 ## 🏗️ Arquitectura Técnica
 
@@ -23,6 +25,10 @@ IKU Cábala Activa es una landing page diseñada para promocionar y vender herra
 - **Notifications**: React Hot Toast
 - **Deployment**: GitHub Pages
 - **Domain**: Custom domain via CNAME
+- **CRM Backend**: Google Apps Script
+- **Database**: Google Sheets
+- **Email**: Gmail API
+- **Payments**: Stripe + PayPal
 
 ### Estructura del Proyecto
 ```
@@ -142,6 +148,22 @@ El proyecto usa GitHub Actions para deployment automático:
 ```bash
 npm run deploy
 ```
+
+## 🔗 Arquitectura de Webhooks
+
+### Sistema de Procesamiento de Pagos
+- **Receptor**: Google Apps Script Web App
+- **Procesadores**: Stripe + PayPal webhooks
+- **CRM**: Google Sheets (Clientes, Compras, Sesiones)
+- **Notificaciones**: Gmail API
+- **Frontend**: GitHub Pages (estático)
+
+### Flujo de Pago
+1. Cliente completa pago en Stripe/PayPal
+2. Webhook enviado a Google Apps Script
+3. Registro automático en CRM (Google Sheets)
+4. Notificaciones enviadas a maor@iku-cabalactiva.com y kabbalahuniversal@gmail.com
+5. Sesión inicial programada automáticamente
 
 ## 📝 License
 

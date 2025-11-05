@@ -1,7 +1,8 @@
 // Email Service - Automatización de correos
 class EmailService {
   constructor() {
-    this.webhookUrl = 'https://script.google.com/macros/s/AKfycby47dq2ghkTTBdjoSw7ALCou0YpwznBvkLX69pt8FPKsVPijZ0YqBFR9HiPcKqp61JgTg/exec';
+    this.webhookUrl = import.meta.env.VITE_GOOGLE_APP_SCRIPT_URL || 
+      'https://script.google.com/macros/s/AKfycby47dq2ghkTTBdjoSw7ALCou0YpwznBvkLX69pt8FPKsVPijZ0YqBFR9HiPcKqp61JgTg/exec';
   }
 
   // Enviar notificación de nueva compra
