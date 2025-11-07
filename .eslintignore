@@ -1,5 +1,0 @@
-scripts/
-dist/
-node_modules/
-*.config.js
-vite.config.js
