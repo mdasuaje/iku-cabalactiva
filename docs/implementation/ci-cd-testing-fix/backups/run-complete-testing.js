@@ -98,11 +98,7 @@ class CompleteTestingSuite {
       execSync('npm run test:ci', { stdio: 'inherit' });
       return { status: 'unit_tests_passed' };
     } catch (error) {
-      this.log(`Detalles del error: ${error.message}`, 'error');
-      if (error.stderr) {
-        this.log(`stderr: ${error.stderr.toString()}`, 'error');
-      }
-      throw new Error(`Tests unitarios fallaron: ${error.message}`);
+      throw new Error('Tests unitarios fallaron');
     }
   }
 
@@ -134,10 +130,6 @@ class CompleteTestingSuite {
         buildTime: stats.mtime
       };
     } catch (error) {
-      this.log(`Detalles del error: ${error.message}`, 'error');
-      if (error.stderr) {
-        this.log(`stderr: ${error.stderr.toString()}`, 'error');
-      }
       throw new Error(`Build falló: ${error.message}`);
     }
   }
@@ -149,10 +141,9 @@ class CompleteTestingSuite {
     try {
       // Instalar browsers si es necesario
       try {
-        this.log('Instalando browsers de Playwright...');
         execSync('npx playwright install --with-deps chromium', { stdio: 'pipe' });
       } catch (error) {
-        this.log('Browsers ya instalados o error menor en instalación', 'warning');
+        this.log('Browsers ya instalados o error menor', 'warning');
       }
       
       // Ejecutar tests E2E
@@ -160,11 +151,7 @@ class CompleteTestingSuite {
       
       return { status: 'e2e_tests_passed' };
     } catch (error) {
-      this.log(`Detalles del error: ${error.message}`, 'error');
-      if (error.stderr) {
-        this.log(`stderr: ${error.stderr.toString()}`, 'error');
-      }
-      throw new Error(`Tests E2E fallaron: ${error.message}`);
+      throw new Error('Tests E2E fallaron');
     }
   }
 

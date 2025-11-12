@@ -225,25 +225,13 @@ jobs:
       run: npm ci
       
     - name: Run npm audit
-      run: npm audit --audit-level=high
+      run: npm audit --audit-level=moderate
       continue-on-error: true
       
-    - name: Check for critical vulnerabilities
-      run: |
-        echo "🔍 Verificando vulnerabilidades críticas..."
-        npm audit --json > audit-report.json || true
-        
-        # Contar vulnerabilidades críticas
-        CRITICAL=$(cat audit-report.json | jq -r '.metadata.vulnerabilities.critical // 0')
-        echo "Vulnerabilidades críticas encontradas: $CRITICAL"
-        
-        if [ "$CRITICAL" -gt "0" ]; then
-          echo "⚠️ Se encontraron $CRITICAL vulnerabilidades críticas"
-          echo "Por favor, revisa y actualiza las dependencias"
-        else
-          echo "✅ No se encontraron vulnerabilidades críticas"
-        fi
-      continue-on-error: true
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        languages: javascript
 
   deployment-readiness:
     name: 🚢 Deployment Readiness
@@ -259,7 +247,6 @@ jobs:
       uses: actions/download-artifact@v4
       
     - name: Validate deployment readiness
-      id: validate
       run: |
         echo "🔍 Validando preparación para deployment..."
         
@@ -268,18 +255,18 @@ jobs:
           STATUS=$(cat complete-testing-report/complete-testing-report.json | jq -r '.summary.overall_status')
           if [ "$STATUS" = "SUCCESS" ]; then
             echo "✅ Todos los tests pasaron - LISTO PARA DEPLOYMENT"
-            echo "deployment_ready=true" >> $GITHUB_OUTPUT
+            echo "DEPLOYMENT_READY=true" >> $GITHUB_ENV
           else
             echo "❌ Tests fallaron - NO LISTO PARA DEPLOYMENT"
-            echo "deployment_ready=false" >> $GITHUB_OUTPUT
+            echo "DEPLOYMENT_READY=false" >> $GITHUB_ENV
           fi
         else
           echo "⚠️ No se encontró reporte de testing"
-          echo "deployment_ready=false" >> $GITHUB_OUTPUT
+          echo "DEPLOYMENT_READY=false" >> $GITHUB_ENV
         fi
         
     - name: Create deployment status
-      if: steps.validate.outputs.deployment_ready == 'true'
+      if: env.DEPLOYMENT_READY == 'true'
       run: |
         echo "🚀 Proyecto listo para deployment automático"
         echo "Todos los tests de calidad han pasado exitosamente"

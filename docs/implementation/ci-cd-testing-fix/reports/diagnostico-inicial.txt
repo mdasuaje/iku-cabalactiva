@@ -1,0 +1,34 @@
+
+> iku-cabalactiva@1.0.0 diagnose
+> node scripts/diagnose-all.cjs
+
+🔍 IKU Cábala Activa - Diagnóstico Maestro Completo
+
+🏗️  Verificando estructura de componentes...
+✅ Todas las secciones presentes en Home.jsx
+
+📁 Verificando estructura del proyecto...
+✅ Estructura del proyecto correcta
+
+📦 Ejecutando build...
+❌ Build falló
+
+🔧 Ejecutando linter...
+✅ Lint exitoso (solo warnings)
+
+🧪 Ejecutando tests...
+❌ Tests fallaron
+
+🌐 Verificando CNAME...
+✅ CNAME configurado correctamente
+
+📊 RESUMEN DE DIAGNÓSTICO MAESTRO:
+==================================
+Componentes: ✅
+Estructura:  ✅
+Build:       ❌
+Lint:        ✅
+Tests:       ❌
+CNAME:       ✅
+
+⚠️  HAY ASPECTOS QUE REQUIEREN ATENCIÓN

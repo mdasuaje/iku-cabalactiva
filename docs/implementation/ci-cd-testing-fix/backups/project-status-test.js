@@ -57,7 +57,7 @@ class ProjectStatusTester {
       'vite.config.js',
       'src/App.jsx',
       'src/main.jsx',
-      'index.html'
+      'public/index.html'
     ];
 
     const requiredDirs = [
@@ -135,7 +135,7 @@ class ProjectStatusTester {
   async testDeploymentConfig() {
     const requiredFiles = [
       '.github/workflows/static.yml',
-      'CNAME'
+      'public/CNAME'
     ];
 
     for (const file of requiredFiles) {
@@ -145,7 +145,7 @@ class ProjectStatusTester {
     }
 
     // Verificar CNAME
-    const cname = fs.readFileSync('CNAME', 'utf8').trim();
+    const cname = fs.readFileSync('public/CNAME', 'utf8').trim();
     if (cname !== 'iku-cabalactiva.com') {
       throw new Error(`CNAME incorrecto: ${cname}`);
     }
