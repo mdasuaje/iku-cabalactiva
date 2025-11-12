@@ -1,6 +1,15 @@
 node_modules/
 dist/
 
+# Lock files and package manager artifacts
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Generated files
+public/sitemap*.xml
+public/robots.txt
+
 # Environment files
 .env
 .env.local
