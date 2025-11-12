@@ -21,7 +21,7 @@ global.fetch = vi.fn()
 describe('CRMService Integration Tests', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    fetch.mockClear()
+    fetch.mockReset()  // ✅ Cambio de mockClear a mockReset para limpiar mockImplementation
   })
 
   describe('registrarCliente', () => {
@@ -31,10 +31,16 @@ describe('CRMService Integration Tests', () => {
         data: { id: 'test_123' }
       }
       
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve(mockResponse)
-      })
+      // Configurar mock para verifyWebhookConnection + webhook real
+      fetch
+        .mockResolvedValueOnce({ 
+          ok: true,
+          json: () => Promise.resolve({ status: 'success', message: 'pong' })
+        }) // verifyWebhookConnection
+        .mockResolvedValueOnce({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
 
       const clienteData = {
         nombre: 'Juan Pérez',
@@ -74,10 +80,17 @@ describe('CRMService Integration Tests', () => {
     })
 
     it('should retry on network failure', async () => {
+      // Mock para simular reintentos:
+      // 1. verifyWebhookConnection falla 1 vez
+      // 2. verifyWebhookConnection exitosa en retry
+      // 3. webhook real exitoso
       fetch
-        .mockRejectedValueOnce(new Error('Network error'))
-        .mockRejectedValueOnce(new Error('Network error'))
-        .mockResolvedValueOnce({
+        .mockRejectedValueOnce(new Error('Network error'))  // verifyWebhookConnection intento 1
+        .mockResolvedValueOnce({ 
+          ok: true,
+          json: () => Promise.resolve({ status: 'success', message: 'pong' })
+        })                // verifyWebhookConnection intento 2
+        .mockResolvedValueOnce({                            // webhook real
           ok: true,
           json: () => Promise.resolve({ status: 'success', data: {} })
         })
@@ -102,10 +115,16 @@ describe('CRMService Integration Tests', () => {
         data: { id: 'purchase_123' }
       }
       
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve(mockResponse)
-      })
+      // Mock para verifyWebhookConnection + webhook real
+      fetch
+        .mockResolvedValueOnce({ 
+          ok: true,
+          json: () => Promise.resolve({ status: 'success', message: 'pong' })
+        }) // verifyWebhookConnection
+        .mockResolvedValueOnce({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
 
       const compraData = {
         clienteId: 'client_123',
@@ -153,10 +172,16 @@ describe('CRMService Integration Tests', () => {
         data: { id: 'session_123' }
       }
       
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve(mockResponse)
-      })
+      // Mock para verifyWebhookConnection + webhook real
+      fetch
+        .mockResolvedValueOnce({ 
+          ok: true,
+          json: () => Promise.resolve({ status: 'success', message: 'pong' })
+        }) // verifyWebhookConnection
+        .mockResolvedValueOnce({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
 
       const sesionData = {
         clienteId: 'client_123',
@@ -187,11 +212,27 @@ describe('CRMService Integration Tests', () => {
 
   describe('sendToWebhookWithRetry', () => {
     it('should handle server errors gracefully', async () => {
-      fetch.mockResolvedValueOnce({
-        ok: false,
-        status: 500,
-        statusText: 'Internal Server Error'
-      })
+      // Mock para simular reintentos con error HTTP 500:
+      // 1. verifyWebhookConnection intento 1: falla (500)
+      // 2. verifyWebhookConnection intento 2: falla (500)
+      // 3. verifyWebhookConnection intento 3: falla (500)
+      // Después de 3 intentos fallidos, activa fallback
+      fetch
+        .mockResolvedValueOnce({
+          ok: false,
+          status: 500,
+          statusText: 'Internal Server Error'
+        })
+        .mockResolvedValueOnce({
+          ok: false,
+          status: 500,
+          statusText: 'Internal Server Error'
+        })
+        .mockResolvedValueOnce({
+          ok: false,
+          status: 500,
+          statusText: 'Internal Server Error'
+        })
 
       const clienteData = {
         nombre: 'Juan Pérez',
@@ -208,7 +249,8 @@ describe('CRMService Integration Tests', () => {
 
     it('should handle timeout errors', async () => {
       // Mock a request that never resolves (timeout)
-      fetch.mockImplementationOnce(() => 
+      // Esto simulará que tanto verifyWebhookConnection como webhook real cuelgan
+      fetch.mockImplementation(() => 
         new Promise(() => {}) // Never resolves
       )
 
@@ -218,9 +260,11 @@ describe('CRMService Integration Tests', () => {
         telefono: '+1234567890'
       }
 
-      await expect(CRMService.registrarCliente(clienteData))
-        .rejects.toThrow()
-    }, 30000)  // ✅ Aumentado de 15000ms a 30000ms
+      // Con useLocalFallback=true, esperamos que active fallback en lugar de lanzar error
+      const result = await CRMService.registrarCliente(clienteData)
+      expect(result).toHaveProperty('id')
+      expect(result.fallbackMode).toBe(true)
+    }, 70000)  // ✅ Aumentado a 70s para cubrir 3 intentos × 20s timeout + delays
   })
 
   describe('testConnection', () => {

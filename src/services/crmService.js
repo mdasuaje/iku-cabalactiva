@@ -256,6 +256,11 @@ class CRMService {
       
       clearTimeout(timeoutId)
       
+      // Validar que response existe antes de acceder a sus propiedades
+      if (!response) {
+        throw new Error('No se recibió respuesta del servidor')
+      }
+      
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
       }
