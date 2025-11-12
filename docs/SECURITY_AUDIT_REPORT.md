@@ -34,12 +34,12 @@ Se ha identificado **exposición masiva de credenciales y secretos** en el repos
 
 **Contenido expuesto:**
 ```bash
-VITE_STRIPE_PUBLIC_KEY=pk_live_51RxxvlKiSP3zJu4NUEoP0H7CxMm4hkju4aupv6bmh8tWIAEimGf4kO0OlsAo5AQh3ZAc7dZ7FXztAzDAFSv76etT005L8PKaWZ
-VITE_STRIPE_CHECKOUT=https://buy.stripe.com/3cIcN6fhNdAS1S34SCdnW00
-VITE_PAYPAL_SINGLE_SESSION=https://www.paypal.com/ncp/payment/FJGC4GE6SBS98
-VITE_PAYPAL_FULL_PACKAGE=https://www.paypal.com/ncp/payment/QHUXGLD7VZ8RA
-VITE_GOOGLE_APP_SCRIPT_URL=https://script.google.com/macros/s/AKfycbz48aBhDeY1cagFxeVXk-PfmUl1p1FV7_LLos02BhLsgQE3ARfHc_Fv7yerOKEShcYARg/exec
-VITE_CRM_SECRET_TOKEN=IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025
+VITE_STRIPE_PUBLIC_KEY=***REDACTED***
+VITE_STRIPE_CHECKOUT=***REDACTED***
+VITE_PAYPAL_SINGLE_SESSION=***REDACTED***
+VITE_PAYPAL_FULL_PACKAGE=***REDACTED***
+VITE_GOOGLE_APP_SCRIPT_URL=***REDACTED***
+VITE_CRM_SECRET_TOKEN=***REDACTED***
 ```
 
 **Riesgo:** 🔴 CRÍTICO
@@ -110,7 +110,7 @@ token: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025'
 
 ### 1. Stripe API Abuse
 
-- **Clave expuesta:** `pk_live_51Rxxvl...`
+- **Clave expuesta:** `pk_live_***REDACTED***`
 - **Permite:** Crear sesiones de checkout, consultar información pública
 - **NO permite:** Cobros directos (requiere sk_live), pero sí phishing
 
@@ -417,8 +417,8 @@ cd /tmp
 git clone https://github.com/mdasuaje/iku-cabalactiva.git test-clean
 cd test-clean
 
-# Buscar credenciales
-grep -r "pk_live_51Rxxvl" .
+# Buscar credenciales (ejemplo de patrón)
+grep -r "pk_live_" .
 # Debe retornar: no matches
 ```
 
