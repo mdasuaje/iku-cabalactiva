@@ -40,40 +40,39 @@ class CRMService {
    * @returns {Promise<Object>} - Cliente registrado
    */
   async registrarCliente(clienteData) {
-    try {
-      this.validateClienteData(clienteData)
-      
-      const cliente = {
-        id: this.generateId(),
-        nombre: this.sanitizeString(clienteData.nombre),
-        email: this.validateEmail(clienteData.email),
-        telefono: this.sanitizePhone(clienteData.telefono),
-        fecha_registro: new Date().toISOString(),
-        estado: 'Activo',
-        fuente: clienteData.fuente || 'Web',
-        prioridad: clienteData.prioridad || 'Normal',
-        notas: this.sanitizeString(clienteData.notas || '')
-      }
+    // Validar primero - esto lanza excepciones que los tests esperan
+    this.validateClienteData(clienteData)
+    
+    const cliente = {
+      id: this.generateId(),
+      nombre: this.sanitizeString(clienteData.nombre),
+      email: this.validateEmail(clienteData.email),
+      telefono: this.sanitizePhone(clienteData.telefono),
+      fecha_registro: new Date().toISOString(),
+      estado: 'Activo',
+      fuente: clienteData.fuente || 'Web',
+      prioridad: clienteData.prioridad || 'Normal',
+      notas: this.sanitizeString(clienteData.notas || '')
+    }
 
+    try {
       const result = await this.sendToWebhookWithRetry('registrar-cliente', {
         sheetName: 'Clientes',
         values: Object.values(cliente)
       })
       
       console.log('✅ Cliente registrado:', cliente.id)
-      toast.success('Cliente registrado exitosamente')
       
+      // Si el resultado indica fallback mode, incluirlo en la respuesta
+      if (result.fallbackMode) {
+        toast.success('Cliente registrado exitosamente (modo local)')
+        return { ...cliente, ...result, fallbackMode: true }
+      }
+      
+      toast.success('Cliente registrado exitosamente')
       return { ...cliente, ...result }
     } catch (error) {
       console.error('❌ Error registrando cliente:', error)
-      
-      // En caso de fallo, usar fallback si está habilitado
-      if (this.useLocalFallback) {
-        console.warn('⚠️ Webhook no disponible, usando modo fallback')
-        toast.success('Cliente registrado exitosamente (modo local)')
-        return clienteData
-      }
-      
       toast.error('Error al registrar cliente')
       throw error
     }
@@ -85,41 +84,40 @@ class CRMService {
    * @returns {Promise<Object>} - Compra registrada
    */
   async registrarCompra(compraData) {
-    try {
-      this.validateCompraData(compraData)
-      
-      const compra = {
-        id: this.generateId(),
-        id_cliente: compraData.clienteId,
-        producto: this.sanitizeString(compraData.producto),
-        monto: this.validateAmount(compraData.monto),
-        proveedor: compraData.proveedor || 'PayPal',
-        fecha_compra: new Date().toISOString(),
-        estado_pago: compraData.estadoPago || 'Completado',
-        sesiones_restantes: parseInt(compraData.sesionesRestantes) || 1,
-        transaction_id: compraData.transactionId || '',
-        currency: compraData.currency || 'USD'
-      }
+    // Validar primero - esto lanza excepciones que los tests esperan
+    this.validateCompraData(compraData)
+    
+    const compra = {
+      id: this.generateId(),
+      id_cliente: compraData.clienteId,
+      producto: this.sanitizeString(compraData.producto),
+      monto: this.validateAmount(compraData.monto),
+      proveedor: compraData.proveedor || 'PayPal',
+      fecha_compra: new Date().toISOString(),
+      estado_pago: compraData.estadoPago || 'Completado',
+      sesiones_restantes: parseInt(compraData.sesionesRestantes) || 1,
+      transaction_id: compraData.transactionId || '',
+      currency: compraData.currency || 'USD'
+    }
 
+    try {
       const result = await this.sendToWebhookWithRetry('registrar-compra', {
         sheetName: 'Compras',
         values: Object.values(compra)
       })
       
       console.log('✅ Compra registrada:', compra.id)
-      toast.success(`Compra registrada: ${compra.producto}`)
       
+      // Si el resultado indica fallback mode, incluirlo en la respuesta
+      if (result.fallbackMode) {
+        toast.success(`Compra registrada: ${compra.producto} (modo local)`)
+        return { ...compra, ...result, fallbackMode: true }
+      }
+      
+      toast.success(`Compra registrada: ${compra.producto}`)
       return { ...compra, ...result }
     } catch (error) {
       console.error('❌ Error registrando compra:', error)
-      
-      // En caso de fallo, usar fallback si está habilitado
-      if (this.useLocalFallback) {
-        console.warn('⚠️ Webhook no disponible, usando modo fallback')
-        toast.success(`Compra registrada: ${compraData.producto} (modo local)`)
-        return compraData
-      }
-      
       toast.error('Error al registrar compra')
       throw error
     }
@@ -131,40 +129,39 @@ class CRMService {
    * @returns {Promise<Object>} - Sesión programada
    */
   async programarSesion(sesionData) {
-    try {
-      this.validateSesionData(sesionData)
-      
-      const sesion = {
-        id: this.generateId(),
-        id_cliente: sesionData.clienteId,
-        fecha_sesion: this.validateDate(sesionData.fechaSesion),
-        tipo_sesion: this.sanitizeString(sesionData.tipoSesion),
-        estado: 'Programada',
-        notas: this.sanitizeString(sesionData.notas || ''),
-        proxima_sesion: sesionData.proximaSesion || '',
-        recordatorio_enviado: false,
-        created_at: new Date().toISOString()
-      }
+    // Validar primero - esto lanza excepciones que los tests esperan
+    this.validateSesionData(sesionData)
+    
+    const sesion = {
+      id: this.generateId(),
+      id_cliente: sesionData.clienteId,
+      fecha_sesion: this.validateDate(sesionData.fechaSesion),
+      tipo_sesion: this.sanitizeString(sesionData.tipoSesion),
+      estado: 'Programada',
+      notas: this.sanitizeString(sesionData.notas || ''),
+      proxima_sesion: sesionData.proximaSesion || '',
+      recordatorio_enviado: false,
+      created_at: new Date().toISOString()
+    }
 
+    try {
       const result = await this.sendToWebhookWithRetry('programar-sesion', {
         sheetName: 'Sesiones',
         values: Object.values(sesion)
       })
       
       console.log('✅ Sesión programada:', sesion.id)
-      toast.success('Sesión programada exitosamente')
       
+      // Si el resultado indica fallback mode, incluirlo en la respuesta
+      if (result.fallbackMode) {
+        toast.success('Sesión programada exitosamente (modo local)')
+        return { ...sesion, ...result, fallbackMode: true }
+      }
+      
+      toast.success('Sesión programada exitosamente')
       return { ...sesion, ...result }
     } catch (error) {
       console.error('❌ Error programando sesión:', error)
-      
-      // En caso de fallo, usar fallback si está habilitado
-      if (this.useLocalFallback) {
-        console.warn('⚠️ Webhook no disponible, usando modo fallback')
-        toast.success('Sesión programada exitosamente (modo local)')
-        return sesionData
-      }
-      
       toast.error('Error al programar sesión')
       throw error
     }
@@ -229,7 +226,8 @@ class CRMService {
               message: 'Operación simulada exitosa (fallback)', 
               id: `test_${Date.now()}`,
               action,
-              data
+              data,
+              fallbackMode: true  // ✅ Añadido
             }
           }
         } catch (connError) {
@@ -284,7 +282,8 @@ class CRMService {
           success: true,
           status: 'success',
           message: 'Operation processed in local fallback mode',
-          data: {}
+          data: {},
+          fallbackMode: true  // ✅ Añadido
         }
       }
       
@@ -356,11 +355,11 @@ class CRMService {
    */
   async testConnection() {
     try {
-      // Determinar ambiente sin depender de process
-      let environment = 'browser'
+      // Determinar ambiente sin depender de process (silenciar warning de lint)
       try {
         // En algunos entornos, import.meta.env puede tener información del entorno
-        environment = import.meta.env.MODE || environment
+        const _env = import.meta.env.MODE || 'browser'
+        console.log('Entorno detectado:', _env)
       } catch (e) {
         // Silenciar error si import.meta no está disponible
       }
@@ -396,7 +395,7 @@ class CRMService {
           return {
             status: 'success',
             message: 'Modo fallback activado - Sin conexión a Google Sheets',
-            localFallback: true,
+            fallbackMode: true,  // ✅ Cambiado de localFallback a fallbackMode
             timestamp: new Date().toISOString()
           }
         }
