@@ -10,7 +10,7 @@ const http = require('http');
 
 const CONFIG = {
   url: 'https://script.google.com/macros/s/AKfycbwZj6KlJZN5GyCwHzSv-kEBuqnG2TAZdfFaU8-QHA6_EAxJptTL3byy6f4C9mQAxAk-_g/exec',
-  token: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025',
+  token: process.env.VITE_CRM_SECRET_TOKEN || '***SET_IN_ENV***',
   timeout: 15000
 };
 

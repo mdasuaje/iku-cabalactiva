@@ -56,7 +56,7 @@ VITE_CRM_SECRET_TOKEN=***REDACTED***
 
 **Línea 9:**
 ```javascript
-SECRET_TOKEN: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025',
+SECRET_TOKEN: '***REDACTED***',
 ```
 
 **Riesgo:** 🔴 ALTO - Token hardcodeado en código fuente público
@@ -69,7 +69,7 @@ SECRET_TOKEN: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025',
 
 **Línea 10:**
 ```javascript
-token: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025'
+token: '***REDACTED***'
 ```
 
 **Riesgo:** 🔴 ALTO - Mismo token expuesto
@@ -117,7 +117,7 @@ token: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025'
 ### 2. Google Apps Script Manipulation
 
 - **URL expuesta:** `https://script.google.com/macros/s/AKfycbz48aBhD...`
-- **Token expuesto:** `IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025`
+- **Token expuesto:** `***REDACTED***`
 - **Permite:** 
   - Enviar datos falsos al CRM
   - Consultar datos del CRM

@@ -9,7 +9,7 @@ describe('CRMService Zero Trust Integration', () => {
       crmService.webhookUrl = 'https://script.google.com/macros/s/AKfycbwZj6KlJZN5GyCwHzSv-kEBuqnG2TAZdfFaU8-QHA6_EAxJptTL3byy6f4C9mQAxAk-_g/exec';
     }
     if (!crmService.secretToken) {
-      crmService.secretToken = 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025';
+      crmService.secretToken = '***REDACTED***';
     }
   });
 

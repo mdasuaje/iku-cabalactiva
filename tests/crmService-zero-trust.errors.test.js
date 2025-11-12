@@ -12,7 +12,7 @@ describe('CRMService Zero Trust - Manejo de errores', () => {
       crmService.webhookUrl = 'https://script.google.com/macros/s/AKfycbwZj6KlJZN5GyCwHzSv-kEBuqnG2TAZdfFaU8-QHA6_EAxJptTL3byy6f4C9mQAxAk-_g/exec';
     }
     if (!crmService.secretToken) {
-      crmService.secretToken = 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025';
+      crmService.secretToken = '***REDACTED***';
     }
   });
 
@@ -50,7 +50,7 @@ describe('CRMService Zero Trust - Manejo de errores', () => {
 
   it('debe fallar si el formato de datos es incorrecto', async () => {
     // Usar token válido para probar error de datos
-    crmService.secretToken = import.meta.env.VITE_CRM_SECRET_TOKEN || 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025';
+    crmService.secretToken = import.meta.env.VITE_CRM_SECRET_TOKEN || '***REDACTED***';
     try {
       await crmService.sendToWebhook('update-crm', { sheetName: 'NoPermitida', values: [] });
       // Si no lanza error, fallar el test

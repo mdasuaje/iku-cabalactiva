@@ -7,7 +7,7 @@ const https = require('https');
 
 const CONFIG = {
   timeout: 15000,
-  token: 'IKU_CRM_2025_SECURE_94b30092ee15690f3c64428ecd112025'
+  token: process.env.VITE_CRM_SECRET_TOKEN || '***SET_IN_ENV***'
 };
 
 async function testEndpoint(url) {
