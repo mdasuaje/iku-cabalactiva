@@ -6,7 +6,7 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-  
+
   # Allows manual triggering from Actions tab
   workflow_dispatch:
 
@@ -29,7 +29,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    
+
     steps:
       # ==========================================
       # STEP 1: Checkout Repository
@@ -38,7 +38,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1  # Shallow clone for faster checkout
-      
+
       # ==========================================
       # STEP 2: Setup Node.js Environment
       # ==========================================
@@ -47,7 +47,7 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-      
+
       # ==========================================
       # STEP 3: Install Dependencies
       # ==========================================
@@ -55,12 +55,12 @@ jobs:
         run: |
           echo "Installing production dependencies..."
           npm ci --prefer-offline --no-audit
-          
+
           # Ensure critical build dependencies are present
           npm list terser || npm install terser
-          
+
           echo "✅ Dependencies installed successfully"
-      
+
       # ==========================================
       # STEP 4: Environment Variables Validation
       # ==========================================
@@ -69,7 +69,7 @@ jobs:
           echo "Validating environment variables..."
           node scripts/verify-env.js
           echo "✅ Environment validation completed"
-      
+
       # ==========================================
       # STEP 5: Build Production Static Site
       # ==========================================
@@ -77,16 +77,16 @@ jobs:
         env:
           # Site Configuration
           VITE_SITE_URL: ${{ secrets.VITE_SITE_URL || 'https://iku-cabalactiva.com' }}
-          
+
           # Google Apps Script Integration (CRM)
           VITE_GOOGLE_APP_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_APP_SCRIPT_URL }}
           VITE_WEB_APP_URL: ${{ secrets.VITE_WEB_APP_URL }}
-          
+
           # Stripe Payment Integration
           VITE_STRIPE_PUBLIC_KEY: ${{ secrets.VITE_STRIPE_PUBLIC_KEY }}
           VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
           VITE_STRIPE_CHECKOUT: ${{ secrets.VITE_STRIPE_CHECKOUT }}
-          
+
           # Stripe Product URLs
           VITE_STRIPE_CARTA_URL: ${{ secrets.VITE_STRIPE_CARTA_URL }}
           VITE_STRIPE_CONSTELACION_URL: ${{ secrets.VITE_STRIPE_CONSTELACION_URL }}
@@ -94,118 +94,118 @@ jobs:
           VITE_STRIPE_LIMPIEZA_URL: ${{ secrets.VITE_STRIPE_LIMPIEZA_URL }}
           VITE_STRIPE_PAQUETE_URL: ${{ secrets.VITE_STRIPE_PAQUETE_URL }}
           VITE_STRIPE_PAQUETE_PARTES_URL: ${{ secrets.VITE_STRIPE_PAQUETE_PARTES_URL }}
-          
+
           # PayPal Payment Integration
           VITE_PAYPAL_CLIENT_ID: ${{ secrets.VITE_PAYPAL_CLIENT_ID }}
           VITE_PAYPAL_CLIENT_TOKEN: ${{ secrets.VITE_PAYPAL_CLIENT_TOKEN }}
           VITE_PAYPAL_SINGLE_SESSION: ${{ secrets.VITE_PAYPAL_SINGLE_SESSION }}
           VITE_PAYPAL_FULL_PACKAGE: ${{ secrets.VITE_PAYPAL_FULL_PACKAGE }}
-          
+
           # PayPal Product URLs
           VITE_PAYPAL_CARTA_URL: ${{ secrets.VITE_PAYPAL_CARTA_URL }}
           VITE_PAYPAL_CONSTELACION_URL: ${{ secrets.VITE_PAYPAL_CONSTELACION_URL }}
           VITE_PAYPAL_MEDITACION_URL: ${{ secrets.VITE_PAYPAL_MEDITACION_URL }}
           VITE_PAYPAL_LIMPIEZA_URL: ${{ secrets.VITE_PAYPAL_LIMPIEZA_URL }}
           VITE_PAYPAL_PAQUETE_URL: ${{ secrets.VITE_PAYPAL_PAQUETE_URL }}
-          
+
           # CRM and Contact Integration
           VITE_CRM_SECRET_TOKEN: ${{ secrets.VITE_CRM_SECRET_TOKEN }}
           VITE_WHATSAPP_NUMBER: ${{ secrets.VITE_WHATSAPP_NUMBER }}
           VITE_GOOGLE_CALENDAR_API_KEY: ${{ secrets.VITE_GOOGLE_CALENDAR_API_KEY }}
-          
+
           # Email Configuration
           VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
           VITE_EMAILJS_TEMPLATE_ID_CONTACT: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID_CONTACT }}
           VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
           VITE_EMAIL_ADMIN: ${{ secrets.VITE_EMAIL_ADMIN }}
           VITE_EMAIL_MAESTRO: ${{ secrets.VITE_EMAIL_MAESTRO }}
-          
+
           # Google Sheets Integration
           VITE_SPREADSHEET_ID: ${{ secrets.VITE_SPREADSHEET_ID }}
           VITE_DEPLOYMENT_ID: ${{ secrets.VITE_DEPLOYMENT_ID }}
-          
+
           # Build Settings
           NODE_ENV: production
         run: |
           echo "🔨 Building production static site..."
           echo "Environment: production"
           echo "Build tool: Vite"
-          
+
           # Run the build
           npm run build
-          
+
           # Verify build output
           if [ ! -d "dist" ]; then
             echo "❌ Build failed: dist directory not found"
             exit 1
           fi
-          
+
           if [ ! -f "dist/index.html" ]; then
             echo "❌ Build failed: index.html not found in dist"
             exit 1
           fi
-          
+
           # Ensure CNAME file exists for custom domain
           if [ -f "CNAME" ] && [ ! -f "dist/CNAME" ]; then
             echo "📝 Copying CNAME to dist for custom domain..."
             cp CNAME dist/CNAME
           fi
-          
+
           echo "✅ Build completed successfully"
           echo "📊 Build artifacts:"
           ls -lh dist/
-      
+
       # ==========================================
       # STEP 6: Security Scan of Build Artifacts
       # ==========================================
       - name: 🔒 Security Scan - Check for Exposed Secrets
         run: |
           echo "🔍 Scanning build artifacts for exposed secrets..."
-          
+
           # Check for common secret patterns in built files
           if grep -r "sk_live_\|sk_test_\|pk_test_51" dist/ 2>/dev/null; then
             echo "❌ WARNING: Potential API keys found in build artifacts!"
             echo "Please review the build output for exposed secrets."
             exit 1
           fi
-          
+
           # Check for sensitive environment variable patterns
           if grep -r "SECRET\|PASSWORD\|PRIVATE_KEY" dist/ 2>/dev/null | grep -v "VITE_"; then
             echo "⚠️  Potential sensitive data found in build."
             echo "This may be a false positive, but please review."
           fi
-          
+
           echo "✅ Security scan completed - No obvious secrets detected"
-      
+
       # ==========================================
       # STEP 7: Build Artifact Validation
       # ==========================================
       - name: ✅ Validate Build Artifacts
         run: |
           echo "🔍 Validating build artifacts..."
-          
+
           # Check file sizes to ensure build is not empty
           INDEX_SIZE=$(stat -c%s "dist/index.html" 2>/dev/null || stat -f%z "dist/index.html")
           echo "index.html size: $INDEX_SIZE bytes"
-          
+
           if [ "$INDEX_SIZE" -lt 100 ]; then
             echo "❌ index.html is suspiciously small - build may have failed"
             exit 1
           fi
-          
+
           # Check for essential assets
           if [ ! -d "dist/assets" ]; then
             echo "⚠️  No assets directory found - this may be expected for minimal builds"
           fi
-          
+
           echo "✅ Build artifacts validated successfully"
-      
+
       # ==========================================
       # STEP 8: Configure GitHub Pages
       # ==========================================
       - name: ⚙️ Configure GitHub Pages
         uses: actions/configure-pages@v5
-      
+
       # ==========================================
       # STEP 9: Upload Build Artifacts
       # ==========================================
@@ -214,14 +214,14 @@ jobs:
         with:
           path: './dist'
           retention-days: 7
-      
+
       # ==========================================
       # STEP 10: Deploy to GitHub Pages
       # ==========================================
       - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      
+
       # ==========================================
       # STEP 11: Post-Deployment Verification
       # ==========================================
@@ -229,19 +229,19 @@ jobs:
         if: success()
         run: |
           echo "🔍 Verifying deployment health..."
-          
+
           # Wait for deployment to propagate
           echo "⏳ Waiting 30 seconds for deployment to propagate..."
           sleep 30
-          
+
           # Get the deployed URL
           DEPLOYED_URL="${{ steps.deployment.outputs.page_url }}"
           echo "Deployed URL: $DEPLOYED_URL"
-          
+
           # Test if the site is accessible
           HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}" "$DEPLOYED_URL" || echo "000")
           echo "HTTP Response Code: $HTTP_CODE"
-          
+
           if [ "$HTTP_CODE" = "200" ]; then
             echo "✅ Deployment is live and accessible"
           elif [ "$HTTP_CODE" = "000" ]; then
@@ -249,10 +249,10 @@ jobs:
           else
             echo "⚠️  Unexpected HTTP response code: $HTTP_CODE"
           fi
-          
+
           echo "🌐 Custom Domain: https://iku-cabalactiva.com"
           echo "📊 Deployment completed successfully!"
-      
+
       # ==========================================
       # STEP 12: Deployment Summary
       # ==========================================
