@@ -69,7 +69,7 @@ The CI/CD pipeline includes automated secret scanning:
 
 ```bash
 # Scan for Stripe secret keys
-grep -r "sk_live_\|sk_test_\|pk_test_51" dist/
+grep -r "sk_live_\|sk_test_" dist/
 
 # Scan for other sensitive patterns
 grep -r "SECRET\|PASSWORD\|PRIVATE_KEY" dist/
