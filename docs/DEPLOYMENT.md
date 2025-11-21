@@ -60,10 +60,17 @@ Navigate to your repository on GitHub:
 
 #### 💳 Stripe Payment Configuration
 
+> **Note:**  
+> There are two similar environment variables for the Stripe publishable key:  
+> - `VITE_STRIPE_PUBLIC_KEY` (recommended, standard)  
+> - `VITE_STRIPE_PUBLISHABLE_KEY` (legacy/alternate; use only if your codebase or workflow specifically requires it)  
+>  
+> For most setups, only `VITE_STRIPE_PUBLIC_KEY` is needed. If you are migrating from an older configuration or using code that expects `VITE_STRIPE_PUBLISHABLE_KEY`, you may set both to the same value.
+
 | Secret Name | Description | Example Value | Required |
 |------------|-------------|---------------|----------|
-| `VITE_STRIPE_PUBLIC_KEY` | Stripe publishable key | `pk_live_...` | ✅ Yes |
-| `VITE_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key (alt) | `pk_live_...` | ⚠️ If used |
+| `VITE_STRIPE_PUBLIC_KEY` | Stripe publishable key (recommended) | `pk_live_...` | ✅ Yes |
+| `VITE_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key (legacy/alternate; use only if required) | `pk_live_...` | ⚠️ If used |
 | `VITE_STRIPE_CHECKOUT` | Stripe checkout URL | `https://buy.stripe.com/...` | ⚠️ Optional |
 
 #### 💳 Stripe Product URLs
