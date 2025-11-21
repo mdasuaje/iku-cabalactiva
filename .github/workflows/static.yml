@@ -185,7 +185,7 @@ jobs:
           echo "🔍 Validating build artifacts..."
 
           # Check file sizes to ensure build is not empty
-          INDEX_SIZE=$(stat -c%s "dist/index.html" 2>/dev/null || stat -f%z "dist/index.html")
+          INDEX_SIZE=$(stat -c%s "dist/index.html")
           echo "index.html size: $INDEX_SIZE bytes"
 
           if [ "$INDEX_SIZE" -lt 100 ]; then
