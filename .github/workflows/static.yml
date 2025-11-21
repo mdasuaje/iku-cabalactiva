@@ -170,7 +170,7 @@ jobs:
           fi
 
           # Check for sensitive environment variable patterns
-          if grep -r "SECRET\|PASSWORD\|PRIVATE_KEY" dist/ 2>/dev/null | grep -v "VITE_"; then
+          if grep -rE "SECRET|PASSWORD|PRIVATE_KEY" dist/ 2>/dev/null | grep -vE '^.*VITE_.*(SECRET|PASSWORD|PRIVATE_KEY).*'; then
             echo "⚠️  Potential sensitive data found in build."
             echo "This may be a false positive, but please review."
           fi
