@@ -143,6 +143,40 @@ El proyecto usa GitHub Actions para deployment automático:
 npm run deploy
 ```
 
+## 🌿 Branch Policy
+
+### Repositorio Público (iku-cabalactiva)
+
+Este repositorio público solo mantiene las siguientes ramas:
+
+- **`main`**: Rama de producción
+  - Protegida contra eliminación y force push
+  - Requiere PR y revisión para cambios
+  - Deploy automático a GitHub Pages
+
+- **`gh-pages`**: Rama de deployment
+  - Generada automáticamente por GitHub Actions
+  - No debe ser modificada manualmente
+
+### Repositorio Privado (iku-cabalactiva-private)
+
+Todo el desarrollo y ramas adicionales se mantienen en el repositorio privado:
+- `develop` - Rama principal de desarrollo
+- `feature/*` - Nuevas funcionalidades
+- `bugfix/*` - Corrección de bugs
+- `hotfix/*` - Correcciones urgentes
+- `release/*` - Preparación de releases
+
+### Migración de Ramas
+
+Si necesitas migrar ramas del repositorio público al privado, consulta:
+- 📖 [Guía de Migración de Ramas](/docs/BRANCH_MIGRATION_GUIDE.md)
+- 🔧 Scripts en `/scripts/`:
+  - `list-branches-to-migrate.sh` - Lista ramas a migrar
+  - `migrate-branches-to-private.sh` - Migra ramas al privado
+  - `verify-branches.sh` - Verifica la migración
+  - `cleanup-public-branches.sh` - Limpia el repositorio público
+
 ## 📝 License
 
 Private project - All rights reserved to IKU Cábala Activa and Isaac Benzaquén.
