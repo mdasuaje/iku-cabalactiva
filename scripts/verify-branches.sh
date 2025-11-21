@@ -26,7 +26,9 @@ fi
 # Verificar que el remote 'public' existe
 if ! git remote get-url public > /dev/null 2>&1; then
     echo -e "${RED}Error: Remote 'public' no encontrado${NC}"
-    echo "Por favor, ejecutar primero: git remote add public <url-repositorio-público>"
+    echo "Este script debe ejecutarse desde el repositorio PRIVADO."
+    echo "Por favor, ejecutar primero desde el repositorio privado:"
+    echo "  git remote add public <url-repositorio-público>"
     exit 1
 fi
 

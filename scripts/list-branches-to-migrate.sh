@@ -61,7 +61,8 @@ echo ""
 
 if [ $migrate_count -gt 0 ]; then
     echo -e "${YELLOW}Próximos pasos:${NC}"
-    echo "1. Ejecutar: ./scripts/migrate-branches-to-private.sh <url-repositorio-privado>"
+    echo "1. Ejecutar desde el REPOSITORIO PRIVADO:"
+    echo "   ./scripts/migrate-branches-to-private.sh git@github.com:mdasuaje/iku-cabalactiva.git"
     echo "2. Verificar la migración: ./scripts/verify-branches.sh"
     echo "3. Limpiar repositorio público: ./scripts/cleanup-public-branches.sh"
     echo ""

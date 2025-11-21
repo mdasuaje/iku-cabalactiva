@@ -103,7 +103,8 @@ if [ $error_count -eq 0 ]; then
     echo -e "${GREEN}✅ Repositorio público limpiado exitosamente${NC}"
     echo ""
     echo -e "${YELLOW}El repositorio público ahora solo contiene:${NC}"
-    git ls-remote --heads origin | awk '{print $2}' | sed 's|refs/heads/||' | while read -r b; do
+    remaining_branches=$(git ls-remote --heads origin | awk '{print $2}' | sed 's|refs/heads/||')
+    echo "$remaining_branches" | while read -r b; do
         echo "  - $b"
     done
     echo ""

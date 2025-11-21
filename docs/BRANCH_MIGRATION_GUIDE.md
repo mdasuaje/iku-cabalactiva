@@ -139,7 +139,7 @@ Para cada rama que necesita ser migrada:
 ### 2. Migrar Ramas al Repositorio Privado
 
 ```bash
-./scripts/migrate-branches-to-private.sh [private-repo-url]
+./scripts/migrate-branches-to-private.sh [public-repo-url]
 ```
 
 ### 3. Verificar Migración

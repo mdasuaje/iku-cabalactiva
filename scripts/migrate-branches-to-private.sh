@@ -83,7 +83,13 @@ while IFS= read -r branch; do
     if git show-ref --verify --quiet "refs/heads/$branch"; then
         echo -e "     ${YELLOW}La rama ya existe localmente, actualizando...${NC}"
         git checkout "$branch"
-        git pull public "$branch" || {
+        # Fetch y reset para asegurar que coincida exactamente con la remota
+        git fetch public "$branch" || {
+            echo -e "     ${RED}Error al obtener la rama${NC}"
+            error_count=$((error_count + 1))
+            continue
+        }
+        git reset --hard "public/$branch" || {
             echo -e "     ${RED}Error al actualizar la rama${NC}"
             error_count=$((error_count + 1))
             continue
