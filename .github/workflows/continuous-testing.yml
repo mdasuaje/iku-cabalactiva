@@ -2,7 +2,7 @@ name: 'Continuous Testing & Validation'
 
 on:
   push:
-    branches: [crm-payment-gateway-implementation, main]
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
