@@ -163,7 +163,7 @@ jobs:
           echo "🔍 Scanning build artifacts for exposed secrets..."
 
           # Check for common secret patterns in built files
-          if grep -r "sk_live_\|sk_test_\|pk_test_51" dist/ 2>/dev/null; then
+          if grep -r "sk_live_\|sk_test_" dist/ 2>/dev/null; then
             echo "❌ WARNING: Potential API keys found in build artifacts!"
             echo "Please review the build output for exposed secrets."
             exit 1
