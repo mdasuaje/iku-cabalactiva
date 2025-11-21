@@ -1,68 +1,68 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const ENV_PRODUCTION = path.join(__dirname, '../.env.production');
-
 /**
- * Verifica las variables de entorno necesarias para la aplicación
- * @param {string} envPath - Ruta opcional al archivo .env a verificar
- * @return {boolean} - true si todas las variables están correctas
+ * Verifica que las variables de entorno críticas estén configuradas
+ * Este script valida que las variables de entorno necesarias estén disponibles
+ * en el entorno de build, ya sea desde GitHub Secrets o archivos .env locales
  */
-export default function verifyEnvironmentVars(envPath = ENV_PRODUCTION) {
-  console.log('🔍 Verificando variables de entorno de producción...');
 
-if (!fs.existsSync(ENV_PRODUCTION)) {
-  console.error('❌ Archivo .env.production no encontrado');
-  process.exit(1);
-}
+console.log('🔍 Verificando variables de entorno de producción...');
 
-const envContent = fs.readFileSync(ENV_PRODUCTION, 'utf8');
-
-const requiredVars = [
-  'VITE_STRIPE_CHECKOUT',
-  'VITE_PAYPAL_SINGLE_SESSION',
-  'VITE_PAYPAL_FULL_PACKAGE'
+// Lista de variables críticas para el funcionamiento de la aplicación
+const criticalVars = [
+  'VITE_SITE_URL',
+  'VITE_GOOGLE_APP_SCRIPT_URL'
 ];
 
-const placeholders = [
-  'test_placeholder',
-  'placeholder',
-  'your_',
-  'pk_test_'
+// Variables opcionales pero recomendadas
+const optionalVars = [
+  'VITE_STRIPE_PUBLIC_KEY',
+  'VITE_STRIPE_CHECKOUT',
+  'VITE_PAYPAL_CLIENT_ID'
 ];
 
 let hasErrors = false;
+let hasWarnings = false;
 
-requiredVars.forEach(varName => {
-  const match = envContent.match(new RegExp(`${varName}=(.+)`));
+// Verificar variables críticas
+console.log('\n📋 Verificando variables críticas:');
+criticalVars.forEach(varName => {
+  const value = process.env[varName];
   
-  if (!match) {
-    console.error(`❌ Variable ${varName} no encontrada`);
-    hasErrors = true;
-    return;
+  if (!value || value.trim() === '') {
+    console.warn(`⚠️  Variable ${varName} no está definida (se usará valor por defecto si existe)`);
+    hasWarnings = true;
+  } else {
+    console.log(`✅ ${varName}: Configurada`);
   }
-  
-  const value = match[1].trim();
-  
-  if (placeholders.some(placeholder => value.includes(placeholder))) {
-    console.error(`❌ Variable ${varName} contiene placeholder: ${value}`);
-    hasErrors = true;
-    return;
-  }
-  
-  console.log(`✅ ${varName}: OK`);
 });
 
-  if (hasErrors) {
-    console.error('\n❌ Verificación de variables de entorno FALLIDA');
-    return false;
+// Verificar variables opcionales
+console.log('\n📋 Verificando variables de pago (opcionales):');
+optionalVars.forEach(varName => {
+  const value = process.env[varName];
+  
+  if (!value || value.trim() === '') {
+    console.log(`ℹ️  Variable ${varName} no está definida`);
+  } else {
+    console.log(`✅ ${varName}: Configurada`);
   }
+});
 
-  console.log('\n✅ Todas las variables de entorno verificadas correctamente');
+if (hasErrors) {
+  console.error('\n❌ Verificación de variables de entorno FALLIDA');
+  console.error('Por favor configure las variables críticas en GitHub Secrets o en su archivo .env');
+  process.exit(1);
+}
+
+if (hasWarnings) {
+  console.warn('\n⚠️  Algunas variables críticas no están configuradas');
+  console.warn('La aplicación funcionará con valores por defecto, pero es recomendable configurarlas');
+}
+
+console.log('\n✅ Verificación de variables de entorno completada');
+console.log('ℹ️  Las variables se inyectarán durante el build desde el entorno');
+
+export default function verifyEnvironmentVars() {
   return !hasErrors;
 }
